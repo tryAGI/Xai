@@ -1314,6 +1314,54 @@ components:
           format: int64
         owned_by:
           type: string
+        fingerprint:
+          type: string
+          description: Model fingerprint for versioning.
+        version:
+          type: string
+          description: Model version string.
+        input_modalities:
+          type: array
+          items:
+            type: string
+          description: Supported input modalities (e.g. text, image).
+        output_modalities:
+          type: array
+          items:
+            type: string
+          description: Supported output modalities (e.g. text, image, video).
+        prompt_text_token_price:
+          type: integer
+          format: int64
+          description: Price per input text token in billionths of a dollar.
+        cached_prompt_text_token_price:
+          type: integer
+          format: int64
+          description: Price per cached input text token in billionths of a dollar.
+        prompt_image_token_price:
+          type: integer
+          format: int64
+          description: Price per input image token in billionths of a dollar.
+        completion_text_token_price:
+          type: integer
+          format: int64
+          description: Price per output text token in billionths of a dollar.
+        search_price:
+          type: integer
+          format: int64
+          description: Price per search query in billionths of a dollar.
+        image_price:
+          type: integer
+          format: int64
+          description: Price per image generation in billionths of a dollar.
+        max_prompt_length:
+          type: integer
+          description: Maximum prompt length in characters.
+        aliases:
+          type: array
+          items:
+            type: string
+          description: Alternative model identifiers.
 
     # ─── Auth ─────────────────────────────────────────────────
 
