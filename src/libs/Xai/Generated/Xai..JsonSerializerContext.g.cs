@@ -226,6 +226,7 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.Model>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Model))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListSpecificModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ApiKeyInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateClientSecretRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateClientSecretRequestExpiresAfter))]

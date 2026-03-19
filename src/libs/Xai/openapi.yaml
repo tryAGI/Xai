@@ -299,7 +299,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListModelsResponse'
+                $ref: '#/components/schemas/ListSpecificModelsResponse'
 
   /language-models/{modelId}:
     get:
@@ -334,7 +334,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListModelsResponse'
+                $ref: '#/components/schemas/ListSpecificModelsResponse'
 
   /embedding-models/{modelId}:
     get:
@@ -369,7 +369,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListModelsResponse'
+                $ref: '#/components/schemas/ListSpecificModelsResponse'
 
   /image-generation-models/{modelId}:
     get:
@@ -404,7 +404,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListModelsResponse'
+                $ref: '#/components/schemas/ListSpecificModelsResponse'
 
   /video-generation-models/{modelId}:
     get:
@@ -1290,6 +1290,14 @@ components:
         object:
           type: string
         data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+
+    ListSpecificModelsResponse:
+      type: object
+      properties:
+        models:
           type: array
           items:
             $ref: '#/components/schemas/Model'

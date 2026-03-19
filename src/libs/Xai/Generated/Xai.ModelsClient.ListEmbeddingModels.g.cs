@@ -25,7 +25,7 @@ namespace Xai
         /// </summary>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Xai.ListModelsResponse> ListEmbeddingModelsAsync(
+        public async global::System.Threading.Tasks.Task<global::Xai.ListSpecificModelsResponse> ListEmbeddingModelsAsync(
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
@@ -102,7 +102,7 @@ namespace Xai
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Xai.ListModelsResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Xai.ListSpecificModelsResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -133,7 +133,7 @@ namespace Xai
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Xai.ListModelsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Xai.ListSpecificModelsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

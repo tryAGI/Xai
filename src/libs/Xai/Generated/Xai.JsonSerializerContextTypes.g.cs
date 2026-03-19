@@ -396,59 +396,63 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ApiKeyInfo? Type92 { get; set; }
+        public global::Xai.ListSpecificModelsResponse? Type92 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateClientSecretRequest? Type93 { get; set; }
+        public global::Xai.ApiKeyInfo? Type93 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateClientSecretRequestExpiresAfter? Type94 { get; set; }
+        public global::Xai.CreateClientSecretRequest? Type94 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ClientSecretResponse? Type95 { get; set; }
+        public global::Xai.CreateClientSecretRequestExpiresAfter? Type95 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ClientSecretResponseClientSecret? Type96 { get; set; }
+        public global::Xai.ClientSecretResponse? Type96 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.DateTimeOffset? Type97 { get; set; }
+        public global::Xai.ClientSecretResponseClientSecret? Type97 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.FileObject? Type98 { get; set; }
+        public global::System.DateTimeOffset? Type98 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequest? Type99 { get; set; }
+        public global::Xai.FileObject? Type99 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequestMode? Type100 { get; set; }
+        public global::Xai.SearchDocumentsRequest? Type100 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsResponse? Type101 { get; set; }
+        public global::Xai.SearchDocumentsRequestMode? Type101 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type102 { get; set; }
+        public global::Xai.SearchDocumentsResponse? Type102 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchResult? Type103 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type103 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.UploadFileRequest? Type104 { get; set; }
+        public global::Xai.SearchResult? Type104 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public byte[]? Type105 { get; set; }
+        public global::Xai.UploadFileRequest? Type105 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[]? Type106 { get; set; }
 
         /// <summary>
         /// 

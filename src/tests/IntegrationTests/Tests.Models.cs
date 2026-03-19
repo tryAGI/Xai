@@ -3,6 +3,7 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task ListModels()
     {
         var client = GetAuthenticatedClient();
@@ -13,13 +14,14 @@ public partial class Tests
     }
 
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task ListLanguageModels()
     {
         var client = GetAuthenticatedClient();
 
         var response = await client.Models.ListLanguageModelsAsync();
 
-        response.Data.Should().NotBeNullOrEmpty();
+        response.Models.Should().NotBeNullOrEmpty();
     }
 
     [TestMethod]
@@ -29,7 +31,7 @@ public partial class Tests
 
         var response = await client.Models.ListImageGenerationModelsAsync();
 
-        response.Data.Should().NotBeNullOrEmpty();
+        response.Models.Should().NotBeNullOrEmpty();
     }
 
     [TestMethod]
@@ -39,6 +41,6 @@ public partial class Tests
 
         var response = await client.Models.ListVideoGenerationModelsAsync();
 
-        response.Data.Should().NotBeNullOrEmpty();
+        response.Models.Should().NotBeNullOrEmpty();
     }
 }

@@ -17,9 +17,10 @@ jobs:
       generate-build-number: false
       conventional-commits-publish-conditions: false
       enable-caching: false
-      additional-test-arguments: '--logger GitHubActions'
+      additional-test-arguments: '--logger GitHubActions --filter TestCategory=Smoke'
     secrets:
       nuget-key: ${{ secrets.NUGET_KEY }}
+      api-key: ${{ secrets.XAI_API_KEY }}
   
   trim-check:
     name: Trimming Check

@@ -10,7 +10,7 @@ namespace Xai
         /// </summary>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Xai.ListModelsResponse> ListImageGenerationModelsAsync(
+        global::System.Threading.Tasks.Task<global::Xai.ListSpecificModelsResponse> ListImageGenerationModelsAsync(
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

@@ -13,4 +13,6 @@ jobs:
       generate-build-number: false
       conventional-commits-publish-conditions: false
       enable-caching: false
-      additional-test-arguments: '--logger GitHubActions'
+      additional-test-arguments: '--logger GitHubActions --filter TestCategory=Smoke'
+    secrets:
+      api-key: ${{ secrets.XAI_API_KEY }}
