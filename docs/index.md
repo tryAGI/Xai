@@ -267,15 +267,53 @@ await foreach (var serverEvent in voiceClient.ReceiveUpdatesAsync(cancellationTo
 }
 ```
 
+### Deferred Completions
+```csharp
+// Submit a deferred request (processed asynchronously)
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: "grok-3-mini",
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "Explain what a quasar is in two sentences.",
+        },
+    ],
+    deferred: true);
+
+// Poll for the result
+var result = await client.Chat.GetDeferredCompletionAsync(response.Id!);
+Console.WriteLine(result.Choices![0].Message?.Content);
+
+// Or use the convenience helper that submits + polls automatically:
+var completed = await client.CreateDeferredAndWaitAsync(
+    new CreateChatCompletionRequest
+    {
+        Model = "grok-3-mini",
+        Messages = [
+            new ChatCompletionMessage
+            {
+                Role = ChatCompletionMessageRole.User,
+                Content = "Write a haiku about programming.",
+            },
+        ],
+    },
+    pollingInterval: TimeSpan.FromSeconds(5),
+    timeout: TimeSpan.FromMinutes(2));
+
+Console.WriteLine(completed.Choices![0].Message?.Content);
+```
+
 ### Microsoft.Extensions.AI
 
 This SDK covers xAI-specific endpoints (images, video, realtime, etc.). For standard `IChatClient`/`IEmbeddingGenerator` support, use `CustomProviders.XAi()` from the [tryAGI.OpenAI](https://www.nuget.org/packages/tryAGI.OpenAI/) package:
 
 ```csharp
-using OpenAI;
+using tryAGI.OpenAI;
 using Microsoft.Extensions.AI;
 
-IChatClient chatClient = new OpenAIClient(apiKey, CustomProviders.XAi());
+using var api = CustomProviders.XAi("API_KEY");
+IChatClient chatClient = api;
 
 var response = await chatClient.GetResponseAsync("Hello from Grok!");
 Console.WriteLine(response.Text);

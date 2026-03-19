@@ -1,6 +1,9 @@
 site_name: Xai .NET Documentation
 nav:
 - Overview: index.md
+- Guides:
+  - Realtime Voice: guides/realtime-voice.md
+  - Video Generation: guides/video-generation.md
 # EXAMPLES:START
 # EXAMPLES:END
         
