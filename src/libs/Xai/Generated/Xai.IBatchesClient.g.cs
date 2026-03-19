@@ -4,11 +4,10 @@
 namespace Xai
 {
     /// <summary>
-    /// The xAI (Grok) REST API for chat completions, image generation, video generation, embeddings, and more.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IXaiClient : global::System.IDisposable
+    public partial interface IBatchesClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -39,61 +38,6 @@ namespace Xai
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ChatClient Chat { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ResponsesClient Responses { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public EmbeddingsClient Embeddings { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ImagesClient Images { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public VideosClient Videos { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AudioClient Audio { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ModelsClient Models { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AuthClient Auth { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public FilesClient Files { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BatchesClient Batches { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CollectionsClient Collections { get; }
 
     }
 }

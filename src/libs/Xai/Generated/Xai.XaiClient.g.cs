@@ -121,6 +121,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
+        public BatchesClient Batches => new BatchesClient(HttpClient, authorizations: Authorizations)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CollectionsClient Collections => new CollectionsClient(HttpClient, authorizations: Authorizations)
         {
             ReadResponseAsString = ReadResponseAsString,

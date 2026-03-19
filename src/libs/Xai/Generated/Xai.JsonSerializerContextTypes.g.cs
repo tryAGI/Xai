@@ -448,31 +448,103 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequest? Type105 { get; set; }
+        public global::Xai.CreateBatchRequest? Type105 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequestMode? Type106 { get; set; }
+        public global::Xai.BatchObject? Type106 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsResponse? Type107 { get; set; }
+        public global::Xai.BatchState? Type107 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type108 { get; set; }
+        public global::Xai.BatchObjectCostBreakdown? Type108 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchResult? Type109 { get; set; }
+        public global::Xai.ListBatchesResponse? Type109 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.UploadFileRequest? Type110 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.BatchObject>? Type110 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public byte[]? Type111 { get; set; }
+        public global::Xai.AddBatchRequestsRequest? Type111 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.BatchRequestItem>? Type112 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchRequestItem? Type113 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.ListBatchRequestsResponse? Type114 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.BatchRequestMetadata>? Type115 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchRequestMetadata? Type116 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchRequestMetadataState? Type117 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchResultsResponse? Type118 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.BatchResultSuccess>? Type119 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchResultSuccess? Type120 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.BatchResultFailure>? Type121 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.BatchResultFailure? Type122 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchDocumentsRequest? Type123 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchDocumentsRequestMode? Type124 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchDocumentsResponse? Type125 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type126 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchResult? Type127 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.UploadFileRequest? Type128 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[]? Type129 { get; set; }
 
         /// <summary>
         /// 
@@ -549,6 +621,26 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.SearchResult>? ListType18 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.BatchObject>? ListType18 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.BatchRequestItem>? ListType19 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.BatchRequestMetadata>? ListType20 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.BatchResultSuccess>? ListType21 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.BatchResultFailure>? ListType22 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.SearchResult>? ListType23 { get; set; }
     }
 }

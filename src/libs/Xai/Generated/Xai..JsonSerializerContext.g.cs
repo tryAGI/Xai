@@ -121,6 +121,10 @@ namespace Xai
 
             typeof(global::Xai.JsonConverters.CreateSpeechRequestResponseFormatNullableJsonConverter),
 
+            typeof(global::Xai.JsonConverters.BatchRequestMetadataStateJsonConverter),
+
+            typeof(global::Xai.JsonConverters.BatchRequestMetadataStateNullableJsonConverter),
+
             typeof(global::Xai.JsonConverters.SearchDocumentsRequestModeJsonConverter),
 
             typeof(global::Xai.JsonConverters.SearchDocumentsRequestModeNullableJsonConverter),
@@ -243,6 +247,24 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ClientSecretResponseClientSecret))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.FileObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateBatchRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchState))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchObjectCostBreakdown))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListBatchesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.BatchObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.AddBatchRequestsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.BatchRequestItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchRequestItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListBatchRequestsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.BatchRequestMetadata>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchRequestMetadata))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchRequestMetadataState))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchResultsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.BatchResultSuccess>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchResultSuccess))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.BatchResultFailure>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.BatchResultFailure))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.SearchDocumentsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.SearchDocumentsRequestMode))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.SearchDocumentsResponse))]
@@ -268,6 +290,11 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ImageInput>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ImageData>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.Model>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchRequestItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchRequestMetadata>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchResultSuccess>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchResultFailure>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.SearchResult>))]
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {

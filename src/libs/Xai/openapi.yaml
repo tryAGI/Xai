@@ -497,6 +497,180 @@ paths:
               schema:
                 $ref: '#/components/schemas/FileObject'
 
+  /batches:
+    post:
+      operationId: createBatch
+      summary: Create a batch
+      description: Creates a new batch for processing multiple requests.
+      tags:
+        - Batches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBatchRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchObject'
+    get:
+      operationId: listBatches
+      summary: List batches
+      description: Lists all batches.
+      tags:
+        - Batches
+      parameters:
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+          description: Number of batches to return per page.
+        - name: pagination_token
+          in: query
+          schema:
+            type: string
+          description: Pagination token from a previous response.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBatchesResponse'
+
+  /batches/{batchId}:
+    get:
+      operationId: getBatch
+      summary: Get batch status
+      description: Retrieves the status of a batch.
+      tags:
+        - Batches
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchObject'
+
+  /batches/{batchId}/requests:
+    post:
+      operationId: addBatchRequests
+      summary: Add requests to a batch
+      description: Adds one or more requests to an existing batch.
+      tags:
+        - Batches
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddBatchRequestsRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchObject'
+    get:
+      operationId: listBatchRequests
+      summary: List batch requests
+      description: Lists the requests in a batch.
+      tags:
+        - Batches
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+          description: Number of requests to return per page.
+        - name: pagination_token
+          in: query
+          schema:
+            type: string
+          description: Pagination token from a previous response.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBatchRequestsResponse'
+
+  /batches/{batchId}/results:
+    get:
+      operationId: getBatchResults
+      summary: Get batch results
+      description: Retrieves the results of a completed batch.
+      tags:
+        - Batches
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+          description: Number of results to return per page.
+        - name: pagination_token
+          in: query
+          schema:
+            type: string
+          description: Pagination token from a previous response.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResultsResponse'
+
+  /batches/{batchId}:cancel:
+    post:
+      operationId: cancelBatch
+      summary: Cancel a batch
+      description: Cancels a batch that is still processing.
+      tags:
+        - Batches
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchObject'
+
   /documents/search:
     post:
       operationId: searchDocuments
@@ -1483,6 +1657,143 @@ components:
         filename:
           type: string
         purpose:
+          type: string
+
+    # ─── Batches ─────────────────────────────────────────────
+
+    CreateBatchRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: A name for the batch.
+        input_file_id:
+          type: string
+          description: Optional file ID containing batch requests (uploaded via /files).
+
+    BatchObject:
+      type: object
+      properties:
+        batch_id:
+          type: string
+        name:
+          type: string
+        state:
+          $ref: '#/components/schemas/BatchState'
+        expires_at:
+          type: string
+          description: Timestamp when the batch expires.
+        cost_breakdown:
+          type: object
+          properties:
+            total_cost_usd_ticks:
+              type: integer
+              format: int64
+              description: Total cost in billionths of a dollar.
+
+    BatchState:
+      type: object
+      properties:
+        num_requests:
+          type: integer
+        num_pending:
+          type: integer
+        num_success:
+          type: integer
+        num_error:
+          type: integer
+        num_cancelled:
+          type: integer
+
+    ListBatchesResponse:
+      type: object
+      properties:
+        batches:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchObject'
+        pagination_token:
+          type: string
+
+    AddBatchRequestsRequest:
+      type: object
+      required:
+        - batch_requests
+      properties:
+        batch_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchRequestItem'
+
+    BatchRequestItem:
+      type: object
+      required:
+        - batch_request_id
+        - batch_request
+      properties:
+        batch_request_id:
+          type: string
+          description: A unique identifier for this request within the batch.
+        batch_request:
+          type: object
+          description: The request payload (e.g. chat_get_completion).
+          additionalProperties: true
+
+    ListBatchRequestsResponse:
+      type: object
+      properties:
+        batch_request_metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchRequestMetadata'
+        pagination_token:
+          type: string
+
+    BatchRequestMetadata:
+      type: object
+      properties:
+        batch_request_id:
+          type: string
+        state:
+          type: string
+          enum:
+            - pending
+            - succeeded
+            - failed
+            - cancelled
+
+    BatchResultsResponse:
+      type: object
+      properties:
+        succeeded:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchResultSuccess'
+        failed:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchResultFailure'
+        pagination_token:
+          type: string
+
+    BatchResultSuccess:
+      type: object
+      properties:
+        batch_request_id:
+          type: string
+        response:
+          type: object
+          description: The response payload.
+          additionalProperties: true
+
+    BatchResultFailure:
+      type: object
+      properties:
+        batch_request_id:
+          type: string
+        error_message:
           type: string
 
     # ─── Collections / Documents Search ───────────────────────

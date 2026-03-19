@@ -41,6 +41,7 @@ The SDK code in `Generated/` is **auto-generated** -- do not manually edit files
 | `Realtime/Models/` | Session config, audio format, turn detection, tool definitions |
 | `Realtime/RealtimeJsonSerializerContext.cs` | AOT-compatible JSON serialization for Realtime types |
 | `Helpers/VideoGenerationPoller.cs` | Extension method to submit + poll video generation |
+| `Helpers/DeferredCompletionPoller.cs` | Extension method to submit + poll deferred chat completions |
 
 ### Project Layout
 
@@ -60,6 +61,7 @@ The SDK code in `Generated/` is **auto-generated** -- do not manually edit files
 - `Audio` -- Text-to-speech
 - `Models` -- Model listing (language, image, video, embedding)
 - `Auth` -- API key info, realtime client secrets
+- `Batches` -- Batch API (create, list, get, cancel, add requests, get results)
 - `Files` -- File upload
 - `Collections` -- Document search
 
