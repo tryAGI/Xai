@@ -1,3 +1,11 @@
+/*
+order: 35
+title: Parallel Tool Calls
+slug: parallel-tool-calls
+
+Call multiple tools in parallel within a single response.
+*/
+
 using System.Text.Json;
 
 namespace Xai.IntegrationTests;
@@ -6,11 +14,12 @@ public partial class Tests
 {
     [TestMethod]
     [TestCategory("Smoke")]
-    public async Task CreateChatCompletionWithParallelToolCalls()
+    public async Task Example_ParallelToolCalls()
     {
         var client = GetAuthenticatedClient();
         var modelId = GetModelId();
 
+        //// Define multiple tools that the model can call simultaneously.
         var tools = new List<ChatCompletionTool>
         {
             new ChatCompletionTool
@@ -57,6 +66,7 @@ public partial class Tests
             },
         };
 
+        //// Enable `parallelToolCalls` so the model can invoke multiple tools at once.
         var response = await client.Chat.CreateChatCompletionAsync(
             model: modelId,
             messages:
@@ -83,5 +93,10 @@ public partial class Tests
         var functionNames = choice.Message.ToolCalls.Select(tc => tc.Function.Name).ToList();
         functionNames.Should().Contain("get_weather");
         functionNames.Should().Contain("get_time");
+
+        foreach (var tc in choice.Message.ToolCalls)
+        {
+            Console.WriteLine($"{tc.Function.Name}({tc.Function.Arguments})");
+        }
     }
 }
