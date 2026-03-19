@@ -38,6 +38,7 @@ public sealed class RealtimeTool
     /// Collection/vector store IDs (for file_search tools).
     /// </summary>
     [JsonPropertyName("vector_store_ids")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public string[]? VectorStoreIds { get; set; }
 
     /// <summary>
@@ -50,6 +51,7 @@ public sealed class RealtimeTool
     /// Allowed X handles (for x_search tools).
     /// </summary>
     [JsonPropertyName("allowed_x_handles")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public string[]? AllowedXHandles { get; set; }
 
     /// <summary>Creates a web_search tool.</summary>

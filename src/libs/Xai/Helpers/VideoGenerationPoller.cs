@@ -25,6 +25,9 @@ public static class VideoGenerationPoller
         TimeSpan? timeout = null,
         CancellationToken cancellationToken = default)
     {
+        ArgumentNullException.ThrowIfNull(client);
+        ArgumentNullException.ThrowIfNull(request);
+
         var interval = pollingInterval ?? TimeSpan.FromSeconds(5);
         var maxWait = timeout ?? TimeSpan.FromMinutes(10);
 

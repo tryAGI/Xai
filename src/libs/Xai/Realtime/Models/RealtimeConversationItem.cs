@@ -37,6 +37,7 @@ public sealed class RealtimeConversationItem
     /// Content parts (for message items).
     /// </summary>
     [JsonPropertyName("content")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public RealtimeContentPart[]? Content { get; set; }
 
     /// <summary>

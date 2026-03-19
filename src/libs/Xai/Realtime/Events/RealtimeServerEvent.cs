@@ -202,7 +202,7 @@ public sealed class RealtimeSessionInfo
 
     /// <summary>Object type (e.g. "realtime.session").</summary>
     [JsonPropertyName("object")]
-    public string? Object { get; set; }
+    public string? ObjectType { get; set; }
 
     /// <summary>Model being used.</summary>
     [JsonPropertyName("model")]
@@ -228,7 +228,7 @@ public sealed class RealtimeConversationInfo
 
     /// <summary>Object type (e.g. "realtime.conversation").</summary>
     [JsonPropertyName("object")]
-    public string? Object { get; set; }
+    public string? ObjectType { get; set; }
 }
 
 /// <summary>
@@ -242,7 +242,7 @@ public sealed class RealtimeResponseInfo
 
     /// <summary>Object type.</summary>
     [JsonPropertyName("object")]
-    public string? Object { get; set; }
+    public string? ObjectType { get; set; }
 
     /// <summary>Response status (e.g. "in_progress", "completed").</summary>
     [JsonPropertyName("status")]

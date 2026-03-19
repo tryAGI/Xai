@@ -37,11 +37,13 @@ public sealed class RealtimeSessionConfig
     /// Tools available to the agent.
     /// </summary>
     [JsonPropertyName("tools")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public RealtimeTool[]? Tools { get; set; }
 
     /// <summary>
     /// Response modalities (e.g. ["text", "audio"]).
     /// </summary>
     [JsonPropertyName("modalities")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public string[]? Modalities { get; set; }
 }

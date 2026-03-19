@@ -126,5 +126,6 @@ public sealed class RealtimeResponseConfig
     /// Response modalities (e.g. ["text", "audio"]).
     /// </summary>
     [JsonPropertyName("modalities")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819")]
     public string[]? Modalities { get; set; }
 }
