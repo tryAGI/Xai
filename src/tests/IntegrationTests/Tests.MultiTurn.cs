@@ -16,22 +16,22 @@ public partial class Tests
                 new ChatCompletionMessage
                 {
                     Role = ChatCompletionMessageRole.System,
-                    Content = "You are a helpful math tutor. Be concise.",
+                    Content = "You are a helpful math tutor. Always show your work.",
                 },
                 new ChatCompletionMessage
                 {
                     Role = ChatCompletionMessageRole.User,
-                    Content = "What is 10 * 5?",
+                    Content = "What is 7 * 8?",
                 },
                 new ChatCompletionMessage
                 {
                     Role = ChatCompletionMessageRole.Assistant,
-                    Content = "50",
+                    Content = "7 * 8 = 56",
                 },
                 new ChatCompletionMessage
                 {
                     Role = ChatCompletionMessageRole.User,
-                    Content = "Now divide that by 2.",
+                    Content = "Now divide that result by 4.",
                 },
             ]);
 
@@ -39,6 +39,7 @@ public partial class Tests
 
         var content = response.Choices![0].Message?.Content;
         content.Should().NotBeNullOrEmpty();
-        content.Should().Contain("25");
+        content.Should().Contain("14",
+            "56 / 4 = 14, and the model should reference the previous result");
     }
 }

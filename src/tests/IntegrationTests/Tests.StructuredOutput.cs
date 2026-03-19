@@ -6,43 +6,6 @@ public partial class Tests
 {
     [TestMethod]
     [TestCategory("Smoke")]
-    public async Task CreateChatCompletionWithJsonObject()
-    {
-        var client = GetAuthenticatedClient();
-        var modelId = GetModelId();
-
-        var response = await client.Chat.CreateChatCompletionAsync(
-            model: modelId,
-            messages:
-            [
-                new ChatCompletionMessage
-                {
-                    Role = ChatCompletionMessageRole.System,
-                    Content = "You are a helpful assistant that responds in JSON format.",
-                },
-                new ChatCompletionMessage
-                {
-                    Role = ChatCompletionMessageRole.User,
-                    Content = "Give me the capital of France. Respond with {\"capital\": \"...\"}",
-                },
-            ],
-            responseFormat: new ResponseFormat
-            {
-                Type = ResponseFormatType.JsonObject,
-            });
-
-        response.Choices.Should().NotBeNullOrEmpty();
-
-        var content = response.Choices![0].Message?.Content;
-        content.Should().NotBeNullOrEmpty();
-
-        // Verify it's valid JSON
-        var json = JsonSerializer.Deserialize<JsonElement>(content!);
-        json.GetProperty("capital").GetString().Should().Be("Paris");
-    }
-
-    [TestMethod]
-    [TestCategory("Smoke")]
     public async Task CreateChatCompletionWithJsonSchema()
     {
         var client = GetAuthenticatedClient();
@@ -55,7 +18,7 @@ public partial class Tests
                 new ChatCompletionMessage
                 {
                     Role = ChatCompletionMessageRole.User,
-                    Content = "What are the capitals of France and Germany?",
+                    Content = "Extract the capital of France. Respond using the provided JSON schema.",
                 },
             ],
             responseFormat: new ResponseFormat
@@ -63,28 +26,19 @@ public partial class Tests
                 Type = ResponseFormatType.JsonSchema,
                 JsonSchema = new ResponseFormatJsonSchema
                 {
-                    Name = "capitals",
-                    Description = "A list of country capitals",
-                    Schema = JsonSerializer.Deserialize<object>("""
-                        {
-                            "type": "object",
-                            "properties": {
-                                "countries": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "country": { "type": "string" },
-                                            "capital": { "type": "string" }
-                                        },
-                                        "required": ["country", "capital"]
-                                    }
-                                }
-                            },
-                            "required": ["countries"]
-                        }
-                        """),
+                    Name = "capital_response",
                     Strict = true,
+                    Schema = new
+                    {
+                        type = "object",
+                        properties = new
+                        {
+                            country = new { type = "string" },
+                            capital = new { type = "string" },
+                        },
+                        required = new[] { "country", "capital" },
+                        additionalProperties = false,
+                    },
                 },
             });
 
@@ -93,9 +47,43 @@ public partial class Tests
         var content = response.Choices![0].Message?.Content;
         content.Should().NotBeNullOrEmpty();
 
-        // Verify it's valid JSON matching the schema
         var json = JsonSerializer.Deserialize<JsonElement>(content!);
-        var countries = json.GetProperty("countries");
-        countries.GetArrayLength().Should().BeGreaterThanOrEqualTo(2);
+        json.GetProperty("capital").GetString().Should().Be("Paris");
+    }
+
+    [TestMethod]
+    [TestCategory("Smoke")]
+    public async Task CreateChatCompletionWithJsonObject()
+    {
+        var client = GetAuthenticatedClient();
+        var modelId = GetModelId();
+
+        var response = await client.Chat.CreateChatCompletionAsync(
+            model: modelId,
+            messages:
+            [
+                new ChatCompletionMessage
+                {
+                    Role = ChatCompletionMessageRole.System,
+                    Content = "You always respond in valid JSON with a 'result' field.",
+                },
+                new ChatCompletionMessage
+                {
+                    Role = ChatCompletionMessageRole.User,
+                    Content = "What is 10 * 5?",
+                },
+            ],
+            responseFormat: new ResponseFormat
+            {
+                Type = ResponseFormatType.JsonObject,
+            });
+
+        response.Choices.Should().NotBeNullOrEmpty();
+
+        var content = response.Choices![0].Message?.Content;
+        content.Should().NotBeNullOrEmpty();
+
+        var json = JsonSerializer.Deserialize<JsonElement>(content!);
+        json.GetProperty("result").GetInt32().Should().Be(50);
     }
 }
