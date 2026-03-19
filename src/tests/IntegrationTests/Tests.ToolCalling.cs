@@ -20,19 +20,18 @@ public partial class Tests
                 {
                     Name = "get_weather",
                     Description = "Get the current weather for a location.",
-                    Parameters = JsonSerializer.SerializeToNode(new
-                    {
-                        type = "object",
-                        properties = new
+                    Parameters = JsonSerializer.Deserialize<JsonElement>("""
                         {
-                            location = new
-                            {
-                                type = "string",
-                                description = "The city name.",
+                            "type": "object",
+                            "properties": {
+                                "location": {
+                                    "type": "string",
+                                    "description": "The city name."
+                                }
                             },
-                        },
-                        required = new[] { "location" },
-                    }),
+                            "required": ["location"]
+                        }
+                        """),
                 },
             },
         };
