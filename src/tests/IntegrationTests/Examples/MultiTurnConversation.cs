@@ -1,14 +1,23 @@
+/*
+order: 170
+title: Multi-Turn Conversation
+slug: multi-turn-conversation
+
+Continue a conversation across multiple turns with system instructions and history.
+*/
+
 namespace Xai.IntegrationTests;
 
 public partial class Tests
 {
     [TestMethod]
     [TestCategory("Smoke")]
-    public async Task CreateChatCompletionMultiTurn()
+    public async Task Example_MultiTurnConversation()
     {
         var client = GetAuthenticatedClient();
         var modelId = GetModelId();
 
+        //// Pass a system message and conversation history to maintain context across turns.
         var response = await client.Chat.CreateChatCompletionAsync(
             model: modelId,
             messages:
@@ -41,5 +50,7 @@ public partial class Tests
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain("14",
             "56 / 4 = 14, and the model should reference the previous result");
+
+        Console.WriteLine(content);
     }
 }
