@@ -11,10 +11,12 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task Example_Reasoning()
     {
         var client = GetAuthenticatedClient();
 
+        //// Enable reasoning with high effort to get a thinking trace alongside the answer.
         var response = await client.Chat.CreateChatCompletionAsync(
             model: "grok-3-mini",
             messages: [
@@ -26,7 +28,15 @@ public partial class Tests
             ],
             reasoningEffort: CreateChatCompletionRequestReasoningEffort.High);
 
-        Console.WriteLine($"Reasoning: {response.Choices![0].Message?.ReasoningContent}");
-        Console.WriteLine($"Answer: {response.Choices![0].Message?.Content}");
+        response.Choices.Should().NotBeNullOrEmpty();
+
+        var message = response.Choices![0].Message;
+        message.Should().NotBeNull();
+        message!.Content.Should().NotBeNullOrEmpty();
+        message.ReasoningContent.Should().NotBeNullOrEmpty(
+            "grok-3-mini with high reasoning effort should return reasoning content");
+
+        Console.WriteLine($"Reasoning: {message.ReasoningContent}");
+        Console.WriteLine($"Answer: {message.Content}");
     }
 }

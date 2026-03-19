@@ -16,6 +16,7 @@ public partial class Tests
     {
         var client = GetAuthenticatedClient();
 
+        //// Use the `GenerateAndWaitAsync` helper to submit a video request and poll until done.
         var status = await client.GenerateAndWaitAsync(
             new CreateVideoRequest
             {
@@ -26,6 +27,9 @@ public partial class Tests
             },
             pollingInterval: TimeSpan.FromSeconds(10),
             timeout: TimeSpan.FromMinutes(5));
+
+        status.Status.Should().Be(VideoStatusResponseStatus.Done);
+        status.Video?.Url.Should().NotBeNullOrEmpty();
 
         Console.WriteLine(status.Video?.Url);
     }

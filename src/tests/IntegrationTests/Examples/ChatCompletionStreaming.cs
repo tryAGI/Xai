@@ -11,11 +11,14 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task Example_ChatCompletionStreaming()
     {
         var client = GetAuthenticatedClient();
         var modelId = GetModelId();
 
+        //// Stream the response and print each chunk as it arrives.
+        var chunks = new List<CreateChatCompletionStreamResponse>();
         await foreach (var chunk in client.Chat.CreateChatCompletionAsStreamAsync(
             model: modelId,
             messages: [
@@ -26,7 +29,10 @@ public partial class Tests
                 },
             ]))
         {
+            chunks.Add(chunk);
             Console.Write(chunk.Choices?[0].Delta?.Content);
         }
+
+        chunks.Should().NotBeEmpty();
     }
 }

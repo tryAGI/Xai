@@ -11,10 +11,12 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task Example_Vision()
     {
         var client = GetAuthenticatedClient();
 
+        //// Send both text and an image URL as a multi-part content message.
         var response = await client.Chat.CreateChatCompletionAsync(
             model: "grok-2-vision",
             messages: [
@@ -40,6 +42,9 @@ public partial class Tests
                         }),
                 },
             ]);
+
+        response.Choices.Should().NotBeNullOrEmpty();
+        response.Choices![0].Message?.Content.Should().NotBeNullOrEmpty();
 
         Console.WriteLine(response.Choices![0].Message?.Content);
     }

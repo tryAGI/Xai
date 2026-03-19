@@ -1,22 +1,31 @@
+/*
+order: 130
+title: Realtime Voice
+slug: realtime-voice
+
+Connect to the Realtime Voice Agent WebSocket API for bidirectional text/audio streaming.
+*/
+
 namespace Xai.IntegrationTests;
 
 public partial class Tests
 {
     [TestMethod]
     [TestCategory("Explicit")]
-    public async Task RealtimeSessionUpdate()
+    public async Task Example_RealtimeVoice()
     {
         var apiKey =
             Environment.GetEnvironmentVariable("XAI_API_KEY") is { Length: > 0 } apiKeyValue
                 ? apiKeyValue
                 : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
 
+        //// Create a WebSocket client and connect to the xAI Realtime API.
         using var client = new RealtimeVoiceClient(apiKey);
         await client.ConnectAsync();
 
         client.IsConnected.Should().BeTrue();
 
-        // Send session update
+        //// Configure the session with voice, instructions, and turn detection.
         await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
         {
             Voice = "Eve",
@@ -30,11 +39,11 @@ public partial class Tests
             },
         }));
 
-        // Send a text message and request response
+        //// Send a text message and request a text response.
         await client.SendEventAsync(RealtimeClientEvent.UserMessage("Say hello!"));
         await client.SendEventAsync(RealtimeClientEvent.CreateResponse(["text"]));
 
-        // Receive events until response.done
+        //// Receive server events until the response is complete.
         using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
         var receivedSessionUpdated = false;
         var receivedResponseDone = false;
@@ -49,6 +58,7 @@ public partial class Tests
             else if (serverEvent.IsAudioTranscriptDelta)
             {
                 transcriptText = (transcriptText ?? "") + serverEvent.Delta;
+                Console.Write(serverEvent.Delta);
             }
             else if (serverEvent.IsResponseDone)
             {

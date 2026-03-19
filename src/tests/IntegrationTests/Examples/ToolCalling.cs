@@ -13,11 +13,13 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task Example_ToolCalling()
     {
         var client = GetAuthenticatedClient();
         var modelId = GetModelId();
 
+        //// Define a function tool with a JSON Schema for its parameters.
         var tools = new List<ChatCompletionTool>
         {
             new ChatCompletionTool
@@ -43,6 +45,7 @@ public partial class Tests
             },
         };
 
+        //// Send a message that should trigger the tool call.
         var response = await client.Chat.CreateChatCompletionAsync(
             model: modelId,
             messages: [
@@ -56,7 +59,17 @@ public partial class Tests
             toolChoice: new OneOf<CreateChatCompletionRequestToolChoice?, ChatCompletionNamedToolChoice>(
                 CreateChatCompletionRequestToolChoice.Auto));
 
-        var toolCall = response.Choices![0].Message!.ToolCalls![0];
+        response.Choices.Should().NotBeNullOrEmpty();
+
+        var choice = response.Choices![0];
+        choice.FinishReason.Should().Be(ChatCompletionChoiceFinishReason.ToolCalls);
+        choice.Message?.ToolCalls.Should().NotBeNullOrEmpty();
+
+        //// Inspect the tool call the model wants to make.
+        var toolCall = choice.Message!.ToolCalls![0];
+        toolCall.Function.Name.Should().Be("get_weather");
+        toolCall.Function.Arguments.Should().Contain("San Francisco");
+
         Console.WriteLine($"{toolCall.Function.Name}({toolCall.Function.Arguments})");
     }
 }
