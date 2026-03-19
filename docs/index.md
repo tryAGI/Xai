@@ -267,6 +267,22 @@ await foreach (var serverEvent in voiceClient.ReceiveUpdatesAsync(cancellationTo
 }
 ```
 
+### Responses API
+```csharp
+// Create a response (stored server-side)
+var response = await client.Responses.CreateResponseAsync(
+    model: "grok-3-mini",
+    input: "What is 2+2? Answer with just the number.");
+
+Console.WriteLine(response.Output);
+
+// Retrieve a stored response
+var retrieved = await client.Responses.GetResponseAsync(response.Id!);
+
+// Delete a stored response
+await client.Responses.DeleteResponseAsync(response.Id!);
+```
+
 ### Deferred Completions
 ```csharp
 // Submit a deferred request (processed asynchronously)

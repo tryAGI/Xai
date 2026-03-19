@@ -4,6 +4,8 @@ nav:
 - Guides:
   - Realtime Voice: guides/realtime-voice.md
   - Video Generation: guides/video-generation.md
+  - Deferred Completions: guides/deferred-completions.md
+  - Batch API: guides/batches.md
 # EXAMPLES:START
 # EXAMPLES:END
         
