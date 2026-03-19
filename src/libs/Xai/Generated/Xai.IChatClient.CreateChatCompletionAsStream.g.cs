@@ -11,7 +11,7 @@ namespace Xai
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Xai.CreateChatCompletionResponse> CreateChatCompletionAsync(
+        global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
 
             global::Xai.CreateChatCompletionRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -77,7 +77,7 @@ namespace Xai
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Xai.CreateChatCompletionResponse> CreateChatCompletionAsync(
+        global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
             string model,
             global::System.Collections.Generic.IList<global::Xai.ChatCompletionMessage> messages,
             double? temperature = default,

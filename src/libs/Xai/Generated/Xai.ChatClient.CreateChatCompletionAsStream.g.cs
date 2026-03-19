@@ -5,21 +5,16 @@ namespace Xai
 {
     public partial class ChatClient
     {
-        partial void PrepareCreateChatCompletionArguments(
+        partial void PrepareCreateChatCompletionAsStreamArguments(
             global::System.Net.Http.HttpClient httpClient,
             global::Xai.CreateChatCompletionRequest request);
-        partial void PrepareCreateChatCompletionRequest(
+        partial void PrepareCreateChatCompletionAsStreamRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             global::Xai.CreateChatCompletionRequest request);
-        partial void ProcessCreateChatCompletionResponse(
+        partial void ProcessCreateChatCompletionAsStreamResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-        partial void ProcessCreateChatCompletionResponseContent(
-            global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
-            ref string content);
 
         /// <summary>
         /// Create a chat completion<br/>
@@ -28,10 +23,10 @@ namespace Xai
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Xai.CreateChatCompletionResponse> CreateChatCompletionAsync(
+        public async global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
 
             global::Xai.CreateChatCompletionRequest request,
-            global::System.Threading.CancellationToken cancellationToken = default)
+            [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
@@ -43,7 +38,7 @@ namespace Xai
                 Temperature = request.Temperature,
                 TopP = request.TopP,
                 N = request.N,
-                Stream = false,
+                Stream = true,
                 Stop = request.Stop,
                 MaxTokens = request.MaxTokens,
                 PresencePenalty = request.PresencePenalty,
@@ -60,7 +55,7 @@ namespace Xai
             };
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateChatCompletionArguments(
+            PrepareCreateChatCompletionAsStreamArguments(
                 httpClient: HttpClient,
                 request: request);
 
@@ -101,106 +96,83 @@ namespace Xai
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareCreateChatCompletionRequest(
+            PrepareCreateChatCompletionAsStreamRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 request: request);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
-                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
+                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseHeadersRead,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
 
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessCreateChatCompletionResponse(
+            ProcessCreateChatCompletionAsStreamResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
 
-            if (ReadResponseAsString)
+            try
             {
-                var __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                    cancellationToken
-#endif
-                ).ConfigureAwait(false);
-
-                ProcessResponseContent(
-                    client: HttpClient,
-                    response: __response,
-                    content: ref __content);
-                ProcessCreateChatCompletionResponseContent(
-                    httpClient: HttpClient,
-                    httpResponseMessage: __response,
-                    content: ref __content);
-
-                try
-                {
-                    __response.EnsureSuccessStatusCode();
-
-                    return
-                        global::Xai.CreateChatCompletionResponse.FromJson(__content, JsonSerializerContext) ??
-                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                }
-                catch (global::System.Exception __ex)
-                {
-                    throw new global::Xai.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
-                    {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
-                }
+                __response.EnsureSuccessStatusCode();
             }
-            else
+            catch (global::System.Net.Http.HttpRequestException __ex)
             {
+                string? __content = null;
                 try
                 {
-                    __response.EnsureSuccessStatusCode();
-
-                    using var __content = await __response.Content.ReadAsStreamAsync(
+                    __content = await __response.Content.ReadAsStringAsync(
 #if NET5_0_OR_GREATER
                         cancellationToken
 #endif
                     ).ConfigureAwait(false);
-
-                    return
-                        await global::Xai.CreateChatCompletionResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                        throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
-                catch (global::System.Exception __ex)
+                catch (global::System.Exception)
                 {
-                    string? __content = null;
-                    try
-                    {
-                        __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                            cancellationToken
-#endif
-                        ).ConfigureAwait(false);
-                    }
-                    catch (global::System.Exception)
-                    {
-                    }
-
-                    throw new global::Xai.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
-                    {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
                 }
+
+                throw new global::Xai.ApiException(
+                    message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __ex,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
+
+            using var __stream = await __response.Content.ReadAsStreamAsync(
+#if NET5_0_OR_GREATER
+                cancellationToken
+#endif
+            ).ConfigureAwait(false);
+
+            await foreach (var __sseEvent in global::System.Net.ServerSentEvents.SseParser
+                .Create(__stream).EnumerateAsync(cancellationToken))
+            {
+                var __content = __sseEvent.Data;
+                if (__content == "[DONE]")
+                {
+                    yield break;
+                }
+
+                var __streamedResponse = global::Xai.CreateChatCompletionStreamResponse.FromJson(__content, JsonSerializerContext) ??
+                                       throw new global::Xai.ApiException(
+                                           message: $"Response deserialization failed for \"{__content}\" ",
+                                           statusCode: __response.StatusCode)
+                                       {
+                                           ResponseBody = __content,
+                                           ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                               __response.Headers,
+                                               h => h.Key,
+                                               h => h.Value),
+                                       };
+
+                yield return __streamedResponse;
             }
         }
 
@@ -265,7 +237,7 @@ namespace Xai
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Xai.CreateChatCompletionResponse> CreateChatCompletionAsync(
+        public async global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
             string model,
             global::System.Collections.Generic.IList<global::Xai.ChatCompletionMessage> messages,
             double? temperature = default,
@@ -284,7 +256,7 @@ namespace Xai
             int? seed = default,
             bool? deferred = default,
             global::Xai.CreateChatCompletionRequestReasoningEffort? reasoningEffort = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
+            [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Xai.CreateChatCompletionRequest
             {
@@ -293,7 +265,7 @@ namespace Xai
                 Temperature = temperature,
                 TopP = topP,
                 N = n,
-                Stream = false,
+                Stream = true,
                 Stop = stop,
                 MaxTokens = maxTokens,
                 PresencePenalty = presencePenalty,
@@ -309,9 +281,14 @@ namespace Xai
                 ReasoningEffort = reasoningEffort,
             };
 
-            return await CreateChatCompletionAsync(
+            var __enumerable = CreateChatCompletionAsStreamAsync(
                 request: __request,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
+                cancellationToken: cancellationToken);
+
+            await foreach (var __response in __enumerable)
+            {
+                yield return __response;
+            }
         }
     }
 }

@@ -26,12 +26,13 @@ public partial class Tests
 
     [TestMethod]
     [TestCategory("Smoke")]
-    public async Task CreateChatCompletionWithTemperature()
+    public async Task CreateChatCompletionStreaming()
     {
         var client = GetAuthenticatedClient();
         var modelId = GetModelId();
 
-        var response = await client.Chat.CreateChatCompletionAsync(
+        var chunks = new List<CreateChatCompletionStreamResponse>();
+        await foreach (var chunk in client.Chat.CreateChatCompletionAsStreamAsync(
             model: modelId,
             messages: [
                 new ChatCompletionMessage
@@ -39,10 +40,11 @@ public partial class Tests
                     Role = ChatCompletionMessageRole.User,
                     Content = "Say 'Hi' and nothing else.",
                 },
-            ],
-            temperature: 0);
+            ]))
+        {
+            chunks.Add(chunk);
+        }
 
-        response.Choices.Should().NotBeNullOrEmpty();
-        response.Choices![0].Message?.Content.Should().NotBeNullOrEmpty();
+        chunks.Should().NotBeEmpty();
     }
 }

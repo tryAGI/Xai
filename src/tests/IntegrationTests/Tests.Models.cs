@@ -22,6 +22,12 @@ public partial class Tests
         var response = await client.Models.ListLanguageModelsAsync();
 
         response.Models.Should().NotBeNullOrEmpty();
+
+        var model = response.Models![0];
+        model.Id.Should().NotBeNullOrEmpty();
+        model.InputModalities.Should().NotBeNullOrEmpty();
+        model.OutputModalities.Should().NotBeNullOrEmpty();
+        model.Aliases.Should().NotBeNull();
     }
 
     [TestMethod]

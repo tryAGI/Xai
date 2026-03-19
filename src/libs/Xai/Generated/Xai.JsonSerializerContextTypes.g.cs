@@ -204,255 +204,275 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateResponseRequest? Type44 { get; set; }
+        public global::Xai.CreateChatCompletionStreamResponse? Type44 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>>? Type45 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionStreamChoice>? Type45 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>? Type46 { get; set; }
+        public global::Xai.ChatCompletionStreamChoice? Type46 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseInputMessage? Type47 { get; set; }
+        public global::Xai.ChatCompletionStreamDelta? Type47 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseInputMessageRole? Type48 { get; set; }
+        public global::Xai.ChatCompletionStreamChoiceFinishReason? Type48 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateResponseRequestReasoning? Type49 { get; set; }
+        public global::Xai.CreateResponseRequest? Type49 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateResponseRequestReasoningEffort? Type50 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>>? Type50 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseObject? Type51 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>? Type51 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseObjectStatus? Type52 { get; set; }
+        public global::Xai.ResponseInputMessage? Type52 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ResponseOutputItem>? Type53 { get; set; }
+        public global::Xai.ResponseInputMessageRole? Type53 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseOutputItem? Type54 { get; set; }
+        public global::Xai.CreateResponseRequestReasoning? Type54 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ResponseContentPart>? Type55 { get; set; }
+        public global::Xai.CreateResponseRequestReasoningEffort? Type55 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseContentPart? Type56 { get; set; }
+        public global::Xai.ResponseObject? Type56 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.DeleteResponseResult? Type57 { get; set; }
+        public global::Xai.ResponseObjectStatus? Type57 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateEmbeddingRequest? Type58 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ResponseOutputItem>? Type58 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateEmbeddingRequestEncodingFormat? Type59 { get; set; }
+        public global::Xai.ResponseOutputItem? Type59 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateEmbeddingResponse? Type60 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ResponseContentPart>? Type60 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.EmbeddingData>? Type61 { get; set; }
+        public global::Xai.ResponseContentPart? Type61 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.EmbeddingData? Type62 { get; set; }
+        public global::Xai.DeleteResponseResult? Type62 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<double>? Type63 { get; set; }
+        public global::Xai.CreateEmbeddingRequest? Type63 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateEmbeddingResponseUsage? Type64 { get; set; }
+        public global::Xai.CreateEmbeddingRequestEncodingFormat? Type64 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageRequest? Type65 { get; set; }
+        public global::Xai.CreateEmbeddingResponse? Type65 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageRequestAspectRatio? Type66 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.EmbeddingData>? Type66 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageRequestResolution? Type67 { get; set; }
+        public global::Xai.EmbeddingData? Type67 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageRequestResponseFormat? Type68 { get; set; }
+        public global::System.Collections.Generic.IList<double>? Type68 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequest? Type69 { get; set; }
+        public global::Xai.CreateEmbeddingResponseUsage? Type69 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ImageInput? Type70 { get; set; }
+        public global::Xai.CreateImageRequest? Type70 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ImageInputType? Type71 { get; set; }
+        public global::Xai.CreateImageRequestAspectRatio? Type71 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ImageInput>? Type72 { get; set; }
+        public global::Xai.CreateImageRequestResolution? Type72 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestAspectRatio? Type73 { get; set; }
+        public global::Xai.CreateImageRequestResponseFormat? Type73 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestResolution? Type74 { get; set; }
+        public global::Xai.CreateImageEditRequest? Type74 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestResponseFormat? Type75 { get; set; }
+        public global::Xai.ImageInput? Type75 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ImageResponse? Type76 { get; set; }
+        public global::Xai.ImageInputType? Type76 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ImageData>? Type77 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ImageInput>? Type77 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ImageData? Type78 { get; set; }
+        public global::Xai.CreateImageEditRequestAspectRatio? Type78 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateVideoRequest? Type79 { get; set; }
+        public global::Xai.CreateImageEditRequestResolution? Type79 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateVideoRequestAspectRatio? Type80 { get; set; }
+        public global::Xai.CreateImageEditRequestResponseFormat? Type80 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateVideoRequestResolution? Type81 { get; set; }
+        public global::Xai.ImageResponse? Type81 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateVideoResponse? Type82 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ImageData>? Type82 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.VideoStatusResponse? Type83 { get; set; }
+        public global::Xai.ImageData? Type83 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.VideoStatusResponseStatus? Type84 { get; set; }
+        public global::Xai.CreateVideoRequest? Type84 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.VideoData? Type85 { get; set; }
+        public global::Xai.CreateVideoRequestAspectRatio? Type85 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateSpeechRequest? Type86 { get; set; }
+        public global::Xai.CreateVideoRequestResolution? Type86 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateSpeechRequestVoice? Type87 { get; set; }
+        public global::Xai.CreateVideoResponse? Type87 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateSpeechRequestResponseFormat? Type88 { get; set; }
+        public global::Xai.VideoStatusResponse? Type88 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ListModelsResponse? Type89 { get; set; }
+        public global::Xai.VideoStatusResponseStatus? Type89 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.Model>? Type90 { get; set; }
+        public global::Xai.VideoData? Type90 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.Model? Type91 { get; set; }
+        public global::Xai.CreateSpeechRequest? Type91 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ListSpecificModelsResponse? Type92 { get; set; }
+        public global::Xai.CreateSpeechRequestVoice? Type92 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ApiKeyInfo? Type93 { get; set; }
+        public global::Xai.CreateSpeechRequestResponseFormat? Type93 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateClientSecretRequest? Type94 { get; set; }
+        public global::Xai.ListModelsResponse? Type94 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateClientSecretRequestExpiresAfter? Type95 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.Model>? Type95 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ClientSecretResponse? Type96 { get; set; }
+        public global::Xai.Model? Type96 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ClientSecretResponseClientSecret? Type97 { get; set; }
+        public global::Xai.ListSpecificModelsResponse? Type97 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.DateTimeOffset? Type98 { get; set; }
+        public global::Xai.ApiKeyInfo? Type98 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.FileObject? Type99 { get; set; }
+        public global::Xai.CreateClientSecretRequest? Type99 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequest? Type100 { get; set; }
+        public global::Xai.CreateClientSecretRequestExpiresAfter? Type100 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsRequestMode? Type101 { get; set; }
+        public global::Xai.ClientSecretResponse? Type101 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchDocumentsResponse? Type102 { get; set; }
+        public global::Xai.ClientSecretResponseClientSecret? Type102 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type103 { get; set; }
+        public global::System.DateTimeOffset? Type103 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.SearchResult? Type104 { get; set; }
+        public global::Xai.FileObject? Type104 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.UploadFileRequest? Type105 { get; set; }
+        public global::Xai.SearchDocumentsRequest? Type105 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public byte[]? Type106 { get; set; }
+        public global::Xai.SearchDocumentsRequestMode? Type106 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchDocumentsResponse? Type107 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Xai.SearchResult>? Type108 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.SearchResult? Type109 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.UploadFileRequest? Type110 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[]? Type111 { get; set; }
 
         /// <summary>
         /// 
@@ -489,42 +509,46 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>>? ListType8 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ChatCompletionStreamChoice>? ListType8 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>? ListType9 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>>? ListType9 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ResponseOutputItem>? ListType10 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>? ListType10 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ResponseContentPart>? ListType11 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ResponseOutputItem>? ListType11 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.EmbeddingData>? ListType12 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ResponseContentPart>? ListType12 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<double>? ListType13 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.EmbeddingData>? ListType13 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ImageInput>? ListType14 { get; set; }
+        public global::System.Collections.Generic.List<double>? ListType14 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ImageData>? ListType15 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ImageInput>? ListType15 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.Model>? ListType16 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ImageData>? ListType16 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.SearchResult>? ListType17 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.Model>? ListType17 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Xai.SearchResult>? ListType18 { get; set; }
     }
 }

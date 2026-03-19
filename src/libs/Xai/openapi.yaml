@@ -34,6 +34,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateChatCompletionResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/CreateChatCompletionStreamResponse'
 
   /chat/deferred-completion/{requestId}:
     get:
@@ -850,6 +853,59 @@ components:
               type: integer
             text_tokens:
               type: integer
+
+    CreateChatCompletionStreamResponse:
+      type: object
+      description: A streamed chunk of a chat completion response.
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created:
+          type: integer
+          format: int64
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionStreamChoice'
+        usage:
+          $ref: '#/components/schemas/CompletionUsage'
+        system_fingerprint:
+          type: string
+
+    ChatCompletionStreamChoice:
+      type: object
+      properties:
+        index:
+          type: integer
+        delta:
+          $ref: '#/components/schemas/ChatCompletionStreamDelta'
+        finish_reason:
+          type: string
+          nullable: true
+          enum:
+            - stop
+            - length
+            - tool_calls
+            - content_filter
+
+    ChatCompletionStreamDelta:
+      type: object
+      properties:
+        role:
+          type: string
+        content:
+          type: string
+        reasoning_content:
+          type: string
+          description: The reasoning content from a reasoning model.
+        tool_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessageToolCall'
 
     # ─── Responses API ────────────────────────────────────────
 

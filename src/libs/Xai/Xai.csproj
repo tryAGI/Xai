@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Nuget">
+    <PackageId>tryAGI.Xai</PackageId>
     <Description>C# SDK based on xAI (Grok) OpenAPI specification.</Description>
     <PackageTags>api;client;sdk;dotnet;xai;grok;openapi;generated;ai;llm</PackageTags>
   </PropertyGroup>

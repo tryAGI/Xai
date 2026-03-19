@@ -3,6 +3,7 @@ namespace Xai.IntegrationTests;
 public partial class Tests
 {
     [TestMethod]
+    [TestCategory("Smoke")]
     public async Task CreateImage()
     {
         var client = GetAuthenticatedClient();

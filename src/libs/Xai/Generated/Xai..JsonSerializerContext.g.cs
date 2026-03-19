@@ -53,6 +53,10 @@ namespace Xai
 
             typeof(global::Xai.JsonConverters.ChatCompletionChoiceFinishReasonNullableJsonConverter),
 
+            typeof(global::Xai.JsonConverters.ChatCompletionStreamChoiceFinishReasonJsonConverter),
+
+            typeof(global::Xai.JsonConverters.ChatCompletionStreamChoiceFinishReasonNullableJsonConverter),
+
             typeof(global::Xai.JsonConverters.ResponseInputMessageRoleJsonConverter),
 
             typeof(global::Xai.JsonConverters.ResponseInputMessageRoleNullableJsonConverter),
@@ -178,6 +182,11 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CompletionUsage))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CompletionUsagePromptTokensDetails))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CompletionUsageCompletionTokensDetails))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateChatCompletionStreamResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.ChatCompletionStreamChoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ChatCompletionStreamChoice))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ChatCompletionStreamDelta))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ChatCompletionStreamChoiceFinishReason))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateResponseRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.OneOf<string, global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.ResponseInputMessage>))]
@@ -249,6 +258,7 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ChatCompletionTool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ChatCompletionChoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ChatCompletionStreamChoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.OneOf<string, global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ResponseInputMessage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ResponseOutputItem>))]
