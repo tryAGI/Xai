@@ -49,6 +49,15 @@ The SDK code in `Generated/` is **auto-generated** -- do not manually edit files
 |---------|---------|
 | `src/libs/Xai/` | Main SDK library (`XaiClient` + `RealtimeVoiceClient`) |
 | `src/tests/IntegrationTests/` | Integration tests against real xAI API |
+| `src/tests/IntegrationTests/Examples/` | **Primary test location** — JSDoc-annotated tests that double as `autosdk docs sync` source |
+
+### Documentation Generation
+
+Tests in `Examples/` are the single source of truth for both test coverage and documentation:
+- Each file has a JSDoc header (`order`, `title`, `slug`) consumed by `autosdk docs sync .`
+- Comments prefixed with `////` become prose paragraphs in generated docs
+- CI workflow (`.github/workflows/mkdocs.yml`) auto-generates `docs/examples/` and populates `EXAMPLES:START/END` markers in README.md, docs/index.md, and mkdocs.yml
+- Config: `autosdk.docs.json` points to `src/tests/IntegrationTests/Examples`
 
 ### Sub-Clients
 
