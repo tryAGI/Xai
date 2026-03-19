@@ -1,0 +1,1429 @@
+openapi: 3.0.3
+info:
+  title: xAI API
+  description: The xAI (Grok) REST API for chat completions, image generation, video generation, embeddings, and more.
+  version: "1.0.0"
+  contact:
+    name: xAI
+    url: https://x.ai
+
+servers:
+  - url: https://api.x.ai/v1
+
+security:
+  - BearerAuth: []
+
+paths:
+  /chat/completions:
+    post:
+      operationId: createChatCompletion
+      summary: Create a chat completion
+      description: Creates a model response for the given chat conversation.
+      tags:
+        - Chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChatCompletionRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateChatCompletionResponse'
+
+  /chat/deferred-completion/{requestId}:
+    get:
+      operationId: getDeferredCompletion
+      summary: Get deferred completion result
+      description: Retrieves the result of a deferred chat completion request.
+      tags:
+        - Chat
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The request ID returned from a deferred completion request.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateChatCompletionResponse'
+
+  /responses:
+    post:
+      operationId: createResponse
+      summary: Create a model response
+      description: Creates a new model response. Can store the response for later retrieval.
+      tags:
+        - Responses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateResponseRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+
+  /responses/{responseId}:
+    get:
+      operationId: getResponse
+      summary: Get a stored response
+      description: Retrieves a previously stored model response.
+      tags:
+        - Responses
+      parameters:
+        - name: responseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+    delete:
+      operationId: deleteResponse
+      summary: Delete a stored response
+      description: Deletes a previously stored model response.
+      tags:
+        - Responses
+      parameters:
+        - name: responseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deletion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponseResult'
+
+  /embeddings:
+    post:
+      operationId: createEmbedding
+      summary: Create embeddings
+      description: Creates an embedding vector representing the input text.
+      tags:
+        - Embeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmbeddingRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEmbeddingResponse'
+
+  /images/generations:
+    post:
+      operationId: createImage
+      summary: Generate images
+      description: Creates an image given a prompt.
+      tags:
+        - Images
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateImageRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+
+  /images/edits:
+    post:
+      operationId: createImageEdit
+      summary: Edit an image
+      description: Creates an edited or extended image given source image(s) and a prompt.
+      tags:
+        - Images
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateImageEditRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+
+  /videos/generations:
+    post:
+      operationId: createVideo
+      summary: Generate a video
+      description: Creates a video given a prompt. Returns a request_id for polling.
+      tags:
+        - Videos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVideoRequest'
+      responses:
+        '200':
+          description: Successful response with request ID for polling
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVideoResponse'
+
+  /videos/{requestId}:
+    get:
+      operationId: getVideoStatus
+      summary: Get video generation status
+      description: Polls the status of a video generation request.
+      tags:
+        - Videos
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The request ID from the video generation request.
+      responses:
+        '200':
+          description: Video generation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoStatusResponse'
+
+  /audio/speech:
+    post:
+      operationId: createSpeech
+      summary: Generate speech
+      description: Generates audio from the input text.
+      tags:
+        - Audio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpeechRequest'
+      responses:
+        '200':
+          description: Audio file
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+
+  /models:
+    get:
+      operationId: listModels
+      summary: List models
+      description: Lists the currently available models.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+
+  /models/{modelId}:
+    get:
+      operationId: getModel
+      summary: Get model details
+      description: Retrieves a model instance, providing basic information about the model.
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+
+  /language-models:
+    get:
+      operationId: listLanguageModels
+      summary: List language models
+      description: Lists the currently available language (chat) models.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+
+  /language-models/{modelId}:
+    get:
+      operationId: getLanguageModel
+      summary: Get language model details
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+
+  /embedding-models:
+    get:
+      operationId: listEmbeddingModels
+      summary: List embedding models
+      description: Lists the currently available embedding models.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+
+  /embedding-models/{modelId}:
+    get:
+      operationId: getEmbeddingModel
+      summary: Get embedding model details
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+
+  /image-generation-models:
+    get:
+      operationId: listImageGenerationModels
+      summary: List image generation models
+      description: Lists the currently available image generation models.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+
+  /image-generation-models/{modelId}:
+    get:
+      operationId: getImageGenerationModel
+      summary: Get image generation model details
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+
+  /video-generation-models:
+    get:
+      operationId: listVideoGenerationModels
+      summary: List video generation models
+      description: Lists the currently available video generation models.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+
+  /video-generation-models/{modelId}:
+    get:
+      operationId: getVideoGenerationModel
+      summary: Get video generation model details
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+
+  /api-key:
+    get:
+      operationId: getApiKeyInfo
+      summary: Get API key information
+      description: Returns information about the API key used for authentication.
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyInfo'
+
+  /realtime/client_secrets:
+    post:
+      operationId: createRealtimeClientSecret
+      summary: Create ephemeral token for Realtime API
+      description: Creates a short-lived token for authenticating WebSocket connections to the Realtime API from client-side code.
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientSecretRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientSecretResponse'
+
+  /files:
+    post:
+      operationId: uploadFile
+      summary: Upload a file
+      description: Uploads a file that can be used with collections.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+                - purpose
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload.
+                purpose:
+                  type: string
+                  description: The intended purpose of the uploaded file.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileObject'
+
+  /documents/search:
+    post:
+      operationId: searchDocuments
+      summary: Search documents
+      description: Executes a query across collection documents using keyword, semantic, or hybrid search.
+      tags:
+        - Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchDocumentsRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchDocumentsResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    # ─── Chat Completions ─────────────────────────────────────
+
+    CreateChatCompletionRequest:
+      type: object
+      required:
+        - model
+        - messages
+      properties:
+        model:
+          type: string
+          description: ID of the model to use.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessage'
+          description: A list of messages comprising the conversation so far.
+        temperature:
+          type: number
+          description: Sampling temperature (0-2).
+          minimum: 0
+          maximum: 2
+        top_p:
+          type: number
+          description: Nucleus sampling probability.
+          minimum: 0
+          maximum: 1
+        n:
+          type: integer
+          description: Number of completions to generate.
+          default: 1
+        stream:
+          type: boolean
+          description: Whether to stream back partial progress.
+          default: false
+        stop:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          description: Up to 4 sequences where the API will stop generating.
+        max_tokens:
+          type: integer
+          description: Maximum number of tokens to generate.
+        presence_penalty:
+          type: number
+          description: Penalizes new tokens based on whether they appear in the text so far.
+          minimum: -2
+          maximum: 2
+        frequency_penalty:
+          type: number
+          description: Penalizes new tokens based on their existing frequency.
+          minimum: -2
+          maximum: 2
+        logit_bias:
+          type: object
+          additionalProperties:
+            type: number
+          description: Modify the likelihood of specified tokens appearing in the completion.
+        user:
+          type: string
+          description: A unique identifier representing the end-user.
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionTool'
+          description: A list of tools the model may call.
+        tool_choice:
+          oneOf:
+            - type: string
+              enum:
+                - none
+                - auto
+                - required
+            - $ref: '#/components/schemas/ChatCompletionNamedToolChoice'
+          description: Controls which (if any) tool is called by the model.
+        parallel_tool_calls:
+          type: boolean
+          description: Whether to enable parallel function calling during tool use.
+          default: true
+        response_format:
+          $ref: '#/components/schemas/ResponseFormat'
+        seed:
+          type: integer
+          description: A seed for deterministic sampling.
+        deferred:
+          type: boolean
+          description: If true, the request is processed asynchronously. Poll with GET /chat/deferred-completion/{request_id}.
+          default: false
+        reasoning_effort:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+          description: Controls the amount of reasoning effort for reasoning models.
+
+    ChatCompletionMessage:
+      type: object
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          enum:
+            - system
+            - user
+            - assistant
+            - tool
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                $ref: '#/components/schemas/ChatCompletionContentPart'
+          description: The content of the message.
+        name:
+          type: string
+          description: An optional name for the participant.
+        tool_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessageToolCall'
+          description: Tool calls generated by the model.
+        tool_call_id:
+          type: string
+          description: Tool call that this message is responding to.
+        reasoning_content:
+          type: string
+          description: The reasoning content from a reasoning model.
+
+    ChatCompletionContentPart:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - text
+            - image_url
+        text:
+          type: string
+        image_url:
+          type: object
+          properties:
+            url:
+              type: string
+              description: The URL of the image or a base64 data URI.
+            detail:
+              type: string
+              enum:
+                - auto
+                - low
+                - high
+
+    ChatCompletionTool:
+      type: object
+      required:
+        - type
+        - function
+      properties:
+        type:
+          type: string
+          enum:
+            - function
+        function:
+          $ref: '#/components/schemas/FunctionDefinition'
+
+    FunctionDefinition:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name of the function to be called.
+        description:
+          type: string
+          description: A description of what the function does.
+        parameters:
+          type: object
+          description: The parameters the function accepts, described as a JSON Schema object.
+        strict:
+          type: boolean
+          description: Whether to enable strict schema adherence.
+
+    ChatCompletionNamedToolChoice:
+      type: object
+      required:
+        - type
+        - function
+      properties:
+        type:
+          type: string
+          enum:
+            - function
+        function:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+
+    ChatCompletionMessageToolCall:
+      type: object
+      required:
+        - id
+        - type
+        - function
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - function
+        function:
+          type: object
+          required:
+            - name
+            - arguments
+          properties:
+            name:
+              type: string
+            arguments:
+              type: string
+
+    ResponseFormat:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - text
+            - json_object
+            - json_schema
+        json_schema:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            schema:
+              type: object
+            strict:
+              type: boolean
+
+    CreateChatCompletionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created:
+          type: integer
+          format: int64
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionChoice'
+        usage:
+          $ref: '#/components/schemas/CompletionUsage'
+        system_fingerprint:
+          type: string
+
+    ChatCompletionChoice:
+      type: object
+      properties:
+        index:
+          type: integer
+        message:
+          $ref: '#/components/schemas/ChatCompletionChoiceMessage'
+        finish_reason:
+          type: string
+          enum:
+            - stop
+            - length
+            - tool_calls
+            - content_filter
+
+    ChatCompletionChoiceMessage:
+      type: object
+      properties:
+        role:
+          type: string
+        content:
+          type: string
+        reasoning_content:
+          type: string
+          description: The reasoning content from a reasoning model.
+        tool_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessageToolCall'
+
+    CompletionUsage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+        prompt_tokens_details:
+          type: object
+          properties:
+            cached_tokens:
+              type: integer
+            text_tokens:
+              type: integer
+            image_tokens:
+              type: integer
+        completion_tokens_details:
+          type: object
+          properties:
+            reasoning_tokens:
+              type: integer
+            text_tokens:
+              type: integer
+
+    # ─── Responses API ────────────────────────────────────────
+
+    CreateResponseRequest:
+      type: object
+      required:
+        - model
+        - input
+      properties:
+        model:
+          type: string
+          description: ID of the model to use.
+        input:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                $ref: '#/components/schemas/ResponseInputMessage'
+          description: The input messages for the response.
+        instructions:
+          type: string
+          description: System instructions for the response.
+        temperature:
+          type: number
+        top_p:
+          type: number
+        max_output_tokens:
+          type: integer
+        store:
+          type: boolean
+          description: Whether to store the response for later retrieval.
+          default: true
+        reasoning:
+          type: object
+          properties:
+            effort:
+              type: string
+              enum:
+                - low
+                - medium
+                - high
+          description: Reasoning configuration.
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionTool'
+
+    ResponseInputMessage:
+      type: object
+      required:
+        - role
+        - content
+      properties:
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+            - system
+        content:
+          type: string
+
+    ResponseObject:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        model:
+          type: string
+        status:
+          type: string
+          enum:
+            - completed
+            - failed
+            - in_progress
+            - cancelled
+        output:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseOutputItem'
+        usage:
+          $ref: '#/components/schemas/CompletionUsage'
+        store:
+          type: boolean
+
+    ResponseOutputItem:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        status:
+          type: string
+        role:
+          type: string
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseContentPart'
+
+    ResponseContentPart:
+      type: object
+      properties:
+        type:
+          type: string
+        text:
+          type: string
+
+    DeleteResponseResult:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        deleted:
+          type: boolean
+
+    # ─── Embeddings ───────────────────────────────────────────
+
+    CreateEmbeddingRequest:
+      type: object
+      required:
+        - model
+        - input
+      properties:
+        model:
+          type: string
+          description: ID of the model to use.
+        input:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          description: Input text to embed.
+        encoding_format:
+          type: string
+          enum:
+            - float
+            - base64
+          description: The format to return the embeddings in.
+
+    CreateEmbeddingResponse:
+      type: object
+      properties:
+        object:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbeddingData'
+        model:
+          type: string
+        usage:
+          type: object
+          properties:
+            prompt_tokens:
+              type: integer
+            total_tokens:
+              type: integer
+
+    EmbeddingData:
+      type: object
+      properties:
+        object:
+          type: string
+        index:
+          type: integer
+        embedding:
+          type: array
+          items:
+            type: number
+            format: double
+
+    # ─── Images ───────────────────────────────────────────────
+
+    CreateImageRequest:
+      type: object
+      required:
+        - model
+        - prompt
+      properties:
+        model:
+          type: string
+          description: The model to use for image generation.
+        prompt:
+          type: string
+          description: A text description of the desired image.
+        n:
+          type: integer
+          description: Number of images to generate (max 10).
+          minimum: 1
+          maximum: 10
+          default: 1
+        aspect_ratio:
+          type: string
+          enum:
+            - "1:1"
+            - "16:9"
+            - "9:16"
+            - "4:3"
+            - "3:4"
+            - "3:2"
+            - "2:3"
+            - "2:1"
+            - "1:2"
+            - "19.5:9"
+            - "9:19.5"
+            - "20:9"
+            - "9:20"
+            - auto
+          description: Aspect ratio of the generated image.
+        resolution:
+          type: string
+          enum:
+            - 1k
+            - 2k
+          description: Resolution of the generated image.
+        response_format:
+          type: string
+          enum:
+            - url
+            - b64_json
+          description: The format of the generated image.
+          default: url
+
+    CreateImageEditRequest:
+      type: object
+      required:
+        - model
+        - prompt
+      properties:
+        model:
+          type: string
+          description: The model to use for image editing.
+        prompt:
+          type: string
+          description: A text description of the desired edit.
+        image:
+          $ref: '#/components/schemas/ImageInput'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageInput'
+          description: Source images (up to 5).
+        aspect_ratio:
+          type: string
+          enum:
+            - "1:1"
+            - "16:9"
+            - "9:16"
+            - "4:3"
+            - "3:4"
+            - "3:2"
+            - "2:3"
+            - "2:1"
+            - "1:2"
+            - auto
+          description: Aspect ratio override for the output.
+        resolution:
+          type: string
+          enum:
+            - 1k
+            - 2k
+        response_format:
+          type: string
+          enum:
+            - url
+            - b64_json
+          default: url
+
+    ImageInput:
+      type: object
+      required:
+        - type
+        - url
+      properties:
+        type:
+          type: string
+          enum:
+            - image_url
+        url:
+          type: string
+          description: Public image URL or base64 data URI.
+
+    ImageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageData'
+
+    ImageData:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Temporary URL of the generated image.
+        b64_json:
+          type: string
+          description: Base64-encoded image data (if b64_json response_format was requested).
+
+    # ─── Videos ───────────────────────────────────────────────
+
+    CreateVideoRequest:
+      type: object
+      required:
+        - model
+        - prompt
+      properties:
+        model:
+          type: string
+          description: The model to use for video generation.
+        prompt:
+          type: string
+          description: A text description of the desired video.
+        duration:
+          type: integer
+          description: Duration in seconds (1-15 for generation, max 8.7s source for editing).
+          minimum: 1
+          maximum: 15
+        aspect_ratio:
+          type: string
+          enum:
+            - "1:1"
+            - "16:9"
+            - "9:16"
+            - "4:3"
+            - "3:4"
+            - "3:2"
+            - "2:3"
+          description: Aspect ratio of the generated video. Defaults to 16:9.
+        resolution:
+          type: string
+          enum:
+            - 480p
+            - 720p
+          description: Resolution of the generated video.
+          default: 480p
+        video_url:
+          type: string
+          description: Source video URL for editing operations.
+        image_url:
+          type: string
+          description: Source image URL for image-to-video generation (public URL or base64 data URI).
+
+    CreateVideoResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: ID for polling the video generation status.
+
+    VideoStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - pending
+            - done
+            - expired
+            - failed
+          description: Current status of the video generation.
+        video:
+          $ref: '#/components/schemas/VideoData'
+        model:
+          type: string
+
+    VideoData:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Temporary URL of the generated video.
+        duration:
+          type: integer
+          description: Duration of the video in seconds.
+        respect_moderation:
+          type: boolean
+          description: Whether the video was flagged by content moderation.
+
+    # ─── Audio / Speech ───────────────────────────────────────
+
+    CreateSpeechRequest:
+      type: object
+      required:
+        - model
+        - input
+        - voice
+      properties:
+        model:
+          type: string
+          description: The model to use for text-to-speech.
+        input:
+          type: string
+          description: The text to generate audio for.
+          maxLength: 4096
+        voice:
+          type: string
+          enum:
+            - Eve
+            - Ara
+            - Rex
+            - Sal
+            - Leo
+          description: The voice to use for synthesis.
+        response_format:
+          type: string
+          enum:
+            - mp3
+            - wav
+            - opus
+            - flac
+            - pcm
+          description: The audio format of the output.
+          default: mp3
+        speed:
+          type: number
+          description: The speed of the generated audio (0.25-4.0).
+          minimum: 0.25
+          maximum: 4.0
+          default: 1.0
+
+    # ─── Models ───────────────────────────────────────────────
+
+    ListModelsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created:
+          type: integer
+          format: int64
+        owned_by:
+          type: string
+
+    # ─── Auth ─────────────────────────────────────────────────
+
+    ApiKeyInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        redacted_api_key:
+          type: string
+        user_id:
+          type: string
+        team_id:
+          type: string
+        create_time:
+          type: string
+        modify_time:
+          type: string
+        acls:
+          type: array
+          items:
+            type: string
+
+    CreateClientSecretRequest:
+      type: object
+      properties:
+        expires_after:
+          type: object
+          properties:
+            seconds:
+              type: integer
+              description: Number of seconds until the token expires.
+
+    ClientSecretResponse:
+      type: object
+      properties:
+        client_secret:
+          type: object
+          properties:
+            value:
+              type: string
+              description: The ephemeral token value.
+            expires_at:
+              type: integer
+              format: int64
+              description: Unix timestamp when the token expires.
+
+    # ─── Files ────────────────────────────────────────────────
+
+    FileObject:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        bytes:
+          type: integer
+          format: int64
+        created_at:
+          type: integer
+          format: int64
+        filename:
+          type: string
+        purpose:
+          type: string
+
+    # ─── Collections / Documents Search ───────────────────────
+
+    SearchDocumentsRequest:
+      type: object
+      required:
+        - query
+        - collection_ids
+      properties:
+        query:
+          type: string
+          description: The search query.
+        collection_ids:
+          type: array
+          items:
+            type: string
+          description: Collection IDs to search across.
+        mode:
+          type: string
+          enum:
+            - keyword
+            - semantic
+            - hybrid
+          description: Search mode.
+          default: hybrid
+        max_num_results:
+          type: integer
+          description: Maximum number of results to return.
+          default: 10
+
+    SearchDocumentsResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+
+    SearchResult:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The matching text content.
+        score:
+          type: number
+          format: double
+          description: Relevance score.
+        file_id:
+          type: string
+        collection_id:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true

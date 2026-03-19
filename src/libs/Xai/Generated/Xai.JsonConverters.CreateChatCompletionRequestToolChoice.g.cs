@@ -1,0 +1,53 @@
+#nullable enable
+
+namespace Xai.JsonConverters
+{
+    /// <inheritdoc />
+    public sealed class CreateChatCompletionRequestToolChoiceJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Xai.CreateChatCompletionRequestToolChoice>
+    {
+        /// <inheritdoc />
+        public override global::Xai.CreateChatCompletionRequestToolChoice Read(
+            ref global::System.Text.Json.Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            switch (reader.TokenType)
+            {
+                case global::System.Text.Json.JsonTokenType.String:
+                {
+                    var stringValue = reader.GetString();
+                    if (stringValue != null)
+                    {
+                        return global::Xai.CreateChatCompletionRequestToolChoiceExtensions.ToEnum(stringValue) ?? default;
+                    }
+                    
+                    break;
+                }
+                case global::System.Text.Json.JsonTokenType.Number:
+                {
+                    var numValue = reader.GetInt32();
+                    return (global::Xai.CreateChatCompletionRequestToolChoice)numValue;
+                }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Xai.CreateChatCompletionRequestToolChoice);
+                }
+                default:
+                    throw new global::System.ArgumentOutOfRangeException(nameof(reader));
+            }
+
+            return default;
+        }
+
+        /// <inheritdoc />
+        public override void Write(
+            global::System.Text.Json.Utf8JsonWriter writer,
+            global::Xai.CreateChatCompletionRequestToolChoice value,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
+
+            writer.WriteStringValue(global::Xai.CreateChatCompletionRequestToolChoiceExtensions.ToValueString(value));
+        }
+    }
+}
