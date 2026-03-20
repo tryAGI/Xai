@@ -44,103 +44,103 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionMessageRole? Type4 { get; set; }
+        public double? Type4 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<global::Xai.ChatCompletionContentPart>>? Type5 { get; set; }
+        public int? Type5 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionContentPart>? Type6 { get; set; }
+        public bool? Type6 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionContentPart? Type7 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<string>>? Type7 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionContentPartType? Type8 { get; set; }
+        public global::System.Collections.Generic.IList<string>? Type8 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionContentPartImageUrl? Type9 { get; set; }
+        public global::System.Collections.Generic.Dictionary<string, double>? Type9 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionContentPartImageUrlDetail? Type10 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionTool>? Type10 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionMessageToolCall>? Type11 { get; set; }
+        public global::Xai.ChatCompletionTool? Type11 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionMessageToolCall? Type12 { get; set; }
+        public global::Xai.OneOf<global::Xai.CreateChatCompletionRequestToolChoice?, global::Xai.ChatCompletionNamedToolChoice>? Type12 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionMessageToolCallType? Type13 { get; set; }
+        public global::Xai.CreateChatCompletionRequestToolChoice? Type13 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionMessageToolCallFunction? Type14 { get; set; }
+        public global::Xai.ChatCompletionNamedToolChoice? Type14 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public double? Type15 { get; set; }
+        public global::Xai.ResponseFormat? Type15 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int? Type16 { get; set; }
+        public global::Xai.CreateChatCompletionRequestReasoningEffort? Type16 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public bool? Type17 { get; set; }
+        public global::Xai.ChatCompletionMessageRole? Type17 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<string>>? Type18 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.IList<global::Xai.ChatCompletionContentPart>>? Type18 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<string>? Type19 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionContentPart>? Type19 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.Dictionary<string, double>? Type20 { get; set; }
+        public global::Xai.ChatCompletionContentPart? Type20 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionTool>? Type21 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ChatCompletionMessageToolCall>? Type21 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionTool? Type22 { get; set; }
+        public global::Xai.ChatCompletionMessageToolCall? Type22 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionToolType? Type23 { get; set; }
+        public global::Xai.ChatCompletionContentPartType? Type23 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.FunctionDefinition? Type24 { get; set; }
+        public global::Xai.ChatCompletionContentPartImageUrl? Type24 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public object? Type25 { get; set; }
+        public global::Xai.ChatCompletionContentPartImageUrlDetail? Type25 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<global::Xai.CreateChatCompletionRequestToolChoice?, global::Xai.ChatCompletionNamedToolChoice>? Type26 { get; set; }
+        public global::Xai.ChatCompletionToolType? Type26 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateChatCompletionRequestToolChoice? Type27 { get; set; }
+        public global::Xai.FunctionDefinition? Type27 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionNamedToolChoice? Type28 { get; set; }
+        public object? Type28 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -152,19 +152,19 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseFormat? Type31 { get; set; }
+        public global::Xai.ChatCompletionMessageToolCallType? Type31 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseFormatType? Type32 { get; set; }
+        public global::Xai.ChatCompletionMessageToolCallFunction? Type32 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseFormatJsonSchema? Type33 { get; set; }
+        public global::Xai.ResponseFormatType? Type33 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateChatCompletionRequestReasoningEffort? Type34 { get; set; }
+        public global::Xai.ResponseFormatJsonSchema? Type34 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -184,15 +184,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionChoiceMessage? Type39 { get; set; }
+        public global::Xai.CompletionUsage? Type39 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ChatCompletionChoiceFinishReason? Type40 { get; set; }
+        public global::Xai.ChatCompletionChoiceMessage? Type40 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CompletionUsage? Type41 { get; set; }
+        public global::Xai.ChatCompletionChoiceFinishReason? Type41 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -240,15 +240,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ResponseInputMessageRole? Type53 { get; set; }
+        public global::Xai.CreateResponseRequestReasoning? Type53 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateResponseRequestReasoning? Type54 { get; set; }
+        public global::Xai.CreateResponseRequestReasoningEffort? Type54 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateResponseRequestReasoningEffort? Type55 { get; set; }
+        public global::Xai.ResponseInputMessageRole? Type55 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -300,11 +300,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<double>? Type68 { get; set; }
+        public global::Xai.CreateEmbeddingResponseUsage? Type68 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateEmbeddingResponseUsage? Type69 { get; set; }
+        public global::System.Collections.Generic.IList<double>? Type69 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -332,23 +332,23 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.ImageInputType? Type76 { get; set; }
+        public global::System.Collections.Generic.IList<global::Xai.ImageInput>? Type76 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Xai.ImageInput>? Type77 { get; set; }
+        public global::Xai.CreateImageEditRequestAspectRatio? Type77 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestAspectRatio? Type78 { get; set; }
+        public global::Xai.CreateImageEditRequestResolution? Type78 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestResolution? Type79 { get; set; }
+        public global::Xai.CreateImageEditRequestResponseFormat? Type79 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.CreateImageEditRequestResponseFormat? Type80 { get; set; }
+        public global::Xai.ImageInputType? Type80 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -553,27 +553,27 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.List<global::Xai.ChatCompletionContentPart>>? ListType1 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.List<string>>? ListType1 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ChatCompletionContentPart>? ListType2 { get; set; }
+        public global::System.Collections.Generic.List<string>? ListType2 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ChatCompletionMessageToolCall>? ListType3 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ChatCompletionTool>? ListType3 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Xai.OneOf<string, global::System.Collections.Generic.List<string>>? ListType4 { get; set; }
+        public global::Xai.OneOf<string, global::System.Collections.Generic.List<global::Xai.ChatCompletionContentPart>>? ListType4 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<string>? ListType5 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ChatCompletionContentPart>? ListType5 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Xai.ChatCompletionTool>? ListType6 { get; set; }
+        public global::System.Collections.Generic.List<global::Xai.ChatCompletionMessageToolCall>? ListType6 { get; set; }
         /// <summary>
         /// 
         /// </summary>
