@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateChatCompletionRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a chat completion<br/>
         /// Creates a model response for the given chat conversation.

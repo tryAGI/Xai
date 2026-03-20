@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateResponseRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a model response<br/>
         /// Creates a new model response. Can store the response for later retrieval.

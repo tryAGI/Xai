@@ -17,7 +17,6 @@ namespace Xai
 
             global::Xai.AddBatchRequestsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Add requests to a batch<br/>
         /// Adds one or more requests to an existing batch.

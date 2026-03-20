@@ -171,7 +171,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Generate speech<br/>
         /// Generates audio from the input text.

@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateSpeechRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Generate speech<br/>
         /// Generates audio from the input text.

@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.UploadFileRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Upload a file<br/>
         /// Uploads a file that can be used with collections.

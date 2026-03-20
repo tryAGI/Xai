@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Create a model response<br/>
         /// Creates a new model response. Can store the response for later retrieval.

@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Create a batch<br/>
         /// Creates a new batch for processing multiple requests.

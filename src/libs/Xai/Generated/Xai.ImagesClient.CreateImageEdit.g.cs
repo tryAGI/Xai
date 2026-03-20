@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Edit an image<br/>
         /// Creates an edited or extended image given source image(s) and a prompt.

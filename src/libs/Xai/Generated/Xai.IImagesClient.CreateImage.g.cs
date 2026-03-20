@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Generate images<br/>
         /// Creates an image given a prompt.
