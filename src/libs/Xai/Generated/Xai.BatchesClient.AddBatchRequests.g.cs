@@ -186,7 +186,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Add requests to a batch<br/>
         /// Adds one or more requests to an existing batch.

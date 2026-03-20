@@ -175,7 +175,6 @@ namespace Xai
                 yield return __streamedResponse;
             }
         }
-
         /// <summary>
         /// Create a chat completion<br/>
         /// Creates a model response for the given chat conversation.

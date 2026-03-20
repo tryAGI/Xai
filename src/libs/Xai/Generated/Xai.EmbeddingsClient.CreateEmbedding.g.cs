@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Create embeddings<br/>
         /// Creates an embedding vector representing the input text.

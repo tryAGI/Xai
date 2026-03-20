@@ -188,7 +188,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Upload a file<br/>
         /// Uploads a file that can be used with collections.

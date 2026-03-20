@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Generate a video<br/>
         /// Creates a video given a prompt. Returns a request_id for polling.

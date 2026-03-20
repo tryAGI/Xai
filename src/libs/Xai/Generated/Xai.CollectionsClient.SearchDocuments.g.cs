@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Search documents<br/>
         /// Executes a query across collection documents using keyword, semantic, or hybrid search.

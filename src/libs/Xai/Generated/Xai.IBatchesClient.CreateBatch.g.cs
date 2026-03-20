@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateBatchRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a batch<br/>
         /// Creates a new batch for processing multiple requests.

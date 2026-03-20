@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateEmbeddingRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create embeddings<br/>
         /// Creates an embedding vector representing the input text.

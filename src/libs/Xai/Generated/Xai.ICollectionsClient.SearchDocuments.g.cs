@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.SearchDocumentsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Search documents<br/>
         /// Executes a query across collection documents using keyword, semantic, or hybrid search.

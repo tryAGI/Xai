@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Create ephemeral token for Realtime API<br/>
         /// Creates a short-lived token for authenticating WebSocket connections to the Realtime API from client-side code.

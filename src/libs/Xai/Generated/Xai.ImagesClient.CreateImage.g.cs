@@ -180,7 +180,6 @@ namespace Xai
                 }
             }
         }
-
         /// <summary>
         /// Generate images<br/>
         /// Creates an image given a prompt.

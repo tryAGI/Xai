@@ -15,7 +15,6 @@ namespace Xai
 
             global::Xai.CreateClientSecretRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create ephemeral token for Realtime API<br/>
         /// Creates a short-lived token for authenticating WebSocket connections to the Realtime API from client-side code.
