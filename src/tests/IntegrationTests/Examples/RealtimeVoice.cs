@@ -6,6 +6,8 @@ slug: realtime-voice
 Connect to the Realtime Voice Agent WebSocket API for bidirectional text/audio streaming.
 */
 
+using Xai.Realtime;
+
 namespace Xai.IntegrationTests;
 
 public partial class Tests
@@ -20,28 +22,45 @@ public partial class Tests
                 : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
 
         //// Create a WebSocket client and connect to the xAI Realtime API.
-        using var client = new RealtimeVoiceClient(apiKey);
+        using var client = new XaiRealtimeClient(apiKey);
         await client.ConnectAsync();
 
         client.IsConnected.Should().BeTrue();
 
         //// Configure the session with voice, instructions, and turn detection.
-        await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
+        await client.SendSessionUpdateAsync(new SessionUpdatePayload
         {
-            Voice = "Eve",
-            Instructions = "You are a helpful assistant. Respond briefly.",
-            Modalities = ["text", "audio"],
-            TurnDetection = new RealtimeTurnDetection
+            Session = new SessionConfig
             {
-                Type = "server_vad",
-                Threshold = 0.85,
-                SilenceDurationMs = 500,
+                Voice = SessionConfigVoice.Eve,
+                Instructions = "You are a helpful assistant. Respond briefly.",
+                Modalities = ["text", "audio"],
+                TurnDetection = new TurnDetection
+                {
+                    Type = "server_vad",
+                    Threshold = 0.85,
+                    SilenceDurationMs = 500,
+                },
             },
-        }));
+        });
 
         //// Send a text message and request a text response.
-        await client.SendEventAsync(RealtimeClientEvent.UserMessage("Say hello!"));
-        await client.SendEventAsync(RealtimeClientEvent.CreateResponse(["text"]));
+        await client.SendConversationItemCreateAsync(new ConversationItemCreatePayload
+        {
+            Item = new ConversationItem
+            {
+                Type = "message",
+                Role = "user",
+                Content = [new ContentPart { Type = "input_text", Text = "Say hello!" }],
+            },
+        });
+        await client.SendResponseCreateAsync(new ResponseCreatePayload
+        {
+            Response = new ResponseConfig
+            {
+                Modalities = ["text"],
+            },
+        });
 
         //// Receive server events until the response is complete.
         using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
@@ -55,10 +74,10 @@ public partial class Tests
             {
                 receivedSessionUpdated = true;
             }
-            else if (serverEvent.IsAudioTranscriptDelta)
+            else if (serverEvent.IsResponseOutputAudioTranscriptDelta)
             {
-                transcriptText = (transcriptText ?? "") + serverEvent.Delta;
-                Console.Write(serverEvent.Delta);
+                transcriptText = (transcriptText ?? "") + serverEvent.ResponseOutputAudioTranscriptDelta?.Delta;
+                Console.Write(serverEvent.ResponseOutputAudioTranscriptDelta?.Delta);
             }
             else if (serverEvent.IsResponseDone)
             {
@@ -67,7 +86,7 @@ public partial class Tests
             }
             else if (serverEvent.IsError)
             {
-                Assert.Fail($"Received error: {serverEvent.Error?.Message}");
+                Assert.Fail($"Received error: {serverEvent.Error?.Error?.Message}");
             }
         }
 

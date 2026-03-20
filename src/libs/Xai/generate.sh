@@ -6,3 +6,9 @@ autosdk generate openapi.yaml \
   --targetFramework net10.0 \
   --output Generated \
   --exclude-deprecated-operations
+autosdk generate asyncapi.json \
+  --namespace Xai.Realtime \
+  --targetFramework net10.0 \
+  --output Generated \
+  --websocket-class-name XaiRealtimeClient \
+  --json-serializer-context RealtimeSourceGenerationContext

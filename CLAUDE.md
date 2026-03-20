@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-C# SDK for the [xAI (Grok)](https://x.ai/) API, auto-generated from a hand-curated OpenAPI specification using [AutoSDK](https://github.com/HavenDV/AutoSDK). Includes hand-written Realtime Voice Agent WebSocket client. Published as a NuGet package under the `tryAGI` organization.
+C# SDK for the [xAI (Grok)](https://x.ai/) API, auto-generated from OpenAPI + AsyncAPI specifications using [AutoSDK](https://github.com/HavenDV/AutoSDK). Published as a NuGet package under the `tryAGI` organization.
 
 ## Build Commands
 
@@ -28,18 +28,21 @@ cd src/libs/Xai && ./generate.sh
 
 The SDK code in `Generated/` is **auto-generated** -- do not manually edit files in `src/libs/Xai/Generated/`.
 
-1. `src/libs/Xai/openapi.yaml` -- hand-curated OpenAPI spec from x.ai documentation
-2. `src/libs/Xai/generate.sh` -- runs AutoSDK CLI to generate code to `Generated/`
-3. CI auto-updates the spec and creates PRs if changes are detected
+1. `src/libs/Xai/openapi.yaml` -- hand-curated OpenAPI spec for REST API (chat, images, videos, embeddings, etc.)
+2. `src/libs/Xai/asyncapi.json` -- AsyncAPI 3.0 spec for Realtime Voice Agent WebSocket API
+3. `src/libs/Xai/generate.sh` -- runs AutoSDK CLI twice (OpenAPI + AsyncAPI) to generate code to `Generated/`
+4. CI auto-updates the spec and creates PRs if changes are detected
+
+The AsyncAPI spec generates a `XaiRealtimeClient` WebSocket client in namespace `Xai.Realtime` with:
+- Typed `Send*Async()` methods for each client event (SessionUpdate, ConversationItemCreate, InputAudioBufferAppend, InputAudioBufferCommit, ResponseCreate)
+- `ReceiveUpdatesAsync()` returning a discriminated `ServerEvent` union with `Is*` properties for 21 server event types
+- All model classes (SessionConfig, TurnDetection, AudioConfig, Tool, ConversationItem, etc.)
+- AOT-compatible `RealtimeSourceGenerationContext` for JSON serialization
 
 ### Hand-Written Code
 
 | Path | Purpose |
 |------|---------|
-| `Realtime/RealtimeVoiceClient.cs` | WebSocket client for `wss://api.x.ai/v1/realtime` |
-| `Realtime/Events/` | Client and server event types for the Realtime API |
-| `Realtime/Models/` | Session config, audio format, turn detection, tool definitions |
-| `Realtime/RealtimeJsonSerializerContext.cs` | AOT-compatible JSON serialization for Realtime types |
 | `Helpers/VideoGenerationPoller.cs` | Extension method to submit + poll video generation |
 | `Helpers/DeferredCompletionPoller.cs` | Extension method to submit + poll deferred chat completions |
 
@@ -47,7 +50,7 @@ The SDK code in `Generated/` is **auto-generated** -- do not manually edit files
 
 | Project | Purpose |
 |---------|---------|
-| `src/libs/Xai/` | Main SDK library (`XaiClient` + `RealtimeVoiceClient`) |
+| `src/libs/Xai/` | Main SDK library (`XaiClient` + `XaiRealtimeClient`) |
 | `src/tests/IntegrationTests/` | Integration tests against real xAI API |
 | `src/tests/IntegrationTests/Examples/` | **Primary test location** — JSDoc-annotated tests that double as `autosdk docs sync` source |
 
@@ -76,11 +79,11 @@ Tests in `Examples/` are the single source of truth for both test coverage and d
 
 ### Realtime Voice Agent API
 
-The `RealtimeVoiceClient` is a hand-written WebSocket client following the same pattern as `tryAGI.OpenAI.RealtimeConversationClient`. It supports:
-- Bidirectional audio/text streaming
-- Server VAD turn detection
-- Function calling, web search, X search, file search tools
-- MCP tool support
+The `XaiRealtimeClient` (in `Xai.Realtime` namespace) is auto-generated from `asyncapi.json`. It supports:
+- Bidirectional audio/text streaming via `wss://api.x.ai/v1/realtime`
+- Typed send methods: `SendSessionUpdateAsync`, `SendConversationItemCreateAsync`, `SendInputAudioBufferAppendAsync`, `SendInputAudioBufferCommitAsync`, `SendResponseCreateAsync`
+- Discriminated `ServerEvent` union for receive with `Is*` properties (21 event types)
+- Server VAD turn detection, function calling, MCP tool support
 - 5 voice options: Eve, Ara, Rex, Sal, Leo
 - Multiple audio formats: PCM (configurable sample rate), G.711 µ-law, G.711 A-law
 

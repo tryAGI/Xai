@@ -1,0 +1,67 @@
+
+#nullable enable
+
+namespace Xai.Realtime
+{
+    /// <summary>
+    /// Append audio data to the input buffer.
+    /// </summary>
+    public sealed partial class InputAudioBufferAppendPayload
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.InputAudioBufferAppendPayloadTypeJsonConverter))]
+        public global::Xai.Realtime.InputAudioBufferAppendPayloadType Type { get; set; }
+
+        /// <summary>
+        /// Optional event ID.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("event_id")]
+        public string? EventId { get; set; }
+
+        /// <summary>
+        /// Base64-encoded audio data.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("audio")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Audio { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InputAudioBufferAppendPayload" /> class.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="eventId">
+        /// Optional event ID.
+        /// </param>
+        /// <param name="audio">
+        /// Base64-encoded audio data.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public InputAudioBufferAppendPayload(
+            string audio,
+            global::Xai.Realtime.InputAudioBufferAppendPayloadType type,
+            string? eventId)
+        {
+            this.Audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
+            this.Type = type;
+            this.EventId = eventId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InputAudioBufferAppendPayload" /> class.
+        /// </summary>
+        public InputAudioBufferAppendPayload()
+        {
+        }
+    }
+}
