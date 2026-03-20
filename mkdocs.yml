@@ -7,6 +7,25 @@ nav:
   - Deferred Completions: guides/deferred-completions.md
   - Batch API: guides/batches.md
 # EXAMPLES:START
+- Examples:
+  - Chat Completion: examples/chat-completion.md
+  - Chat Completion Streaming: examples/chat-completion-streaming.md
+  - Tool Calling: examples/tool-calling.md
+  - Parallel Tool Calls: examples/parallel-tool-calls.md
+  - Reasoning: examples/reasoning.md
+  - Seed Determinism: examples/seed-determinism.md
+  - Vision: examples/vision.md
+  - Image Generation: examples/image-generation.md
+  - Image Editing: examples/image-editing.md
+  - Video Generation: examples/video-generation.md
+  - Text to Speech: examples/text-to-speech.md
+  - Responses API: examples/responses-api.md
+  - Deferred Completion: examples/deferred-completion.md
+  - Realtime Voice: examples/realtime-voice.md
+  - Multi-Turn Conversation: examples/multi-turn-conversation.md
+  - Document Search: examples/document-search.md
+  - File Upload: examples/file-upload.md
+  - API Key Info: examples/api-key-info.md
 # EXAMPLES:END
         
 theme:

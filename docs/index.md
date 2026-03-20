@@ -336,6 +336,587 @@ Console.WriteLine(response.Text);
 ```
 
 <!-- EXAMPLES:START -->
+### Chat Completion
+Send a simple chat completion request.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Create a chat completion with a simple user message.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "Say 'Hello, World!' and nothing else.",
+        },
+    ]);
+
+Console.WriteLine(response.Choices![0].Message?.Content);
+```
+
+### Chat Completion Streaming
+Stream a chat completion response token by token.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Stream the response and print each chunk as it arrives.
+var chunks = new List<CreateChatCompletionStreamResponse>();
+await foreach (var chunk in client.Chat.CreateChatCompletionAsStreamAsync(
+    model: modelId,
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "Tell me a short story.",
+        },
+    ]))
+{
+    chunks.Add(chunk);
+    Console.Write(chunk.Choices?[0].Delta?.Content);
+}
+```
+
+### Tool Calling
+Use function tools to let the model call external functions.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Define a function tool with a JSON Schema for its parameters.
+var tools = new List<ChatCompletionTool>
+{
+    new ChatCompletionTool
+    {
+        Type = ChatCompletionToolType.Function,
+        Function = new FunctionDefinition
+        {
+            Name = "get_weather",
+            Description = "Get the current weather for a location.",
+            Parameters = JsonSerializer.Deserialize<JsonElement>("""
+                {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "The city name."
+                        }
+                    },
+                    "required": ["location"]
+                }
+                """),
+        },
+    },
+};
+
+// Send a message that should trigger the tool call.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "What is the weather in San Francisco?",
+        },
+    ],
+    tools: tools,
+    toolChoice: new OneOf<CreateChatCompletionRequestToolChoice?, ChatCompletionNamedToolChoice>(
+        CreateChatCompletionRequestToolChoice.Auto));
+
+var choice = response.Choices![0];
+
+// Inspect the tool call the model wants to make.
+var toolCall = choice.Message!.ToolCalls![0];
+
+Console.WriteLine($"{toolCall.Function.Name}({toolCall.Function.Arguments})");
+```
+
+### Parallel Tool Calls
+Call multiple tools in parallel within a single response.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Define multiple tools that the model can call simultaneously.
+var tools = new List<ChatCompletionTool>
+{
+    new ChatCompletionTool
+    {
+        Type = ChatCompletionToolType.Function,
+        Function = new FunctionDefinition
+        {
+            Name = "get_weather",
+            Description = "Get the current weather for a location.",
+            Parameters = JsonSerializer.Deserialize<JsonElement>("""
+                {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "The city name."
+                        }
+                    },
+                    "required": ["location"]
+                }
+                """),
+        },
+    },
+    new ChatCompletionTool
+    {
+        Type = ChatCompletionToolType.Function,
+        Function = new FunctionDefinition
+        {
+            Name = "get_time",
+            Description = "Get the current time for a timezone.",
+            Parameters = JsonSerializer.Deserialize<JsonElement>("""
+                {
+                    "type": "object",
+                    "properties": {
+                        "timezone": {
+                            "type": "string",
+                            "description": "The IANA timezone name."
+                        }
+                    },
+                    "required": ["timezone"]
+                }
+                """),
+        },
+    },
+};
+
+// Enable `parallelToolCalls` so the model can invoke multiple tools at once.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages:
+    [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "What's the weather in Tokyo and what time is it in America/New_York?",
+        },
+    ],
+    tools: tools,
+    parallelToolCalls: true,
+    toolChoice: new OneOf<CreateChatCompletionRequestToolChoice?, ChatCompletionNamedToolChoice>(
+        CreateChatCompletionRequestToolChoice.Auto));
+
+var choice = response.Choices![0];
+    "parallel tool calls should produce at least 2 tool calls");
+
+var functionNames = choice.Message.ToolCalls.Select(tc => tc.Function.Name).ToList();
+
+foreach (var tc in choice.Message.ToolCalls)
+{
+    Console.WriteLine($"{tc.Function.Name}({tc.Function.Arguments})");
+}
+```
+
+### Reasoning
+Use reasoning effort to get step-by-step thinking from grok-3-mini.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Enable reasoning with high effort to get a thinking trace alongside the answer.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: "grok-3-mini",
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "What is 15 * 37? Think step by step.",
+        },
+    ],
+    reasoningEffort: CreateChatCompletionRequestReasoningEffort.High);
+
+var message = response.Choices![0].Message;
+    "grok-3-mini with high reasoning effort should return reasoning content");
+
+Console.WriteLine($"Reasoning: {message.ReasoningContent}");
+Console.WriteLine($"Answer: {message.Content}");
+```
+
+### Seed Determinism
+Use a fixed seed and temperature=0 for reproducible output.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+const int seed = 42;
+const string prompt = "What is the capital of Japan? Answer with just the city name.";
+
+// Send the same request twice with the same seed and temperature=0.
+var response1 = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages:
+    [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = prompt,
+        },
+    ],
+    seed: seed,
+    temperature: 0);
+
+var response2 = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages:
+    [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = prompt,
+        },
+    ],
+    seed: seed,
+    temperature: 0);
+
+var content1 = response1.Choices![0].Message?.Content;
+var content2 = response2.Choices![0].Message?.Content;
+
+// With the same seed and temperature=0, outputs should be identical.
+    "same seed and temperature=0 should produce deterministic output");
+
+Console.WriteLine($"Response 1: {content1}");
+Console.WriteLine($"Response 2: {content2}");
+```
+
+### Vision
+Analyze an image using a vision-capable model.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Send both text and an image URL as a multi-part content message.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: "grok-2-vision",
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = new OneOf<string, IList<ChatCompletionContentPart>>(
+                new List<ChatCompletionContentPart>
+                {
+                    new ChatCompletionContentPart
+                    {
+                        Type = ChatCompletionContentPartType.Text,
+                        Text = "Describe this image in one sentence.",
+                    },
+                    new ChatCompletionContentPart
+                    {
+                        Type = ChatCompletionContentPartType.ImageUrl,
+                        ImageUrl = new ChatCompletionContentPartImageUrl
+                        {
+                            Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/150px-NewTux.svg.png",
+                        },
+                    },
+                }),
+        },
+    ]);
+
+Console.WriteLine(response.Choices![0].Message?.Content);
+```
+
+### Image Generation
+Generate an image from a text prompt.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Generate an image using the Grok Imagine model.
+var response = await client.Images.CreateImageAsync(
+    model: "grok-imagine-image",
+    prompt: "A simple red circle on a white background");
+
+Console.WriteLine(response.Data![0].Url);
+```
+
+### Image Editing
+Edit an existing image using a text prompt.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Edit an image by providing a source image URL and an instruction prompt.
+var response = await client.Images.CreateImageEditAsync(
+    model: "grok-2-image",
+    prompt: "Add a red hat to the person in the image",
+    image: new ImageInput
+    {
+        Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png",
+    });
+
+Console.WriteLine(response.Data![0].Url);
+```
+
+### Video Generation
+Generate a video from a text prompt using the polling helper.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Use the `GenerateAndWaitAsync` helper to submit a video request and poll until done.
+var status = await client.GenerateAndWaitAsync(
+    new CreateVideoRequest
+    {
+        Model = "grok-imagine-video",
+        Prompt = "A gentle ocean wave rolling onto a sandy beach at sunset",
+        Duration = 3,
+        Resolution = CreateVideoRequestResolution.x480p,
+    },
+    pollingInterval: TimeSpan.FromSeconds(10),
+    timeout: TimeSpan.FromMinutes(5));
+
+Console.WriteLine(status.Video?.Url);
+```
+
+### Text to Speech
+Convert text to speech audio.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Generate speech audio from text. Available voices: Eve, Ara, Rex, Sal, Leo.
+byte[] audioBytes = await client.Audio.CreateSpeechAsync(
+    model: "tts-1",
+    input: "Hello from xAI!",
+    voice: CreateSpeechRequestVoice.Eve);
+
+    "audio output should contain meaningful data");
+
+Console.WriteLine($"Generated {audioBytes.Length} bytes of audio.");
+```
+
+### Responses API
+Create, retrieve, and delete server-stored responses.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Create a response that is stored server-side for later retrieval.
+var response = await client.Responses.CreateResponseAsync(
+    model: modelId,
+    input: "What is 2+2? Answer with just the number.");
+
+Console.WriteLine($"Response: {response.Output}");
+
+// Retrieve the stored response by ID.
+var retrieved = await client.Responses.GetResponseAsync(response.Id!);
+
+Console.WriteLine($"Retrieved: {retrieved.Id}");
+
+// Delete the stored response when no longer needed.
+var deleted = await client.Responses.DeleteResponseAsync(response.Id!);
+
+Console.WriteLine($"Deleted: {deleted.Deleted}");
+```
+
+### Deferred Completion
+Submit a chat completion for asynchronous processing and poll for the result.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Submit a deferred request — it returns immediately with a request ID.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages: [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "Explain what a quasar is in two sentences.",
+        },
+    ],
+    deferred: true);
+
+// Poll for the result (the request is processed asynchronously).
+await Task.Delay(TimeSpan.FromSeconds(5));
+
+var result = await client.Chat.GetDeferredCompletionAsync(response.Id!);
+
+Console.WriteLine(result.Choices![0].Message?.Content);
+```
+
+### Realtime Voice
+Connect to the Realtime Voice Agent WebSocket API for bidirectional text/audio streaming.
+
+```csharp
+var apiKey =
+    Environment.GetEnvironmentVariable("XAI_API_KEY") is { Length: > 0 } apiKeyValue
+        ? apiKeyValue
+        : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
+
+// Create a WebSocket client and connect to the xAI Realtime API.
+using var client = new XaiRealtimeClient(apiKey);
+await client.ConnectAsync();
+
+// Configure the session with voice, instructions, and turn detection.
+await client.SendSessionUpdateAsync(new SessionUpdatePayload
+{
+    Session = new SessionConfig
+    {
+        Voice = SessionConfigVoice.Eve,
+        Instructions = "You are a helpful assistant. Respond briefly.",
+        Modalities = ["text", "audio"],
+        TurnDetection = new TurnDetection
+        {
+            Type = "server_vad",
+            Threshold = 0.85,
+            SilenceDurationMs = 500,
+        },
+    },
+});
+
+// Send a text message and request a text response.
+await client.SendConversationItemCreateAsync(new ConversationItemCreatePayload
+{
+    Item = new ConversationItem
+    {
+        Type = "message",
+        Role = "user",
+        Content = [new ContentPart { Type = "input_text", Text = "Say hello!" }],
+    },
+});
+await client.SendResponseCreateAsync(new ResponseCreatePayload
+{
+    Response = new ResponseConfig
+    {
+        Modalities = ["text"],
+    },
+});
+
+// Receive server events until the response is complete.
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+var receivedSessionUpdated = false;
+var receivedResponseDone = false;
+string? transcriptText = null;
+
+await foreach (var serverEvent in client.ReceiveUpdatesAsync(cts.Token))
+{
+    if (serverEvent.IsSessionUpdated)
+    {
+        receivedSessionUpdated = true;
+    }
+    else if (serverEvent.IsResponseOutputAudioTranscriptDelta)
+    {
+        transcriptText = (transcriptText ?? "") + serverEvent.ResponseOutputAudioTranscriptDelta?.Delta;
+        Console.Write(serverEvent.ResponseOutputAudioTranscriptDelta?.Delta);
+    }
+    else if (serverEvent.IsResponseDone)
+    {
+        receivedResponseDone = true;
+        break;
+    }
+    else if (serverEvent.IsError)
+    {
+    }
+}
+```
+
+### Multi-Turn Conversation
+Continue a conversation across multiple turns with system instructions and history.
+
+```csharp
+var client = new XaiClient(apiKey);
+var modelId = GetModelId();
+
+// Pass a system message and conversation history to maintain context across turns.
+var response = await client.Chat.CreateChatCompletionAsync(
+    model: modelId,
+    messages:
+    [
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.System,
+            Content = "You are a helpful math tutor. Always show your work.",
+        },
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "What is 7 * 8?",
+        },
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.Assistant,
+            Content = "7 * 8 = 56",
+        },
+        new ChatCompletionMessage
+        {
+            Role = ChatCompletionMessageRole.User,
+            Content = "Now divide that result by 4.",
+        },
+    ]);
+
+var content = response.Choices![0].Message?.Content;
+    "56 / 4 = 14, and the model should reference the previous result");
+
+Console.WriteLine(content);
+```
+
+### Document Search
+Search uploaded document collections using hybrid search.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+var collectionId =
+    Environment.GetEnvironmentVariable("XAI_COLLECTION_ID") is { Length: > 0 } value
+        ? value
+        : throw new AssertInconclusiveException(
+            "XAI_COLLECTION_ID environment variable is not found.");
+
+// Search across document collections using hybrid (semantic + keyword) mode.
+var response = await client.Collections.SearchDocumentsAsync(
+    query: "What is xAI?",
+    collectionIds: [collectionId],
+    mode: SearchDocumentsRequestMode.Hybrid,
+    maxNumResults: 5);
+
+foreach (var result in response.Results!)
+{
+    Console.WriteLine($"Score: {result.Score:F3} — {result.Content?[..Math.Min(80, result.Content?.Length ?? 0)]}...");
+}
+```
+
+### File Upload
+Upload a file for use with the Batch API.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Upload a file by providing its content, filename, and purpose.
+var content = "Hello from xAI SDK integration test."u8.ToArray();
+
+var file = await client.Files.UploadFileAsync(
+    file: content,
+    filename: "test-upload.txt",
+    purpose: "batch");
+
+Console.WriteLine($"Uploaded: {file.Id} ({file.Bytes} bytes)");
+```
+
+### API Key Info
+Retrieve information about the current API key.
+
+```csharp
+var client = new XaiClient(apiKey);
+
+// Check the current API key's metadata — useful for diagnostics and validation.
+var info = await client.Auth.GetApiKeyInfoAsync();
+
+Console.WriteLine($"Key: {info.RedactedApiKey}");
+Console.WriteLine($"User: {info.UserId}");
+```
 <!-- EXAMPLES:END -->
 
 ## Support
