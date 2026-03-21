@@ -43,37 +43,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public ChatClient Chat { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ResponsesClient Responses { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public EmbeddingsClient Embeddings { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ImagesClient Images { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public VideosClient Videos { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public AudioClient Audio { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ModelsClient Models { get; }
 
         /// <summary>
         /// 
@@ -83,17 +53,47 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public FilesClient Files { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public BatchesClient Batches { get; }
 
         /// <summary>
         /// 
         /// </summary>
+        public ChatClient Chat { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CollectionsClient Collections { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public EmbeddingsClient Embeddings { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public FilesClient Files { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ImagesClient Images { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ModelsClient Models { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ResponsesClient Responses { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public VideosClient Videos { get; }
 
     }
 }
