@@ -69,6 +69,7 @@ namespace Xai.Realtime
         }
 
 
+
         /// <inheritdoc cref="global::System.Net.WebSockets.ClientWebSocket.ConnectAsync(global::System.Uri, global::System.Threading.CancellationToken)"/>
         public async global::System.Threading.Tasks.Task ConnectAsync(
             global::System.Uri? uri = null,
