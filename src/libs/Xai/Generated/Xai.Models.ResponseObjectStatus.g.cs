@@ -11,6 +11,10 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
+        Cancelled,
+        /// <summary>
+        /// 
+        /// </summary>
         Completed,
         /// <summary>
         /// 
@@ -20,10 +24,6 @@ namespace Xai
         /// 
         /// </summary>
         InProgress,
-        /// <summary>
-        /// 
-        /// </summary>
-        Cancelled,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace Xai
         {
             return value switch
             {
+                ResponseObjectStatus.Cancelled => "cancelled",
                 ResponseObjectStatus.Completed => "completed",
                 ResponseObjectStatus.Failed => "failed",
                 ResponseObjectStatus.InProgress => "in_progress",
-                ResponseObjectStatus.Cancelled => "cancelled",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Xai
         {
             return value switch
             {
+                "cancelled" => ResponseObjectStatus.Cancelled,
                 "completed" => ResponseObjectStatus.Completed,
                 "failed" => ResponseObjectStatus.Failed,
                 "in_progress" => ResponseObjectStatus.InProgress,
-                "cancelled" => ResponseObjectStatus.Cancelled,
                 _ => null,
             };
         }

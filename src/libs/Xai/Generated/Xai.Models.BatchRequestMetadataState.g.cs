@@ -11,11 +11,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Pending,
-        /// <summary>
-        /// 
-        /// </summary>
-        Succeeded,
+        Cancelled,
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +19,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Cancelled,
+        Pending,
+        /// <summary>
+        /// 
+        /// </summary>
+        Succeeded,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace Xai
         {
             return value switch
             {
+                BatchRequestMetadataState.Cancelled => "cancelled",
+                BatchRequestMetadataState.Failed => "failed",
                 BatchRequestMetadataState.Pending => "pending",
                 BatchRequestMetadataState.Succeeded => "succeeded",
-                BatchRequestMetadataState.Failed => "failed",
-                BatchRequestMetadataState.Cancelled => "cancelled",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Xai
         {
             return value switch
             {
+                "cancelled" => BatchRequestMetadataState.Cancelled,
+                "failed" => BatchRequestMetadataState.Failed,
                 "pending" => BatchRequestMetadataState.Pending,
                 "succeeded" => BatchRequestMetadataState.Succeeded,
-                "failed" => BatchRequestMetadataState.Failed,
-                "cancelled" => BatchRequestMetadataState.Cancelled,
                 _ => null,
             };
         }

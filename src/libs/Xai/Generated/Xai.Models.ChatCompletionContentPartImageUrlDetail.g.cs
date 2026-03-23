@@ -15,11 +15,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Low,
+        High,
         /// <summary>
         /// 
         /// </summary>
-        High,
+        Low,
     }
 
     /// <summary>
@@ -35,8 +35,8 @@ namespace Xai
             return value switch
             {
                 ChatCompletionContentPartImageUrlDetail.Auto => "auto",
-                ChatCompletionContentPartImageUrlDetail.Low => "low",
                 ChatCompletionContentPartImageUrlDetail.High => "high",
+                ChatCompletionContentPartImageUrlDetail.Low => "low",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,8 +48,8 @@ namespace Xai
             return value switch
             {
                 "auto" => ChatCompletionContentPartImageUrlDetail.Auto,
-                "low" => ChatCompletionContentPartImageUrlDetail.Low,
                 "high" => ChatCompletionContentPartImageUrlDetail.High,
+                "low" => ChatCompletionContentPartImageUrlDetail.Low,
                 _ => null,
             };
         }

@@ -11,19 +11,19 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        System,
-        /// <summary>
-        /// 
-        /// </summary>
-        User,
-        /// <summary>
-        /// 
-        /// </summary>
         Assistant,
         /// <summary>
         /// 
         /// </summary>
+        System,
+        /// <summary>
+        /// 
+        /// </summary>
         Tool,
+        /// <summary>
+        /// 
+        /// </summary>
+        User,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace Xai
         {
             return value switch
             {
-                ChatCompletionMessageRole.System => "system",
-                ChatCompletionMessageRole.User => "user",
                 ChatCompletionMessageRole.Assistant => "assistant",
+                ChatCompletionMessageRole.System => "system",
                 ChatCompletionMessageRole.Tool => "tool",
+                ChatCompletionMessageRole.User => "user",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Xai
         {
             return value switch
             {
-                "system" => ChatCompletionMessageRole.System,
-                "user" => ChatCompletionMessageRole.User,
                 "assistant" => ChatCompletionMessageRole.Assistant,
+                "system" => ChatCompletionMessageRole.System,
                 "tool" => ChatCompletionMessageRole.Tool,
+                "user" => ChatCompletionMessageRole.User,
                 _ => null,
             };
         }

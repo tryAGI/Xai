@@ -12,11 +12,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Mp3,
+        Flac,
         /// <summary>
         /// 
         /// </summary>
-        Wav,
+        Mp3,
         /// <summary>
         /// 
         /// </summary>
@@ -24,11 +24,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Flac,
+        Pcm,
         /// <summary>
         /// 
         /// </summary>
-        Pcm,
+        Wav,
     }
 
     /// <summary>
@@ -43,11 +43,11 @@ namespace Xai
         {
             return value switch
             {
-                CreateSpeechRequestResponseFormat.Mp3 => "mp3",
-                CreateSpeechRequestResponseFormat.Wav => "wav",
-                CreateSpeechRequestResponseFormat.Opus => "opus",
                 CreateSpeechRequestResponseFormat.Flac => "flac",
+                CreateSpeechRequestResponseFormat.Mp3 => "mp3",
+                CreateSpeechRequestResponseFormat.Opus => "opus",
                 CreateSpeechRequestResponseFormat.Pcm => "pcm",
+                CreateSpeechRequestResponseFormat.Wav => "wav",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -58,11 +58,11 @@ namespace Xai
         {
             return value switch
             {
-                "mp3" => CreateSpeechRequestResponseFormat.Mp3,
-                "wav" => CreateSpeechRequestResponseFormat.Wav,
-                "opus" => CreateSpeechRequestResponseFormat.Opus,
                 "flac" => CreateSpeechRequestResponseFormat.Flac,
+                "mp3" => CreateSpeechRequestResponseFormat.Mp3,
+                "opus" => CreateSpeechRequestResponseFormat.Opus,
                 "pcm" => CreateSpeechRequestResponseFormat.Pcm,
+                "wav" => CreateSpeechRequestResponseFormat.Wav,
                 _ => null,
             };
         }

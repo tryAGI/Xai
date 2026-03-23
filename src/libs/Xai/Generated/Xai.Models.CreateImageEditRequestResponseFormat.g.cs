@@ -11,11 +11,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Url,
+        B64Json,
         /// <summary>
         /// 
         /// </summary>
-        B64Json,
+        Url,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace Xai
         {
             return value switch
             {
-                CreateImageEditRequestResponseFormat.Url => "url",
                 CreateImageEditRequestResponseFormat.B64Json => "b64_json",
+                CreateImageEditRequestResponseFormat.Url => "url",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Xai
         {
             return value switch
             {
-                "url" => CreateImageEditRequestResponseFormat.Url,
                 "b64_json" => CreateImageEditRequestResponseFormat.B64Json,
+                "url" => CreateImageEditRequestResponseFormat.Url,
                 _ => null,
             };
         }

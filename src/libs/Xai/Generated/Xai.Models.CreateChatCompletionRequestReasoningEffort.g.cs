@@ -11,15 +11,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
+        High,
+        /// <summary>
+        /// 
+        /// </summary>
         Low,
         /// <summary>
         /// 
         /// </summary>
         Medium,
-        /// <summary>
-        /// 
-        /// </summary>
-        High,
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ namespace Xai
         {
             return value switch
             {
+                CreateChatCompletionRequestReasoningEffort.High => "high",
                 CreateChatCompletionRequestReasoningEffort.Low => "low",
                 CreateChatCompletionRequestReasoningEffort.Medium => "medium",
-                CreateChatCompletionRequestReasoningEffort.High => "high",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Xai
         {
             return value switch
             {
+                "high" => CreateChatCompletionRequestReasoningEffort.High,
                 "low" => CreateChatCompletionRequestReasoningEffort.Low,
                 "medium" => CreateChatCompletionRequestReasoningEffort.Medium,
-                "high" => CreateChatCompletionRequestReasoningEffort.High,
                 _ => null,
             };
         }

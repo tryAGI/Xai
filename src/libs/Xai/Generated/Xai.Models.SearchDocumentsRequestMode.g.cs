@@ -12,15 +12,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
+        Hybrid,
+        /// <summary>
+        /// 
+        /// </summary>
         Keyword,
         /// <summary>
         /// 
         /// </summary>
         Semantic,
-        /// <summary>
-        /// 
-        /// </summary>
-        Hybrid,
     }
 
     /// <summary>
@@ -35,9 +35,9 @@ namespace Xai
         {
             return value switch
             {
+                SearchDocumentsRequestMode.Hybrid => "hybrid",
                 SearchDocumentsRequestMode.Keyword => "keyword",
                 SearchDocumentsRequestMode.Semantic => "semantic",
-                SearchDocumentsRequestMode.Hybrid => "hybrid",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Xai
         {
             return value switch
             {
+                "hybrid" => SearchDocumentsRequestMode.Hybrid,
                 "keyword" => SearchDocumentsRequestMode.Keyword,
                 "semantic" => SearchDocumentsRequestMode.Semantic,
-                "hybrid" => SearchDocumentsRequestMode.Hybrid,
                 _ => null,
             };
         }

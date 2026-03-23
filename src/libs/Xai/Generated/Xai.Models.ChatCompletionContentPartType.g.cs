@@ -11,11 +11,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Text,
+        ImageUrl,
         /// <summary>
         /// 
         /// </summary>
-        ImageUrl,
+        Text,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace Xai
         {
             return value switch
             {
-                ChatCompletionContentPartType.Text => "text",
                 ChatCompletionContentPartType.ImageUrl => "image_url",
+                ChatCompletionContentPartType.Text => "text",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Xai
         {
             return value switch
             {
-                "text" => ChatCompletionContentPartType.Text,
                 "image_url" => ChatCompletionContentPartType.ImageUrl,
+                "text" => ChatCompletionContentPartType.Text,
                 _ => null,
             };
         }
