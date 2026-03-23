@@ -11,11 +11,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Float,
+        Base64,
         /// <summary>
         /// 
         /// </summary>
-        Base64,
+        Float,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace Xai
         {
             return value switch
             {
-                CreateEmbeddingRequestEncodingFormat.Float => "float",
                 CreateEmbeddingRequestEncodingFormat.Base64 => "base64",
+                CreateEmbeddingRequestEncodingFormat.Float => "float",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Xai
         {
             return value switch
             {
-                "float" => CreateEmbeddingRequestEncodingFormat.Float,
                 "base64" => CreateEmbeddingRequestEncodingFormat.Base64,
+                "float" => CreateEmbeddingRequestEncodingFormat.Float,
                 _ => null,
             };
         }

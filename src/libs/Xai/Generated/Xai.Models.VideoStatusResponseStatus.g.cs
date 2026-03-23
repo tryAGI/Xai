@@ -11,10 +11,6 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Pending,
-        /// <summary>
-        /// 
-        /// </summary>
         Done,
         /// <summary>
         /// 
@@ -24,6 +20,10 @@ namespace Xai
         /// 
         /// </summary>
         Failed,
+        /// <summary>
+        /// 
+        /// </summary>
+        Pending,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace Xai
         {
             return value switch
             {
-                VideoStatusResponseStatus.Pending => "pending",
                 VideoStatusResponseStatus.Done => "done",
                 VideoStatusResponseStatus.Expired => "expired",
                 VideoStatusResponseStatus.Failed => "failed",
+                VideoStatusResponseStatus.Pending => "pending",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Xai
         {
             return value switch
             {
-                "pending" => VideoStatusResponseStatus.Pending,
                 "done" => VideoStatusResponseStatus.Done,
                 "expired" => VideoStatusResponseStatus.Expired,
                 "failed" => VideoStatusResponseStatus.Failed,
+                "pending" => VideoStatusResponseStatus.Pending,
                 _ => null,
             };
         }

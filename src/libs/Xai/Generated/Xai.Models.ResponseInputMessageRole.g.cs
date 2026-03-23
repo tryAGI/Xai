@@ -11,15 +11,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        User,
-        /// <summary>
-        /// 
-        /// </summary>
         Assistant,
         /// <summary>
         /// 
         /// </summary>
         System,
+        /// <summary>
+        /// 
+        /// </summary>
+        User,
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ namespace Xai
         {
             return value switch
             {
-                ResponseInputMessageRole.User => "user",
                 ResponseInputMessageRole.Assistant => "assistant",
                 ResponseInputMessageRole.System => "system",
+                ResponseInputMessageRole.User => "user",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Xai
         {
             return value switch
             {
-                "user" => ResponseInputMessageRole.User,
                 "assistant" => ResponseInputMessageRole.Assistant,
                 "system" => ResponseInputMessageRole.System,
+                "user" => ResponseInputMessageRole.User,
                 _ => null,
             };
         }

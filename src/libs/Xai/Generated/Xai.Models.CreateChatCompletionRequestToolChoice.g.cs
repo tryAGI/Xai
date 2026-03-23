@@ -11,11 +11,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        None,
+        Auto,
         /// <summary>
         /// 
         /// </summary>
-        Auto,
+        None,
         /// <summary>
         /// 
         /// </summary>
@@ -34,8 +34,8 @@ namespace Xai
         {
             return value switch
             {
-                CreateChatCompletionRequestToolChoice.None => "none",
                 CreateChatCompletionRequestToolChoice.Auto => "auto",
+                CreateChatCompletionRequestToolChoice.None => "none",
                 CreateChatCompletionRequestToolChoice.Required => "required",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -47,8 +47,8 @@ namespace Xai
         {
             return value switch
             {
-                "none" => CreateChatCompletionRequestToolChoice.None,
                 "auto" => CreateChatCompletionRequestToolChoice.Auto,
+                "none" => CreateChatCompletionRequestToolChoice.None,
                 "required" => CreateChatCompletionRequestToolChoice.Required,
                 _ => null,
             };

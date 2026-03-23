@@ -11,7 +11,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Stop,
+        ContentFilter,
         /// <summary>
         /// 
         /// </summary>
@@ -19,11 +19,11 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        ToolCalls,
+        Stop,
         /// <summary>
         /// 
         /// </summary>
-        ContentFilter,
+        ToolCalls,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace Xai
         {
             return value switch
             {
-                ChatCompletionStreamChoiceFinishReason.Stop => "stop",
-                ChatCompletionStreamChoiceFinishReason.Length => "length",
-                ChatCompletionStreamChoiceFinishReason.ToolCalls => "tool_calls",
                 ChatCompletionStreamChoiceFinishReason.ContentFilter => "content_filter",
+                ChatCompletionStreamChoiceFinishReason.Length => "length",
+                ChatCompletionStreamChoiceFinishReason.Stop => "stop",
+                ChatCompletionStreamChoiceFinishReason.ToolCalls => "tool_calls",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Xai
         {
             return value switch
             {
-                "stop" => ChatCompletionStreamChoiceFinishReason.Stop,
-                "length" => ChatCompletionStreamChoiceFinishReason.Length,
-                "tool_calls" => ChatCompletionStreamChoiceFinishReason.ToolCalls,
                 "content_filter" => ChatCompletionStreamChoiceFinishReason.ContentFilter,
+                "length" => ChatCompletionStreamChoiceFinishReason.Length,
+                "stop" => ChatCompletionStreamChoiceFinishReason.Stop,
+                "tool_calls" => ChatCompletionStreamChoiceFinishReason.ToolCalls,
                 _ => null,
             };
         }

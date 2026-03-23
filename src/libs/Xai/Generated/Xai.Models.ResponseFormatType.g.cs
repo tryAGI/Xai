@@ -11,15 +11,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        Text,
-        /// <summary>
-        /// 
-        /// </summary>
         JsonObject,
         /// <summary>
         /// 
         /// </summary>
         JsonSchema,
+        /// <summary>
+        /// 
+        /// </summary>
+        Text,
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ namespace Xai
         {
             return value switch
             {
-                ResponseFormatType.Text => "text",
                 ResponseFormatType.JsonObject => "json_object",
                 ResponseFormatType.JsonSchema => "json_schema",
+                ResponseFormatType.Text => "text",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Xai
         {
             return value switch
             {
-                "text" => ResponseFormatType.Text,
                 "json_object" => ResponseFormatType.JsonObject,
                 "json_schema" => ResponseFormatType.JsonSchema,
+                "text" => ResponseFormatType.Text,
                 _ => null,
             };
         }

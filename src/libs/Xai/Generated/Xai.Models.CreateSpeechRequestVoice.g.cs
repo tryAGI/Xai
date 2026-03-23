@@ -11,11 +11,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
+        Ara,
+        /// <summary>
+        /// 
+        /// </summary>
         Eve,
         /// <summary>
         /// 
         /// </summary>
-        Ara,
+        Leo,
         /// <summary>
         /// 
         /// </summary>
@@ -24,10 +28,6 @@ namespace Xai
         /// 
         /// </summary>
         Sal,
-        /// <summary>
-        /// 
-        /// </summary>
-        Leo,
     }
 
     /// <summary>
@@ -42,11 +42,11 @@ namespace Xai
         {
             return value switch
             {
-                CreateSpeechRequestVoice.Eve => "Eve",
                 CreateSpeechRequestVoice.Ara => "Ara",
+                CreateSpeechRequestVoice.Eve => "Eve",
+                CreateSpeechRequestVoice.Leo => "Leo",
                 CreateSpeechRequestVoice.Rex => "Rex",
                 CreateSpeechRequestVoice.Sal => "Sal",
-                CreateSpeechRequestVoice.Leo => "Leo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -57,11 +57,11 @@ namespace Xai
         {
             return value switch
             {
-                "Eve" => CreateSpeechRequestVoice.Eve,
                 "Ara" => CreateSpeechRequestVoice.Ara,
+                "Eve" => CreateSpeechRequestVoice.Eve,
+                "Leo" => CreateSpeechRequestVoice.Leo,
                 "Rex" => CreateSpeechRequestVoice.Rex,
                 "Sal" => CreateSpeechRequestVoice.Sal,
-                "Leo" => CreateSpeechRequestVoice.Leo,
                 _ => null,
             };
         }

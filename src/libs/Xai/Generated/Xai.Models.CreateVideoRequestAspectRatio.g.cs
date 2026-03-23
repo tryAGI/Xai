@@ -9,25 +9,17 @@ namespace Xai
     public enum CreateVideoRequestAspectRatio
     {
         /// <summary>
-        /// 
-        /// </summary>
-        x1_1,
-        /// <summary>
         /// 9.
         /// </summary>
         x16_9,
         /// <summary>
         /// 
         /// </summary>
-        x9_16,
+        x1_1,
         /// <summary>
         /// 
         /// </summary>
-        x4_3,
-        /// <summary>
-        /// 
-        /// </summary>
-        x3_4,
+        x2_3,
         /// <summary>
         /// 
         /// </summary>
@@ -35,7 +27,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        x2_3,
+        x3_4,
+        /// <summary>
+        /// 
+        /// </summary>
+        x4_3,
+        /// <summary>
+        /// 
+        /// </summary>
+        x9_16,
     }
 
     /// <summary>
@@ -50,13 +50,13 @@ namespace Xai
         {
             return value switch
             {
-                CreateVideoRequestAspectRatio.x1_1 => "1:1",
                 CreateVideoRequestAspectRatio.x16_9 => "16:9",
-                CreateVideoRequestAspectRatio.x9_16 => "9:16",
-                CreateVideoRequestAspectRatio.x4_3 => "4:3",
-                CreateVideoRequestAspectRatio.x3_4 => "3:4",
-                CreateVideoRequestAspectRatio.x3_2 => "3:2",
+                CreateVideoRequestAspectRatio.x1_1 => "1:1",
                 CreateVideoRequestAspectRatio.x2_3 => "2:3",
+                CreateVideoRequestAspectRatio.x3_2 => "3:2",
+                CreateVideoRequestAspectRatio.x3_4 => "3:4",
+                CreateVideoRequestAspectRatio.x4_3 => "4:3",
+                CreateVideoRequestAspectRatio.x9_16 => "9:16",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -67,13 +67,13 @@ namespace Xai
         {
             return value switch
             {
-                "1:1" => CreateVideoRequestAspectRatio.x1_1,
                 "16:9" => CreateVideoRequestAspectRatio.x16_9,
-                "9:16" => CreateVideoRequestAspectRatio.x9_16,
-                "4:3" => CreateVideoRequestAspectRatio.x4_3,
-                "3:4" => CreateVideoRequestAspectRatio.x3_4,
-                "3:2" => CreateVideoRequestAspectRatio.x3_2,
+                "1:1" => CreateVideoRequestAspectRatio.x1_1,
                 "2:3" => CreateVideoRequestAspectRatio.x2_3,
+                "3:2" => CreateVideoRequestAspectRatio.x3_2,
+                "3:4" => CreateVideoRequestAspectRatio.x3_4,
+                "4:3" => CreateVideoRequestAspectRatio.x4_3,
+                "9:16" => CreateVideoRequestAspectRatio.x9_16,
                 _ => null,
             };
         }

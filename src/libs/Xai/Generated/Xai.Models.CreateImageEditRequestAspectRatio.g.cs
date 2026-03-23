@@ -11,31 +11,15 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        x1_1,
-        /// <summary>
-        /// 
-        /// </summary>
         x16_9,
         /// <summary>
         /// 
         /// </summary>
-        x9_16,
+        x1_1,
         /// <summary>
         /// 
         /// </summary>
-        x4_3,
-        /// <summary>
-        /// 
-        /// </summary>
-        x3_4,
-        /// <summary>
-        /// 
-        /// </summary>
-        x3_2,
-        /// <summary>
-        /// 
-        /// </summary>
-        x2_3,
+        x1_2,
         /// <summary>
         /// 
         /// </summary>
@@ -43,7 +27,23 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        x1_2,
+        x2_3,
+        /// <summary>
+        /// 
+        /// </summary>
+        x3_2,
+        /// <summary>
+        /// 
+        /// </summary>
+        x3_4,
+        /// <summary>
+        /// 
+        /// </summary>
+        x4_3,
+        /// <summary>
+        /// 
+        /// </summary>
+        x9_16,
         /// <summary>
         /// 
         /// </summary>
@@ -62,15 +62,15 @@ namespace Xai
         {
             return value switch
             {
-                CreateImageEditRequestAspectRatio.x1_1 => "1:1",
                 CreateImageEditRequestAspectRatio.x16_9 => "16:9",
-                CreateImageEditRequestAspectRatio.x9_16 => "9:16",
-                CreateImageEditRequestAspectRatio.x4_3 => "4:3",
-                CreateImageEditRequestAspectRatio.x3_4 => "3:4",
-                CreateImageEditRequestAspectRatio.x3_2 => "3:2",
-                CreateImageEditRequestAspectRatio.x2_3 => "2:3",
-                CreateImageEditRequestAspectRatio.x2_1 => "2:1",
+                CreateImageEditRequestAspectRatio.x1_1 => "1:1",
                 CreateImageEditRequestAspectRatio.x1_2 => "1:2",
+                CreateImageEditRequestAspectRatio.x2_1 => "2:1",
+                CreateImageEditRequestAspectRatio.x2_3 => "2:3",
+                CreateImageEditRequestAspectRatio.x3_2 => "3:2",
+                CreateImageEditRequestAspectRatio.x3_4 => "3:4",
+                CreateImageEditRequestAspectRatio.x4_3 => "4:3",
+                CreateImageEditRequestAspectRatio.x9_16 => "9:16",
                 CreateImageEditRequestAspectRatio.Auto => "auto",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -82,15 +82,15 @@ namespace Xai
         {
             return value switch
             {
-                "1:1" => CreateImageEditRequestAspectRatio.x1_1,
                 "16:9" => CreateImageEditRequestAspectRatio.x16_9,
-                "9:16" => CreateImageEditRequestAspectRatio.x9_16,
-                "4:3" => CreateImageEditRequestAspectRatio.x4_3,
-                "3:4" => CreateImageEditRequestAspectRatio.x3_4,
-                "3:2" => CreateImageEditRequestAspectRatio.x3_2,
-                "2:3" => CreateImageEditRequestAspectRatio.x2_3,
-                "2:1" => CreateImageEditRequestAspectRatio.x2_1,
+                "1:1" => CreateImageEditRequestAspectRatio.x1_1,
                 "1:2" => CreateImageEditRequestAspectRatio.x1_2,
+                "2:1" => CreateImageEditRequestAspectRatio.x2_1,
+                "2:3" => CreateImageEditRequestAspectRatio.x2_3,
+                "3:2" => CreateImageEditRequestAspectRatio.x3_2,
+                "3:4" => CreateImageEditRequestAspectRatio.x3_4,
+                "4:3" => CreateImageEditRequestAspectRatio.x4_3,
+                "9:16" => CreateImageEditRequestAspectRatio.x9_16,
                 "auto" => CreateImageEditRequestAspectRatio.Auto,
                 _ => null,
             };
