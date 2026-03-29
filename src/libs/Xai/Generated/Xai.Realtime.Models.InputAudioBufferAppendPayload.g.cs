@@ -37,12 +37,12 @@ namespace Xai.Realtime
         /// <summary>
         /// Initializes a new instance of the <see cref="InputAudioBufferAppendPayload" /> class.
         /// </summary>
+        /// <param name="audio">
+        /// Base64-encoded audio data.
+        /// </param>
         /// <param name="type"></param>
         /// <param name="eventId">
         /// Optional event ID.
-        /// </param>
-        /// <param name="audio">
-        /// Base64-encoded audio data.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -52,9 +52,9 @@ namespace Xai.Realtime
             global::Xai.Realtime.InputAudioBufferAppendPayloadType type,
             string? eventId)
         {
-            this.Audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
             this.Type = type;
             this.EventId = eventId;
+            this.Audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
         }
 
         /// <summary>

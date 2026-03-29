@@ -37,12 +37,12 @@ namespace Xai.Realtime
         /// <summary>
         /// Initializes a new instance of the <see cref="ConversationItemCreatePayload" /> class.
         /// </summary>
+        /// <param name="item">
+        /// A conversation item (message or function output).
+        /// </param>
         /// <param name="type"></param>
         /// <param name="eventId">
         /// Optional event ID.
-        /// </param>
-        /// <param name="item">
-        /// A conversation item (message or function output).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -52,9 +52,9 @@ namespace Xai.Realtime
             global::Xai.Realtime.ConversationItemCreatePayloadType type,
             string? eventId)
         {
-            this.Item = item ?? throw new global::System.ArgumentNullException(nameof(item));
             this.Type = type;
             this.EventId = eventId;
+            this.Item = item ?? throw new global::System.ArgumentNullException(nameof(item));
         }
 
         /// <summary>
