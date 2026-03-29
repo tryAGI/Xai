@@ -39,8 +39,8 @@ namespace Xai
         /// Initializes a new instance of the <see cref="ChatCompletionMessageToolCall" /> class.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="type"></param>
         /// <param name="function"></param>
+        /// <param name="type"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -50,8 +50,8 @@ namespace Xai
             global::Xai.ChatCompletionMessageToolCallType type)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
-            this.Function = function ?? throw new global::System.ArgumentNullException(nameof(function));
             this.Type = type;
+            this.Function = function ?? throw new global::System.ArgumentNullException(nameof(function));
         }
 
         /// <summary>

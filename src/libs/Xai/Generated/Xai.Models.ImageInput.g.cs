@@ -31,10 +31,10 @@ namespace Xai
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageInput" /> class.
         /// </summary>
-        /// <param name="type"></param>
         /// <param name="url">
         /// Public image URL or base64 data URI.
         /// </param>
+        /// <param name="type"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -42,8 +42,8 @@ namespace Xai
             string url,
             global::Xai.ImageInputType type)
         {
-            this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.Type = type;
+            this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
         }
 
         /// <summary>
