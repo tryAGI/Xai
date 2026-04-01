@@ -213,7 +213,6 @@ namespace Xai
             global::Xai.CreateImageEditRequestResponseFormat? responseFormat = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Xai.CreateImageEditRequest
             {
                 Model = model,

@@ -197,7 +197,6 @@ namespace Xai
             string? inputFileId = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Xai.CreateBatchRequest
             {
                 Name = name,

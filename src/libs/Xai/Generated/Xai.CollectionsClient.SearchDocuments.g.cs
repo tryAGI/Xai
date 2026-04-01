@@ -207,7 +207,6 @@ namespace Xai
             int? maxNumResults = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Xai.SearchDocumentsRequest
             {
                 Query = query,
