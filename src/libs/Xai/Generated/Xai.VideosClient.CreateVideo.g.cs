@@ -218,6 +218,7 @@ namespace Xai
             string? imageUrl = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.CreateVideoRequest
             {
                 Model = model,

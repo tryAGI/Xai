@@ -257,6 +257,7 @@ namespace Xai
             global::Xai.CreateChatCompletionRequestReasoningEffort? reasoningEffort = default,
             [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.CreateChatCompletionRequest
             {
                 Model = model,
