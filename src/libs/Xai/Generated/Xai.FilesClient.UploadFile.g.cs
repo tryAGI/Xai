@@ -209,6 +209,7 @@ namespace Xai
             string purpose,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.UploadFileRequest
             {
                 File = file,

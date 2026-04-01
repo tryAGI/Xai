@@ -191,6 +191,7 @@ namespace Xai
             global::Xai.CreateClientSecretRequestExpiresAfter? expiresAfter = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.CreateClientSecretRequest
             {
                 ExpiresAfter = expiresAfter,

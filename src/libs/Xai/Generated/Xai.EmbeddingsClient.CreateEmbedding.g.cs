@@ -201,6 +201,7 @@ namespace Xai
             global::Xai.CreateEmbeddingRequestEncodingFormat? encodingFormat = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.CreateEmbeddingRequest
             {
                 Model = model,

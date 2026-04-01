@@ -230,127 +230,127 @@ namespace Xai.Realtime.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.SessionCreatedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.SessionCreatedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.SessionCreatedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SessionCreated, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SessionCreated!, typeInfo);
             }
             else if (value.IsSessionUpdated)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.SessionUpdatedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.SessionUpdatedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.SessionUpdatedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SessionUpdated, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SessionUpdated!, typeInfo);
             }
             else if (value.IsConversationCreated)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ConversationCreatedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ConversationCreatedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ConversationCreatedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ConversationCreated, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ConversationCreated!, typeInfo);
             }
             else if (value.IsConversationItemAdded)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ConversationItemAddedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ConversationItemAddedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ConversationItemAddedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ConversationItemAdded, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ConversationItemAdded!, typeInfo);
             }
             else if (value.IsInputAudioBufferSpeechStarted)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferSpeechStarted, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferSpeechStarted!, typeInfo);
             }
             else if (value.IsInputAudioBufferSpeechStopped)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferSpeechStopped, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferSpeechStopped!, typeInfo);
             }
             else if (value.IsInputAudioBufferCommitted)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.InputAudioBufferCommittedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.InputAudioBufferCommittedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.InputAudioBufferCommittedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferCommitted, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioBufferCommitted!, typeInfo);
             }
             else if (value.IsInputAudioTranscriptionCompleted)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioTranscriptionCompleted, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.InputAudioTranscriptionCompleted!, typeInfo);
             }
             else if (value.IsResponseCreated)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseCreatedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseCreatedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseCreatedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseCreated, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseCreated!, typeInfo);
             }
             else if (value.IsResponseDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseDoneEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseDoneEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseDoneEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseDone, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseDone!, typeInfo);
             }
             else if (value.IsResponseOutputItemAdded)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseOutputItemAddedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseOutputItemAddedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseOutputItemAddedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputItemAdded, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputItemAdded!, typeInfo);
             }
             else if (value.IsResponseOutputAudioTranscriptDelta)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioTranscriptDelta, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioTranscriptDelta!, typeInfo);
             }
             else if (value.IsResponseOutputAudioTranscriptDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioTranscriptDone, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioTranscriptDone!, typeInfo);
             }
             else if (value.IsResponseOutputAudioDelta)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseOutputAudioDeltaEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseOutputAudioDeltaEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseOutputAudioDeltaEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioDelta, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioDelta!, typeInfo);
             }
             else if (value.IsResponseOutputAudioDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseOutputAudioDoneEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseOutputAudioDoneEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseOutputAudioDoneEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioDone, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseOutputAudioDone!, typeInfo);
             }
             else if (value.IsResponseFunctionCallArgumentsDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseFunctionCallArgumentsDone, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseFunctionCallArgumentsDone!, typeInfo);
             }
             else if (value.IsResponseMcpCallArgumentsDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallArgumentsDone, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallArgumentsDone!, typeInfo);
             }
             else if (value.IsResponseMcpCallCompleted)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseMcpCallCompletedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseMcpCallCompletedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseMcpCallCompletedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallCompleted, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallCompleted!, typeInfo);
             }
             else if (value.IsResponseMcpCallFailed)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ResponseMcpCallFailedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ResponseMcpCallFailedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ResponseMcpCallFailedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallFailed, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ResponseMcpCallFailed!, typeInfo);
             }
             else if (value.IsMcpListToolsCompleted)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.McpListToolsCompletedEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.McpListToolsCompletedEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.McpListToolsCompletedEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.McpListToolsCompleted, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.McpListToolsCompleted!, typeInfo);
             }
             else if (value.IsError)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Xai.Realtime.ErrorEvent), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Xai.Realtime.ErrorEvent?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Xai.Realtime.ErrorEvent).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Error, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Error!, typeInfo);
             }
         }
     }

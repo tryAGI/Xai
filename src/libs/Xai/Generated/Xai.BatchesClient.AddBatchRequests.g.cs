@@ -199,6 +199,7 @@ namespace Xai
             global::System.Collections.Generic.IList<global::Xai.BatchRequestItem> batchRequests,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Xai.AddBatchRequestsRequest
             {
                 BatchRequests = batchRequests,
