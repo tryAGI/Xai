@@ -218,7 +218,6 @@ namespace Xai
             global::System.Collections.Generic.IList<global::Xai.ChatCompletionTool>? tools = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Xai.CreateResponseRequest
             {
                 Model = model,

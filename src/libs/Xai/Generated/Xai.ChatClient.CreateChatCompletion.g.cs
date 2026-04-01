@@ -35,7 +35,6 @@ namespace Xai
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
-
             request = new global::Xai.CreateChatCompletionRequest
             {
                 Model = request.Model,
@@ -285,7 +284,6 @@ namespace Xai
             global::Xai.CreateChatCompletionRequestReasoningEffort? reasoningEffort = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Xai.CreateChatCompletionRequest
             {
                 Model = model,
