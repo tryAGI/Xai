@@ -5,6 +5,25 @@ namespace Xai
 {
     public partial class BatchesClient
     {
+
+
+        private static readonly global::Xai.EndPointSecurityRequirement s_GetBatchResultsSecurityRequirement0 =
+            new global::Xai.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Xai.EndPointAuthorizationRequirement[]
+                {                    new global::Xai.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Xai.EndPointSecurityRequirement[] s_GetBatchResultsSecurityRequirements =
+            new global::Xai.EndPointSecurityRequirement[]
+            {                s_GetBatchResultsSecurityRequirement0,
+            };
         partial void PrepareGetBatchResultsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string batchId,
@@ -48,13 +67,19 @@ namespace Xai
                 pageSize: ref pageSize,
                 paginationToken: ref paginationToken);
 
+
+            var __authorizations = global::Xai.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetBatchResultsSecurityRequirements,
+                operationName: "GetBatchResultsAsync");
+
             var __pathBuilder = new global::Xai.PathBuilder(
                 path: $"/batches/{batchId}/results",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddOptionalParameter("page_size", pageSize?.ToString())
                 .AddOptionalParameter("pagination_token", paginationToken) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -64,7 +89,7 @@ namespace Xai
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
