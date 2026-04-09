@@ -5,6 +5,25 @@ namespace Xai
 {
     public partial class ResponsesClient
     {
+
+
+        private static readonly global::Xai.EndPointSecurityRequirement s_DeleteResponseSecurityRequirement0 =
+            new global::Xai.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Xai.EndPointAuthorizationRequirement[]
+                {                    new global::Xai.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Xai.EndPointSecurityRequirement[] s_DeleteResponseSecurityRequirements =
+            new global::Xai.EndPointSecurityRequirement[]
+            {                s_DeleteResponseSecurityRequirement0,
+            };
         partial void PrepareDeleteResponseArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string responseId);
@@ -38,9 +57,15 @@ namespace Xai
                 httpClient: HttpClient,
                 responseId: ref responseId);
 
+
+            var __authorizations = global::Xai.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_DeleteResponseSecurityRequirements,
+                operationName: "DeleteResponseAsync");
+
             var __pathBuilder = new global::Xai.PathBuilder(
                 path: $"/responses/{responseId}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Delete,
@@ -50,7 +75,7 @@ namespace Xai
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

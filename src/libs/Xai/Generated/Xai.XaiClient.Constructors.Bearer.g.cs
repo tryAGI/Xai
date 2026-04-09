@@ -6,6 +6,7 @@ namespace Xai
     public sealed partial class XaiClient
     {
         /// <inheritdoc cref="XaiClient(global::System.Net.Http.HttpClient?, global::System.Uri?, global::System.Collections.Generic.List{global::Xai.EndPointAuthorization}?, bool)"/>
+
         public XaiClient(
             string apiKey,
             global::System.Net.Http.HttpClient? httpClient = null,

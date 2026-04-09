@@ -5,6 +5,25 @@ namespace Xai
 {
     public partial class ChatClient
     {
+
+
+        private static readonly global::Xai.EndPointSecurityRequirement s_GetDeferredCompletionSecurityRequirement0 =
+            new global::Xai.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Xai.EndPointAuthorizationRequirement[]
+                {                    new global::Xai.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Xai.EndPointSecurityRequirement[] s_GetDeferredCompletionSecurityRequirements =
+            new global::Xai.EndPointSecurityRequirement[]
+            {                s_GetDeferredCompletionSecurityRequirement0,
+            };
         partial void PrepareGetDeferredCompletionArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string requestId);
@@ -38,9 +57,15 @@ namespace Xai
                 httpClient: HttpClient,
                 requestId: ref requestId);
 
+
+            var __authorizations = global::Xai.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetDeferredCompletionSecurityRequirements,
+                operationName: "GetDeferredCompletionAsync");
+
             var __pathBuilder = new global::Xai.PathBuilder(
                 path: $"/chat/deferred-completion/{requestId}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -50,7 +75,7 @@ namespace Xai
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
