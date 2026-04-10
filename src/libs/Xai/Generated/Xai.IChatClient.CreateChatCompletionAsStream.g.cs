@@ -9,11 +9,13 @@ namespace Xai
         /// Creates a model response for the given chat conversation.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
 
             global::Xai.CreateChatCompletionRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a chat completion<br/>
@@ -74,6 +76,7 @@ namespace Xai
         /// <param name="reasoningEffort">
         /// Controls the amount of reasoning effort for reasoning models.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Collections.Generic.IAsyncEnumerable<global::Xai.CreateChatCompletionStreamResponse> CreateChatCompletionAsStreamAsync(
@@ -95,6 +98,7 @@ namespace Xai
             int? seed = default,
             bool? deferred = default,
             global::Xai.CreateChatCompletionRequestReasoningEffort? reasoningEffort = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
