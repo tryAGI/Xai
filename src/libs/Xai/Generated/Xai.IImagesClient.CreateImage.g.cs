@@ -9,11 +9,13 @@ namespace Xai
         /// Creates an image given a prompt.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.ImageResponse> CreateImageAsync(
 
             global::Xai.CreateImageRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate images<br/>
@@ -39,6 +41,7 @@ namespace Xai
         /// The format of the generated image.<br/>
         /// Default Value: url
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.ImageResponse> CreateImageAsync(
@@ -48,6 +51,7 @@ namespace Xai
             global::Xai.CreateImageRequestAspectRatio? aspectRatio = default,
             global::Xai.CreateImageRequestResolution? resolution = default,
             global::Xai.CreateImageRequestResponseFormat? responseFormat = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

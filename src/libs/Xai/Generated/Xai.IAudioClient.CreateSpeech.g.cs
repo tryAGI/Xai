@@ -9,11 +9,13 @@ namespace Xai
         /// Generates audio from the input text.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Threading.Tasks.Task<byte[]> CreateSpeechAsync(
 
             global::Xai.CreateSpeechRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate speech<br/>
@@ -36,6 +38,7 @@ namespace Xai
         /// The speed of the generated audio (0.25-4.0).<br/>
         /// Default Value: 1.0
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<byte[]> CreateSpeechAsync(
@@ -44,6 +47,7 @@ namespace Xai
             global::Xai.CreateSpeechRequestVoice voice,
             global::Xai.CreateSpeechRequestResponseFormat? responseFormat = default,
             double? speed = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

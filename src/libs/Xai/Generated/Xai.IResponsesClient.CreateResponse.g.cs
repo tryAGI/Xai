@@ -9,11 +9,13 @@ namespace Xai
         /// Creates a new model response. Can store the response for later retrieval.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.ResponseObject> CreateResponseAsync(
 
             global::Xai.CreateResponseRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a model response<br/>
@@ -39,6 +41,7 @@ namespace Xai
         /// Reasoning configuration.
         /// </param>
         /// <param name="tools"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.ResponseObject> CreateResponseAsync(
@@ -51,6 +54,7 @@ namespace Xai
             bool? store = default,
             global::Xai.CreateResponseRequestReasoning? reasoning = default,
             global::System.Collections.Generic.IList<global::Xai.ChatCompletionTool>? tools = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

@@ -9,11 +9,13 @@ namespace Xai
         /// Creates a video given a prompt. Returns a request_id for polling.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.CreateVideoResponse> CreateVideoAsync(
 
             global::Xai.CreateVideoRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate a video<br/>
@@ -41,6 +43,7 @@ namespace Xai
         /// <param name="imageUrl">
         /// Source image URL for image-to-video generation (public URL or base64 data URI).
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.CreateVideoResponse> CreateVideoAsync(
@@ -51,6 +54,7 @@ namespace Xai
             global::Xai.CreateVideoRequestResolution? resolution = default,
             string? videoUrl = default,
             string? imageUrl = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

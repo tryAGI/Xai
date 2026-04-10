@@ -9,11 +9,13 @@ namespace Xai
         /// Executes a query across collection documents using keyword, semantic, or hybrid search.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.SearchDocumentsResponse> SearchDocumentsAsync(
 
             global::Xai.SearchDocumentsRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search documents<br/>
@@ -33,6 +35,7 @@ namespace Xai
         /// Maximum number of results to return.<br/>
         /// Default Value: 10
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Xai.SearchDocumentsResponse> SearchDocumentsAsync(
@@ -40,6 +43,7 @@ namespace Xai
             global::System.Collections.Generic.IList<string> collectionIds,
             global::Xai.SearchDocumentsRequestMode? mode = default,
             int? maxNumResults = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
