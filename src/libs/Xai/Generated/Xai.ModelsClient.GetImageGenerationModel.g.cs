@@ -124,7 +124,7 @@ namespace Xai
                 PrepareGetImageGenerationModelRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    modelId: modelId);
+                    modelId: modelId!);
 
                 return __httpRequest;
             }

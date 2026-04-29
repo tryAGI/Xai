@@ -139,7 +139,7 @@ namespace Xai
                 PrepareAddBatchRequestsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    batchId: batchId,
+                    batchId: batchId!,
                     request: request);
 
                 return __httpRequest;
