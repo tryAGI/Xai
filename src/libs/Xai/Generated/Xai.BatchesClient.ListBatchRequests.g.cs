@@ -139,7 +139,7 @@ namespace Xai
                 PrepareListBatchRequestsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    batchId: batchId,
+                    batchId: batchId!,
                     pageSize: pageSize,
                     paginationToken: paginationToken);
 
