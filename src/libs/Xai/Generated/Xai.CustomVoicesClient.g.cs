@@ -4,11 +4,10 @@
 namespace Xai
 {
     /// <summary>
-    /// The xAI (Grok) REST API for chat completions, image generation, video generation, embeddings, and more.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class XaiClient : global::Xai.IXaiClient, global::System.IDisposable
+    public sealed partial class CustomVoicesClient : global::Xai.ICustomVoicesClient, global::System.IDisposable
     {
         /// <summary>
         ///
@@ -41,115 +40,7 @@ namespace Xai
 
 
         /// <summary>
-        ///
-        /// </summary>
-        public AudioClient Audio => new AudioClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public AuthClient Auth => new AuthClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public BatchesClient Batches => new BatchesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ChatClient Chat => new ChatClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public CollectionsClient Collections => new CollectionsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public CustomVoicesClient CustomVoices => new CustomVoicesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public EmbeddingsClient Embeddings => new EmbeddingsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public FilesClient Files => new FilesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ImagesClient Images => new ImagesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ResponsesClient Responses => new ResponsesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public VideosClient Videos => new VideosClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Creates a new instance of the XaiClient.
+        /// Creates a new instance of the CustomVoicesClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -157,7 +48,7 @@ namespace Xai
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public XaiClient(
+        public CustomVoicesClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Xai.EndPointAuthorization>? authorizations = null,
@@ -171,7 +62,7 @@ namespace Xai
         }
 
         /// <summary>
-        /// Creates a new instance of the XaiClient.
+        /// Creates a new instance of the CustomVoicesClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -180,7 +71,7 @@ namespace Xai
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public XaiClient(
+        public CustomVoicesClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Xai.EndPointAuthorization>? authorizations = null,

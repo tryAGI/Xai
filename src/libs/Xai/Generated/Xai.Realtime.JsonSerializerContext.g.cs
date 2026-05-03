@@ -7,16 +7,12 @@
 namespace Xai.Realtime
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[]
         {
-            typeof(global::Xai.Realtime.JsonConverters.SessionConfigVoiceJsonConverter),
-
-            typeof(global::Xai.Realtime.JsonConverters.SessionConfigVoiceNullableJsonConverter),
-
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeJsonConverter),
 
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeNullableJsonConverter),
@@ -130,7 +126,6 @@ namespace Xai.Realtime
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.JsonSerializerContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.SessionConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.SessionConfigVoice), TypeInfoPropertyName = "SessionConfigVoice2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.TurnDetection))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.Realtime.Tool>))]

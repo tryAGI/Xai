@@ -7,7 +7,7 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
@@ -120,6 +120,50 @@ namespace Xai
             typeof(global::Xai.JsonConverters.CreateSpeechRequestResponseFormatJsonConverter),
 
             typeof(global::Xai.JsonConverters.CreateSpeechRequestResponseFormatNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.TextToSpeechOutputFormatCodecJsonConverter),
+
+            typeof(global::Xai.JsonConverters.TextToSpeechOutputFormatCodecNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestGenderJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestGenderNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestAgeJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestAgeNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestUseCaseJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestUseCaseNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestToneJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CreateCustomVoiceRequestToneNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestGenderJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestGenderNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestAgeJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestAgeNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestUseCaseJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestUseCaseNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestToneJsonConverter),
+
+            typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestToneNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CustomVoiceGenderJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CustomVoiceGenderNullableJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CustomVoiceAgeJsonConverter),
+
+            typeof(global::Xai.JsonConverters.CustomVoiceAgeNullableJsonConverter),
 
             typeof(global::Xai.JsonConverters.BatchRequestMetadataStateJsonConverter),
 
@@ -236,6 +280,29 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateSpeechRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateSpeechRequestVoice), TypeInfoPropertyName = "CreateSpeechRequestVoice2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateSpeechRequestResponseFormat), TypeInfoPropertyName = "CreateSpeechRequestResponseFormat2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateTextToSpeechRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeechOutputFormat))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeechOutputFormatCodec), TypeInfoPropertyName = "TextToSpeechOutputFormatCodec2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListTextToSpeechVoicesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.TextToSpeechVoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeechVoice))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateCustomVoiceRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateCustomVoiceRequestGender), TypeInfoPropertyName = "CreateCustomVoiceRequestGender2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateCustomVoiceRequestAge), TypeInfoPropertyName = "CreateCustomVoiceRequestAge2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateCustomVoiceRequestUseCase), TypeInfoPropertyName = "CreateCustomVoiceRequestUseCase2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CreateCustomVoiceRequestTone), TypeInfoPropertyName = "CreateCustomVoiceRequestTone2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UpdateCustomVoiceRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UpdateCustomVoiceRequestGender), TypeInfoPropertyName = "UpdateCustomVoiceRequestGender2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UpdateCustomVoiceRequestAge), TypeInfoPropertyName = "UpdateCustomVoiceRequestAge2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UpdateCustomVoiceRequestUseCase), TypeInfoPropertyName = "UpdateCustomVoiceRequestUseCase2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UpdateCustomVoiceRequestTone), TypeInfoPropertyName = "UpdateCustomVoiceRequestTone2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CustomVoice))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CustomVoiceGender), TypeInfoPropertyName = "CustomVoiceGender2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.CustomVoiceAge), TypeInfoPropertyName = "CustomVoiceAge2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListCustomVoicesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.CustomVoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.DeleteCustomVoiceResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.ListModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.Model>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Model))]
@@ -271,7 +338,6 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.SearchResult>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.SearchResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.UploadFileRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ChatCompletionMessage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.OneOf<string, global::System.Collections.Generic.List<string>>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
@@ -289,6 +355,8 @@ namespace Xai
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<double>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ImageInput>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.ImageData>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.TextToSpeechVoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.CustomVoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.Model>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchObject>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Xai.BatchRequestItem>))]

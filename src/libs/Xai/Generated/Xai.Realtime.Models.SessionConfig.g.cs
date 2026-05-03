@@ -15,11 +15,10 @@ namespace Xai.Realtime
         public string? Instructions { get; set; }
 
         /// <summary>
-        /// Voice to use for audio output.
+        /// Voice to use for audio output. Use a built-in voice ID such as eve or a custom voice ID.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.SessionConfigVoiceJsonConverter))]
-        public global::Xai.Realtime.SessionConfigVoice? Voice { get; set; }
+        public string? Voice { get; set; }
 
         /// <summary>
         /// Server VAD turn detection configuration. Null for manual mode.
@@ -58,7 +57,7 @@ namespace Xai.Realtime
         /// System-level instructions for the agent.
         /// </param>
         /// <param name="voice">
-        /// Voice to use for audio output.
+        /// Voice to use for audio output. Use a built-in voice ID such as eve or a custom voice ID.
         /// </param>
         /// <param name="turnDetection">
         /// Server VAD turn detection configuration. Null for manual mode.
@@ -77,7 +76,7 @@ namespace Xai.Realtime
 #endif
         public SessionConfig(
             string? instructions,
-            global::Xai.Realtime.SessionConfigVoice? voice,
+            string? voice,
             global::Xai.Realtime.TurnDetection? turnDetection,
             global::Xai.Realtime.AudioConfig? audio,
             global::System.Collections.Generic.IList<global::Xai.Realtime.Tool>? tools,

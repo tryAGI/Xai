@@ -32,7 +32,7 @@ public partial class Tests
         {
             Session = new SessionConfig
             {
-                Voice = SessionConfigVoice.Eve,
+                Voice = "eve",
                 Instructions = "You are a helpful assistant. Respond briefly.",
                 Modalities = ["text", "audio"],
                 TurnDetection = new TurnDetection

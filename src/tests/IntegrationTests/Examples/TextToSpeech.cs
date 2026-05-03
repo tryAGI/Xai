@@ -15,11 +15,11 @@ public partial class Tests
     {
         var client = GetAuthenticatedClient();
 
-        //// Generate speech audio from text. Available voices: Eve, Ara, Rex, Sal, Leo.
-        byte[] audioBytes = await client.Audio.CreateSpeechAsync(
-            model: "tts-1",
-            input: "Hello from xAI!",
-            voice: CreateSpeechRequestVoice.Eve);
+        //// Generate speech audio from text. Built-in and custom voices are passed as voice IDs.
+        byte[] audioBytes = await client.Audio.CreateTextToSpeechAsync(
+            text: "Hello from xAI!",
+            language: "en",
+            voiceId: "eve");
 
         audioBytes.Should().NotBeNullOrEmpty();
         audioBytes.Length.Should().BeGreaterThan(100,

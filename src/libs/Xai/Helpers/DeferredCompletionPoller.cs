@@ -34,7 +34,9 @@ public static class DeferredCompletionPoller
         // Ensure deferred flag is set
         request.Deferred = true;
 
-        var submitResponse = await client.Chat.CreateChatCompletionAsync(request, cancellationToken).ConfigureAwait(false);
+        var submitResponse = await client.Chat.CreateChatCompletionAsync(
+            request,
+            cancellationToken: cancellationToken).ConfigureAwait(false);
         var requestId = submitResponse.Id ??
             throw new InvalidOperationException("Deferred completion did not return a request ID.");
 
@@ -47,7 +49,9 @@ public static class DeferredCompletionPoller
 
             await Task.Delay(interval, linkedCts.Token).ConfigureAwait(false);
 
-            var result = await client.Chat.GetDeferredCompletionAsync(requestId, linkedCts.Token).ConfigureAwait(false);
+            var result = await client.Chat.GetDeferredCompletionAsync(
+                requestId,
+                cancellationToken: linkedCts.Token).ConfigureAwait(false);
 
             // If choices are populated, the result is ready
             if (result.Choices is { Count: > 0 })

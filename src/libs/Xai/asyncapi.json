@@ -380,7 +380,7 @@
         "description": "Configuration for an xAI Realtime session.",
         "properties": {
           "instructions": { "type": "string", "description": "System-level instructions for the agent." },
-          "voice": { "type": "string", "description": "Voice to use for audio output.", "enum": ["Eve", "Ara", "Rex", "Sal", "Leo"] },
+          "voice": { "type": "string", "description": "Voice to use for audio output. Use a built-in voice ID such as eve or a custom voice ID." },
           "turn_detection": { "$ref": "#/components/schemas/TurnDetection" },
           "audio": { "$ref": "#/components/schemas/AudioConfig" },
           "tools": { "type": "array", "items": { "$ref": "#/components/schemas/Tool" }, "description": "Tools available to the agent." },

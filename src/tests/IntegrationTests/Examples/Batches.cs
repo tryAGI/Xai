@@ -98,7 +98,9 @@ public partial class Tests
         {
             await Task.Delay(TimeSpan.FromSeconds(10), cts.Token);
 
-            var status = await client.Batches.GetBatchAsync(batch.BatchId!, cts.Token);
+            var status = await client.Batches.GetBatchAsync(
+                batch.BatchId!,
+                cancellationToken: cts.Token);
 
             if (status.State is { NumPending: 0 })
             {

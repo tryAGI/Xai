@@ -31,7 +31,9 @@ public static class VideoGenerationPoller
         var interval = pollingInterval ?? TimeSpan.FromSeconds(5);
         var maxWait = timeout ?? TimeSpan.FromMinutes(10);
 
-        var createResponse = await client.Videos.CreateVideoAsync(request, cancellationToken).ConfigureAwait(false);
+        var createResponse = await client.Videos.CreateVideoAsync(
+            request,
+            cancellationToken: cancellationToken).ConfigureAwait(false);
         var requestId = createResponse.RequestId ??
             throw new InvalidOperationException("Video generation did not return a request_id.");
 
@@ -44,7 +46,9 @@ public static class VideoGenerationPoller
 
             await Task.Delay(interval, linkedCts.Token).ConfigureAwait(false);
 
-            var status = await client.Videos.GetVideoStatusAsync(requestId, linkedCts.Token).ConfigureAwait(false);
+            var status = await client.Videos.GetVideoStatusAsync(
+                requestId,
+                cancellationToken: linkedCts.Token).ConfigureAwait(false);
 
             switch (status.Status)
             {

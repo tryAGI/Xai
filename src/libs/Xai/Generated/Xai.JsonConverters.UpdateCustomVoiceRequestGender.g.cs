@@ -1,12 +1,12 @@
 #nullable enable
 
-namespace Xai.Realtime.JsonConverters
+namespace Xai.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class SessionConfigVoiceJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Xai.Realtime.SessionConfigVoice>
+    public sealed class UpdateCustomVoiceRequestGenderJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Xai.UpdateCustomVoiceRequestGender>
     {
         /// <inheritdoc />
-        public override global::Xai.Realtime.SessionConfigVoice Read(
+        public override global::Xai.UpdateCustomVoiceRequestGender Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,19 +18,19 @@ namespace Xai.Realtime.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Xai.Realtime.SessionConfigVoiceExtensions.ToEnum(stringValue) ?? default;
+                        return global::Xai.UpdateCustomVoiceRequestGenderExtensions.ToEnum(stringValue) ?? default;
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Xai.Realtime.SessionConfigVoice)numValue;
+                    return (global::Xai.UpdateCustomVoiceRequestGender)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Xai.Realtime.SessionConfigVoice);
+                    return default(global::Xai.UpdateCustomVoiceRequestGender);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,12 +42,12 @@ namespace Xai.Realtime.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Xai.Realtime.SessionConfigVoice value,
+            global::Xai.UpdateCustomVoiceRequestGender value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
 
-            writer.WriteStringValue(global::Xai.Realtime.SessionConfigVoiceExtensions.ToValueString(value));
+            writer.WriteStringValue(global::Xai.UpdateCustomVoiceRequestGenderExtensions.ToValueString(value));
         }
     }
 }
