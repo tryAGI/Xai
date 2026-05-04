@@ -86,7 +86,7 @@ public partial class Tests
             }
             else if (serverEvent.IsError)
             {
-                Assert.Fail($"Received error: {serverEvent.Error?.Error?.Message}");
+                throw new InvalidOperationException($"Received error: {serverEvent.Error?.Error?.Message}");
             }
         }
 

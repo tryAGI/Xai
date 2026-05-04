@@ -22,8 +22,7 @@ public partial class Tests
             voiceId: "eve");
 
         audioBytes.Should().NotBeNullOrEmpty();
-        audioBytes.Length.Should().BeGreaterThan(100,
-            "audio output should contain meaningful data");
+        audioBytes.Length.Should().BeGreaterThan(100, "audio output should contain meaningful data");
 
         Console.WriteLine($"Generated {audioBytes.Length} bytes of audio.");
     }

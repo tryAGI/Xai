@@ -17,3 +17,9 @@ autosdk generate asyncapi.json \
   --output Generated \
   --websocket-class-name XaiRealtimeClient \
   --json-serializer-context RealtimeSourceGenerationContext
+autosdk generate asyncapi.tts.json \
+  --namespace Xai.TextToSpeech \
+  --targetFramework net10.0 \
+  --output Generated \
+  --websocket-class-name XaiTextToSpeechStreamingClient \
+  --json-serializer-context TextToSpeechStreamingSourceGenerationContext

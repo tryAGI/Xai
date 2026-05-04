@@ -7,13 +7,11 @@ This example assumes `using Xai;` is in scope and `apiKey` contains your Xai API
 ```csharp
 var client = new XaiClient(apiKey);
 
-// Generate speech audio from text. Available voices: Eve, Ara, Rex, Sal, Leo.
-byte[] audioBytes = await client.Audio.CreateSpeechAsync(
-    model: "tts-1",
-    input: "Hello from xAI!",
-    voice: CreateSpeechRequestVoice.Eve);
-
-    "audio output should contain meaningful data");
+// Generate speech audio from text. Built-in and custom voices are passed as voice IDs.
+byte[] audioBytes = await client.Audio.CreateTextToSpeechAsync(
+    text: "Hello from xAI!",
+    language: "en",
+    voiceId: "eve");
 
 Console.WriteLine($"Generated {audioBytes.Length} bytes of audio.");
 ```

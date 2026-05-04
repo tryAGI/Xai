@@ -1,0 +1,151 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "xAI Streaming Text to Speech",
+    "version": "1.0.0",
+    "description": "xAI bidirectional streaming Text to Speech API over WebSocket."
+  },
+  "servers": {
+    "production": {
+      "host": "api.x.ai",
+      "pathname": "/v1/tts",
+      "protocol": "wss",
+      "description": "xAI Streaming Text to Speech WebSocket server",
+      "security": [
+        {
+          "$ref": "#/components/securitySchemes/bearer"
+        }
+      ]
+    }
+  },
+  "channels": {
+    "textToSpeech": {
+      "address": "/v1/tts",
+      "messages": {
+        "TextDelta": {
+          "$ref": "#/components/messages/TextDelta"
+        },
+        "TextDone": {
+          "$ref": "#/components/messages/TextDone"
+        },
+        "AudioDelta": {
+          "$ref": "#/components/messages/AudioDelta"
+        },
+        "AudioDone": {
+          "$ref": "#/components/messages/AudioDone"
+        },
+        "Error": {
+          "$ref": "#/components/messages/Error"
+        }
+      }
+    }
+  },
+  "operations": {
+    "sendTextDelta": {
+      "action": "send",
+      "summary": "Send a chunk of text to synthesize.",
+      "channel": { "$ref": "#/channels/textToSpeech" },
+      "messages": [{ "$ref": "#/channels/textToSpeech/messages/TextDelta" }]
+    },
+    "sendTextDone": {
+      "action": "send",
+      "summary": "Signal that the current utterance is complete.",
+      "channel": { "$ref": "#/channels/textToSpeech" },
+      "messages": [{ "$ref": "#/channels/textToSpeech/messages/TextDone" }]
+    },
+    "receiveAudioDelta": {
+      "action": "receive",
+      "summary": "Receive a base64-encoded audio chunk.",
+      "channel": { "$ref": "#/channels/textToSpeech" },
+      "messages": [{ "$ref": "#/channels/textToSpeech/messages/AudioDelta" }]
+    },
+    "receiveAudioDone": {
+      "action": "receive",
+      "summary": "Receive the completion event for the current utterance.",
+      "channel": { "$ref": "#/channels/textToSpeech" },
+      "messages": [{ "$ref": "#/channels/textToSpeech/messages/AudioDone" }]
+    },
+    "receiveError": {
+      "action": "receive",
+      "summary": "Receive an error event.",
+      "channel": { "$ref": "#/channels/textToSpeech" },
+      "messages": [{ "$ref": "#/channels/textToSpeech/messages/Error" }]
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "messages": {
+      "TextDelta": {
+        "name": "TextDelta",
+        "payload": { "$ref": "#/components/schemas/TextDeltaPayload" }
+      },
+      "TextDone": {
+        "name": "TextDone",
+        "payload": { "$ref": "#/components/schemas/TextDonePayload" }
+      },
+      "AudioDelta": {
+        "name": "AudioDelta",
+        "payload": { "$ref": "#/components/schemas/AudioDeltaEvent" }
+      },
+      "AudioDone": {
+        "name": "AudioDone",
+        "payload": { "$ref": "#/components/schemas/AudioDoneEvent" }
+      },
+      "Error": {
+        "name": "Error",
+        "payload": { "$ref": "#/components/schemas/ErrorEvent" }
+      }
+    },
+    "schemas": {
+      "TextDeltaPayload": {
+        "type": "object",
+        "description": "A chunk of text to synthesize. Individual deltas are capped at 15,000 characters.",
+        "properties": {
+          "type": { "type": "string", "enum": ["text.delta"] },
+          "delta": { "type": "string", "description": "Text chunk to synthesize." }
+        },
+        "required": ["type", "delta"]
+      },
+      "TextDonePayload": {
+        "type": "object",
+        "description": "Signals the end of the current utterance.",
+        "properties": {
+          "type": { "type": "string", "enum": ["text.done"] }
+        },
+        "required": ["type"]
+      },
+      "AudioDeltaEvent": {
+        "type": "object",
+        "description": "A base64-encoded audio chunk in the codec specified at connection time.",
+        "properties": {
+          "type": { "type": "string", "enum": ["audio.delta"] },
+          "delta": { "type": "string", "description": "Base64-encoded audio bytes." }
+        },
+        "required": ["type", "delta"]
+      },
+      "AudioDoneEvent": {
+        "type": "object",
+        "description": "All audio for the current utterance has been sent.",
+        "properties": {
+          "type": { "type": "string", "enum": ["audio.done"] },
+          "trace_id": { "type": "string", "description": "Trace ID for debugging." }
+        },
+        "required": ["type"]
+      },
+      "ErrorEvent": {
+        "type": "object",
+        "description": "An error occurred.",
+        "properties": {
+          "type": { "type": "string", "enum": ["error"] },
+          "message": { "type": "string", "description": "Human-readable error message." }
+        },
+        "required": ["type"]
+      }
+    }
+  }
+}

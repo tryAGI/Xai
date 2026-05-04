@@ -19,7 +19,7 @@ await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
     Session = new SessionConfig
     {
-        Voice = SessionConfigVoice.Eve,
+        Voice = "eve",
         Instructions = "You are a helpful assistant. Respond briefly.",
         Modalities = ["text", "audio"],
         TurnDetection = new TurnDetection
@@ -73,6 +73,7 @@ await foreach (var serverEvent in client.ReceiveUpdatesAsync(cts.Token))
     }
     else if (serverEvent.IsError)
     {
+        throw new InvalidOperationException($"Received error: {serverEvent.Error?.Error?.Message}");
     }
 }
 ```

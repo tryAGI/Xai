@@ -24,6 +24,8 @@ nav:
   - Image Editing: examples/image-editing.md
   - Video Generation: examples/video-generation.md
   - Text to Speech: examples/text-to-speech.md
+  - Custom Voices: examples/custom-voices.md
+  - Text to Speech Streaming: examples/text-to-speech-streaming.md
   - Responses API: examples/responses-api.md
   - Deferred Completion: examples/deferred-completion.md
   - Realtime Voice: examples/realtime-voice.md

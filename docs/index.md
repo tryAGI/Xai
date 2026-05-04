@@ -16,7 +16,7 @@
   - **Vision** (image input with Grok Vision models)
   - **Image generation & editing** (Grok Imagine)
   - **Video generation** with polling helper
-  - **Text-to-speech** (multiple voices)
+  - **Text-to-speech** (REST, streaming WebSocket, built-in and custom voices)
   - **Realtime voice** WebSocket client (bidirectional audio/text, VAD, tools)
   - **Embeddings**, **Batches**, **Files**, **Collections**
 
@@ -684,15 +684,83 @@ Convert text to speech audio.
 ```csharp
 var client = new XaiClient(apiKey);
 
-// Generate speech audio from text. Available voices: Eve, Ara, Rex, Sal, Leo.
-byte[] audioBytes = await client.Audio.CreateSpeechAsync(
-    model: "tts-1",
-    input: "Hello from xAI!",
-    voice: CreateSpeechRequestVoice.Eve);
-
-    "audio output should contain meaningful data");
+// Generate speech audio from text. Built-in and custom voices are passed as voice IDs.
+byte[] audioBytes = await client.Audio.CreateTextToSpeechAsync(
+    text: "Hello from xAI!",
+    language: "en",
+    voiceId: "eve");
 
 Console.WriteLine($"Generated {audioBytes.Length} bytes of audio.");
+```
+
+### Custom Voices
+Use cloned voice IDs with text-to-speech.
+
+```csharp
+var customVoiceId =
+    Environment.GetEnvironmentVariable("XAI_CUSTOM_VOICE_ID") is { Length: > 0 } value
+        ? value
+        : throw new AssertInconclusiveException(
+            "XAI_CUSTOM_VOICE_ID environment variable is not found.");
+
+var client = new XaiClient(apiKey);
+
+// Retrieve metadata for a custom voice owned by your team.
+var customVoice = await client.CustomVoices.GetCustomVoiceAsync(customVoiceId);
+
+// Use the custom voice ID anywhere a built-in TTS voice ID is accepted.
+byte[] audioBytes = await client.Audio.CreateTextToSpeechAsync(
+    text: "Hello from my custom xAI voice.",
+    language: "en",
+    voiceId: customVoice.VoiceId);
+```
+
+### Text to Speech Streaming
+Stream text deltas into the xAI Text to Speech WebSocket API and receive audio chunks as they are generated.
+
+```csharp
+var apiKey =
+    Environment.GetEnvironmentVariable("XAI_API_KEY") is { Length: > 0 } apiKeyValue
+        ? apiKeyValue
+        : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
+
+// Create a WebSocket client and connect with the TTS voice, language, and audio format.
+using var client = new Xai.TextToSpeech.XaiTextToSpeechStreamingClient(apiKey);
+await client.ConnectAsync(
+    language: "en",
+    voice: "eve",
+    codec: "mp3");
+
+// Stream text as one or more deltas, then flush the utterance with text.done.
+await client.SendTextDeltaAsync(new Xai.TextToSpeech.TextDeltaPayload
+{
+    Delta = "Hello from xAI streaming text to speech.",
+});
+await client.SendTextDoneAsync(new Xai.TextToSpeech.TextDonePayload());
+
+// Receive base64 audio chunks until the utterance is complete.
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+using var audio = new MemoryStream();
+var receivedAudioDone = false;
+
+await foreach (var serverEvent in client.ReceiveUpdatesAsync(cts.Token))
+{
+    if (serverEvent.IsAudioDelta)
+    {
+        audio.Write(serverEvent.AudioDelta.DeltaBytes.Span);
+    }
+    else if (serverEvent.IsAudioDone)
+    {
+        receivedAudioDone = true;
+        break;
+    }
+    else if (serverEvent.IsError)
+    {
+        throw new InvalidOperationException($"Received error: {serverEvent.Error?.Message}");
+    }
+}
+
+Console.WriteLine($"Generated {audio.Length} streaming audio bytes.");
 ```
 
 ### Responses API
@@ -765,7 +833,7 @@ await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
     Session = new SessionConfig
     {
-        Voice = SessionConfigVoice.Eve,
+        Voice = "eve",
         Instructions = "You are a helpful assistant. Respond briefly.",
         Modalities = ["text", "audio"],
         TurnDetection = new TurnDetection
@@ -819,6 +887,7 @@ await foreach (var serverEvent in client.ReceiveUpdatesAsync(cts.Token))
     }
     else if (serverEvent.IsError)
     {
+        throw new InvalidOperationException($"Received error: {serverEvent.Error?.Error?.Message}");
     }
 }
 ```
