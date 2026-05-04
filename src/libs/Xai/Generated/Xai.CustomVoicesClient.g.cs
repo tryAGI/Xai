@@ -10,7 +10,7 @@ namespace Xai
     public sealed partial class CustomVoicesClient : global::Xai.ICustomVoicesClient, global::System.IDisposable
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public const string DefaultBaseUrl = "https://api.x.ai/v1";
 
@@ -34,7 +34,7 @@ namespace Xai
         /// <inheritdoc/>
         public global::Xai.AutoSDKClientOptions Options { get; }
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Xai.SourceGenerationContext.Default;
 

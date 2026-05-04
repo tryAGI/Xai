@@ -16,7 +16,7 @@ namespace Xai.TextToSpeech
         private readonly global::System.Net.WebSockets.ClientWebSocket _clientWebSocket;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
 
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Xai.TextToSpeech.TextToSpeechStreamingSourceGenerationContext.Default;

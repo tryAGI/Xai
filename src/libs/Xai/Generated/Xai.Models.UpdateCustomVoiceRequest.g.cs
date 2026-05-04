@@ -4,57 +4,57 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class UpdateCustomVoiceRequest
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("gender")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestGenderJsonConverter))]
         public global::Xai.UpdateCustomVoiceRequestGender? Gender { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("accent")]
         public string? Accent { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("age")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestAgeJsonConverter))]
         public global::Xai.UpdateCustomVoiceRequestAge? Age { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         public string? Language { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("use_case")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestUseCaseJsonConverter))]
         public global::Xai.UpdateCustomVoiceRequestUseCase? UseCase { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tone")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.UpdateCustomVoiceRequestToneJsonConverter))]

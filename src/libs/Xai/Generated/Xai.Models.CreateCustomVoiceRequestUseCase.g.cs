@@ -9,31 +9,31 @@ namespace Xai
     public enum CreateCustomVoiceRequestUseCase
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Advertisement,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Characters,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Conversational,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Educational,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Entertainment,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Narration,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         SocialMedia,
     }

@@ -4,36 +4,36 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public enum UpdateCustomVoiceRequestUseCase
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Advertisement,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Characters,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Conversational,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Educational,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Entertainment,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Narration,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         SocialMedia,
     }

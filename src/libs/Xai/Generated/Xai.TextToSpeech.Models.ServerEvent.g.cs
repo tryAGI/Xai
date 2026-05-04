@@ -5,12 +5,12 @@
 namespace Xai.TextToSpeech
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public readonly partial struct ServerEvent : global::System.IEquatable<ServerEvent>
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public global::Xai.TextToSpeech.ServerEventDiscriminatorType? Type { get; }
 
@@ -24,7 +24,7 @@ namespace Xai.TextToSpeech
 #endif
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(AudioDelta))]
@@ -41,7 +41,7 @@ namespace Xai.TextToSpeech
 #endif
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(AudioDone))]
@@ -58,24 +58,24 @@ namespace Xai.TextToSpeech
 #endif
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Error))]
 #endif
         public bool IsError => Error != null;
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.TextToSpeech.AudioDeltaEvent value) => new ServerEvent((global::Xai.TextToSpeech.AudioDeltaEvent?)value);
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator global::Xai.TextToSpeech.AudioDeltaEvent?(ServerEvent @this) => @this.AudioDelta;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ServerEvent(global::Xai.TextToSpeech.AudioDeltaEvent? value)
         {
@@ -83,17 +83,17 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.TextToSpeech.AudioDoneEvent value) => new ServerEvent((global::Xai.TextToSpeech.AudioDoneEvent?)value);
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator global::Xai.TextToSpeech.AudioDoneEvent?(ServerEvent @this) => @this.AudioDone;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ServerEvent(global::Xai.TextToSpeech.AudioDoneEvent? value)
         {
@@ -101,17 +101,17 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.TextToSpeech.ErrorEvent value) => new ServerEvent((global::Xai.TextToSpeech.ErrorEvent?)value);
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static implicit operator global::Xai.TextToSpeech.ErrorEvent?(ServerEvent @this) => @this.Error;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ServerEvent(global::Xai.TextToSpeech.ErrorEvent? value)
         {
@@ -119,7 +119,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ServerEvent(
             global::Xai.TextToSpeech.ServerEventDiscriminatorType? type,
@@ -136,25 +136,25 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public object? Object =>
             Error as object ??
             AudioDone as object ??
-            AudioDelta as object
+            AudioDelta as object 
             ;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public override string? ToString() =>
             AudioDelta?.ToString() ??
             AudioDone?.ToString() ??
-            Error?.ToString()
+            Error?.ToString() 
             ;
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public bool Validate()
         {
@@ -162,7 +162,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Xai.TextToSpeech.AudioDeltaEvent?, TResult>? audioDelta = null,
@@ -192,7 +192,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public void Match(
             global::System.Action<global::Xai.TextToSpeech.AudioDeltaEvent?>? audioDelta = null,
@@ -220,7 +220,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public override int GetHashCode()
         {
@@ -243,19 +243,19 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public bool Equals(ServerEvent other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Xai.TextToSpeech.AudioDeltaEvent?>.Default.Equals(AudioDelta, other.AudioDelta) &&
                 global::System.Collections.Generic.EqualityComparer<global::Xai.TextToSpeech.AudioDoneEvent?>.Default.Equals(AudioDone, other.AudioDone) &&
-                global::System.Collections.Generic.EqualityComparer<global::Xai.TextToSpeech.ErrorEvent?>.Default.Equals(Error, other.Error)
+                global::System.Collections.Generic.EqualityComparer<global::Xai.TextToSpeech.ErrorEvent?>.Default.Equals(Error, other.Error) 
                 ;
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static bool operator ==(ServerEvent obj1, ServerEvent obj2)
         {
@@ -263,7 +263,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public static bool operator !=(ServerEvent obj1, ServerEvent obj2)
         {
@@ -271,7 +271,7 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public override bool Equals(object? obj)
         {

@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class CreateTextToSpeechRequest
     {
@@ -29,7 +29,7 @@ namespace Xai
         public required string Language { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
         public global::Xai.TextToSpeechOutputFormat? OutputFormat { get; set; }

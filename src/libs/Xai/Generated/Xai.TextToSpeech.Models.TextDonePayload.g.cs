@@ -9,7 +9,7 @@ namespace Xai.TextToSpeech
     public sealed partial class TextDonePayload
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.TextToSpeech.JsonConverters.TextDonePayloadTypeJsonConverter))]

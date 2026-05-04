@@ -20,7 +20,7 @@ namespace Xai.JsonConverters
                     {
                         return global::Xai.TextToSpeechOutputFormatCodecExtensions.ToEnum(stringValue) ?? default;
                     }
-
+                    
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:
