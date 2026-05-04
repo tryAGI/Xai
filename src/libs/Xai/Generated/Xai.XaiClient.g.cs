@@ -11,7 +11,7 @@ namespace Xai
     public sealed partial class XaiClient : global::Xai.IXaiClient, global::System.IDisposable
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public const string DefaultBaseUrl = "https://api.x.ai/v1";
 
@@ -35,13 +35,13 @@ namespace Xai
         /// <inheritdoc/>
         public global::Xai.AutoSDKClientOptions Options { get; }
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Xai.SourceGenerationContext.Default;
 
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public AudioClient Audio => new AudioClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -50,7 +50,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public AuthClient Auth => new AuthClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -59,7 +59,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public BatchesClient Batches => new BatchesClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -68,7 +68,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ChatClient Chat => new ChatClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -77,7 +77,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public CollectionsClient Collections => new CollectionsClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -86,7 +86,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public CustomVoicesClient CustomVoices => new CustomVoicesClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -95,7 +95,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public EmbeddingsClient Embeddings => new EmbeddingsClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -104,7 +104,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public FilesClient Files => new FilesClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -113,7 +113,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ImagesClient Images => new ImagesClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -122,7 +122,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -131,7 +131,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public ResponsesClient Responses => new ResponsesClient(HttpClient, authorizations: Authorizations, options: Options)
         {
@@ -140,7 +140,7 @@ namespace Xai
         };
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public VideosClient Videos => new VideosClient(HttpClient, authorizations: Authorizations, options: Options)
         {

@@ -4,12 +4,12 @@
 namespace Xai.TextToSpeech
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public enum AudioDoneEventType
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         AudioDone,
     }

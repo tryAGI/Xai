@@ -115,7 +115,7 @@ namespace Xai
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                }
+                } 
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             var __contentFile = new global::System.Net.Http.ByteArrayContent(request.File ?? global::System.Array.Empty<byte>());
@@ -161,49 +161,49 @@ namespace Xai
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                     name: "\"name\"");
-                            }
+                            } 
                             if (request.Description != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.Description ?? string.Empty),
                                     name: "\"description\"");
-                            }
+                            } 
                             if (request.Gender != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.Gender).HasValue ? (request.Gender).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"gender\"");
-                            }
+                            } 
                             if (request.Accent != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.Accent ?? string.Empty),
                                     name: "\"accent\"");
-                            }
+                            } 
                             if (request.Age != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.Age).HasValue ? (request.Age).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"age\"");
-                            }
+                            } 
                             if (request.Language != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.Language ?? string.Empty),
                                     name: "\"language\"");
-                            }
+                            } 
                             if (request.UseCase != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.UseCase).HasValue ? (request.UseCase).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"use_case\"");
-                            }
+                            } 
                             if (request.Tone != default)
                             {
 

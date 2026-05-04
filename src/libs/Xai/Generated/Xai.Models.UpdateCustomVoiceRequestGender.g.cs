@@ -4,20 +4,20 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public enum UpdateCustomVoiceRequestGender
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Female,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Male,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Neutral,
     }

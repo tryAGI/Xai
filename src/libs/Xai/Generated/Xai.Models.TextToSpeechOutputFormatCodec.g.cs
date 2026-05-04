@@ -9,23 +9,23 @@ namespace Xai
     public enum TextToSpeechOutputFormatCodec
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Alaw,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Mp3,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Mulaw,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Pcm,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Wav,
     }

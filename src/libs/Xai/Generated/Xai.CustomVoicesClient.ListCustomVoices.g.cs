@@ -91,10 +91,10 @@ namespace Xai
             {
                             var __pathBuilder = new global::Xai.PathBuilder(
                                 path: "/custom-voices",
-                                baseUri: HttpClient.BaseAddress);
+                                baseUri: HttpClient.BaseAddress); 
                             __pathBuilder
                                 .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("pagination_token", paginationToken)
+                                .AddOptionalParameter("pagination_token", paginationToken) 
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Xai.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -123,7 +123,7 @@ namespace Xai
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                }
+                } 
             }
                 global::Xai.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,

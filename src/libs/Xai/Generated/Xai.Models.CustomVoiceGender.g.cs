@@ -9,15 +9,15 @@ namespace Xai
     public enum CustomVoiceGender
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Female,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Male,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Neutral,
     }

@@ -9,31 +9,31 @@ namespace Xai
     public enum CreateCustomVoiceRequestTone
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Authoritative,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Calm,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Casual,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Expressive,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Friendly,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Professional,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Warm,
     }
