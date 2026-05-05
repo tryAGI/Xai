@@ -43,7 +43,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public AudioClient Audio => new AudioClient(HttpClient, authorizations: Authorizations, options: Options)
+        public AudioClient Audio => new AudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -52,7 +52,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public AuthClient Auth => new AuthClient(HttpClient, authorizations: Authorizations, options: Options)
+        public AuthClient Auth => new AuthClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -61,7 +61,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public BatchesClient Batches => new BatchesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public BatchesClient Batches => new BatchesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -70,7 +70,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public ChatClient Chat => new ChatClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ChatClient Chat => new ChatClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -79,7 +79,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public CollectionsClient Collections => new CollectionsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public CollectionsClient Collections => new CollectionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -88,7 +88,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public CustomVoicesClient CustomVoices => new CustomVoicesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public CustomVoicesClient CustomVoices => new CustomVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -97,7 +97,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public EmbeddingsClient Embeddings => new EmbeddingsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public EmbeddingsClient Embeddings => new EmbeddingsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -106,7 +106,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public FilesClient Files => new FilesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public FilesClient Files => new FilesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -115,7 +115,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public ImagesClient Images => new ImagesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ImagesClient Images => new ImagesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -124,7 +124,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -133,7 +133,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public ResponsesClient Responses => new ResponsesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ResponsesClient Responses => new ResponsesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -142,7 +142,7 @@ namespace Xai
         /// <summary>
         /// 
         /// </summary>
-        public VideosClient Videos => new VideosClient(HttpClient, authorizations: Authorizations, options: Options)
+        public VideosClient Videos => new VideosClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -181,10 +181,10 @@ namespace Xai
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public XaiClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::Xai.EndPointAuthorization>? authorizations = null,
-            global::Xai.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::Xai.EndPointAuthorization>? authorizations,
+            global::Xai.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 

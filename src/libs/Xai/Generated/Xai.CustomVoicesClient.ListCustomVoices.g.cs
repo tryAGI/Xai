@@ -60,6 +60,32 @@ namespace Xai
             global::Xai.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            var __response = await ListCustomVoicesAsResponseAsync(
+                limit: limit,
+                paginationToken: paginationToken,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// List custom voices<br/>
+        /// Lists custom voices owned by the authenticated team.
+        /// </summary>
+        /// <param name="limit">
+        /// Default Value: 100
+        /// </param>
+        /// <param name="paginationToken"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Xai.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Xai.AutoSDKHttpResponse<global::Xai.ListCustomVoicesResponse>> ListCustomVoicesAsResponseAsync(
+            int? limit = default,
+            string? paginationToken = default,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
             PrepareArguments(
                 client: HttpClient);
             PrepareListCustomVoicesArguments(
@@ -89,12 +115,13 @@ namespace Xai
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Xai.PathBuilder(
                                 path: "/custom-voices",
-                                baseUri: HttpClient.BaseAddress); 
+                                baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("pagination_token", paginationToken) 
+                                .AddOptionalParameter("pagination_token", paginationToken)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Xai.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -167,6 +194,8 @@ namespace Xai
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -177,6 +206,11 @@ namespace Xai
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Xai.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Xai.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
@@ -194,6 +228,8 @@ namespace Xai
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -203,8 +239,7 @@ namespace Xai
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Xai.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -213,6 +248,11 @@ namespace Xai
                         __attempt < __maxAttempts &&
                         global::Xai.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Xai.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Xai.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Xai.AutoSDKRequestOptionsSupport.CreateHookContext(
@@ -229,14 +269,15 @@ namespace Xai
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Xai.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -276,6 +317,8 @@ namespace Xai
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -296,6 +339,8 @@ namespace Xai
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
 
@@ -320,9 +365,13 @@ namespace Xai
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Xai.ListCustomVoicesResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Xai.ListCustomVoicesResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Xai.AutoSDKHttpResponse<global::Xai.ListCustomVoicesResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Xai.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -350,9 +399,13 @@ namespace Xai
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Xai.ListCustomVoicesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Xai.ListCustomVoicesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Xai.AutoSDKHttpResponse<global::Xai.ListCustomVoicesResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Xai.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
