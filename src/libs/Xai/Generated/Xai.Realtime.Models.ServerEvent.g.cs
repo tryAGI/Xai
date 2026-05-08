@@ -32,6 +32,19 @@ namespace Xai.Realtime
         public bool IsSessionCreated => SessionCreated != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickSessionCreated(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.SessionCreatedEvent? value)
+        {
+            value = SessionCreated;
+            return IsSessionCreated;
+        }
+
+        /// <summary>
         /// Session configuration has been updated.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -47,6 +60,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SessionUpdated))]
 #endif
         public bool IsSessionUpdated => SessionUpdated != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickSessionUpdated(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.SessionUpdatedEvent? value)
+        {
+            value = SessionUpdated;
+            return IsSessionUpdated;
+        }
 
         /// <summary>
         /// A new conversation has been created.
@@ -66,6 +92,19 @@ namespace Xai.Realtime
         public bool IsConversationCreated => ConversationCreated != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickConversationCreated(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ConversationCreatedEvent? value)
+        {
+            value = ConversationCreated;
+            return IsConversationCreated;
+        }
+
+        /// <summary>
         /// A conversation item has been added.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -81,6 +120,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ConversationItemAdded))]
 #endif
         public bool IsConversationItemAdded => ConversationItemAdded != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickConversationItemAdded(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ConversationItemAddedEvent? value)
+        {
+            value = ConversationItemAdded;
+            return IsConversationItemAdded;
+        }
 
         /// <summary>
         /// Speech detected in audio input (VAD).
@@ -100,6 +152,19 @@ namespace Xai.Realtime
         public bool IsInputAudioBufferSpeechStarted => InputAudioBufferSpeechStarted != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickInputAudioBufferSpeechStarted(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.InputAudioBufferSpeechStartedEvent? value)
+        {
+            value = InputAudioBufferSpeechStarted;
+            return IsInputAudioBufferSpeechStarted;
+        }
+
+        /// <summary>
         /// Speech has stopped in audio input (VAD).
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -115,6 +180,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioBufferSpeechStopped))]
 #endif
         public bool IsInputAudioBufferSpeechStopped => InputAudioBufferSpeechStopped != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickInputAudioBufferSpeechStopped(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent? value)
+        {
+            value = InputAudioBufferSpeechStopped;
+            return IsInputAudioBufferSpeechStopped;
+        }
 
         /// <summary>
         /// Audio buffer has been committed.
@@ -134,6 +212,19 @@ namespace Xai.Realtime
         public bool IsInputAudioBufferCommitted => InputAudioBufferCommitted != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickInputAudioBufferCommitted(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.InputAudioBufferCommittedEvent? value)
+        {
+            value = InputAudioBufferCommitted;
+            return IsInputAudioBufferCommitted;
+        }
+
+        /// <summary>
         /// Audio transcription has been completed.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -149,6 +240,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioTranscriptionCompleted))]
 #endif
         public bool IsInputAudioTranscriptionCompleted => InputAudioTranscriptionCompleted != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickInputAudioTranscriptionCompleted(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.InputAudioTranscriptionCompletedEvent? value)
+        {
+            value = InputAudioTranscriptionCompleted;
+            return IsInputAudioTranscriptionCompleted;
+        }
 
         /// <summary>
         /// A response has been created.
@@ -168,6 +272,19 @@ namespace Xai.Realtime
         public bool IsResponseCreated => ResponseCreated != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseCreated(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseCreatedEvent? value)
+        {
+            value = ResponseCreated;
+            return IsResponseCreated;
+        }
+
+        /// <summary>
         /// A response has completed.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -183,6 +300,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseDone))]
 #endif
         public bool IsResponseDone => ResponseDone != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseDoneEvent? value)
+        {
+            value = ResponseDone;
+            return IsResponseDone;
+        }
 
         /// <summary>
         /// An output item has been added to the response.
@@ -202,6 +332,19 @@ namespace Xai.Realtime
         public bool IsResponseOutputItemAdded => ResponseOutputItemAdded != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseOutputItemAdded(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseOutputItemAddedEvent? value)
+        {
+            value = ResponseOutputItemAdded;
+            return IsResponseOutputItemAdded;
+        }
+
+        /// <summary>
         /// Incremental audio transcript text.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -217,6 +360,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioTranscriptDelta))]
 #endif
         public bool IsResponseOutputAudioTranscriptDelta => ResponseOutputAudioTranscriptDelta != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseOutputAudioTranscriptDelta(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent? value)
+        {
+            value = ResponseOutputAudioTranscriptDelta;
+            return IsResponseOutputAudioTranscriptDelta;
+        }
 
         /// <summary>
         /// Audio transcript completed.
@@ -236,6 +392,19 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioTranscriptDone => ResponseOutputAudioTranscriptDone != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseOutputAudioTranscriptDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent? value)
+        {
+            value = ResponseOutputAudioTranscriptDone;
+            return IsResponseOutputAudioTranscriptDone;
+        }
+
+        /// <summary>
         /// Incremental audio data (base64).
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -251,6 +420,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioDelta))]
 #endif
         public bool IsResponseOutputAudioDelta => ResponseOutputAudioDelta != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseOutputAudioDelta(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseOutputAudioDeltaEvent? value)
+        {
+            value = ResponseOutputAudioDelta;
+            return IsResponseOutputAudioDelta;
+        }
 
         /// <summary>
         /// Audio output completed.
@@ -270,6 +452,19 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioDone => ResponseOutputAudioDone != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseOutputAudioDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseOutputAudioDoneEvent? value)
+        {
+            value = ResponseOutputAudioDone;
+            return IsResponseOutputAudioDone;
+        }
+
+        /// <summary>
         /// Function call arguments completed.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -285,6 +480,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseFunctionCallArgumentsDone))]
 #endif
         public bool IsResponseFunctionCallArgumentsDone => ResponseFunctionCallArgumentsDone != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseFunctionCallArgumentsDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent? value)
+        {
+            value = ResponseFunctionCallArgumentsDone;
+            return IsResponseFunctionCallArgumentsDone;
+        }
 
         /// <summary>
         /// MCP tool call arguments completed.
@@ -304,6 +512,19 @@ namespace Xai.Realtime
         public bool IsResponseMcpCallArgumentsDone => ResponseMcpCallArgumentsDone != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseMcpCallArgumentsDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent? value)
+        {
+            value = ResponseMcpCallArgumentsDone;
+            return IsResponseMcpCallArgumentsDone;
+        }
+
+        /// <summary>
         /// MCP tool call completed.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -319,6 +540,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseMcpCallCompleted))]
 #endif
         public bool IsResponseMcpCallCompleted => ResponseMcpCallCompleted != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseMcpCallCompleted(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseMcpCallCompletedEvent? value)
+        {
+            value = ResponseMcpCallCompleted;
+            return IsResponseMcpCallCompleted;
+        }
 
         /// <summary>
         /// MCP tool call failed.
@@ -338,6 +572,19 @@ namespace Xai.Realtime
         public bool IsResponseMcpCallFailed => ResponseMcpCallFailed != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickResponseMcpCallFailed(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ResponseMcpCallFailedEvent? value)
+        {
+            value = ResponseMcpCallFailed;
+            return IsResponseMcpCallFailed;
+        }
+
+        /// <summary>
         /// MCP tool list retrieved.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -355,6 +602,19 @@ namespace Xai.Realtime
         public bool IsMcpListToolsCompleted => McpListToolsCompleted != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickMcpListToolsCompleted(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.McpListToolsCompletedEvent? value)
+        {
+            value = McpListToolsCompleted;
+            return IsMcpListToolsCompleted;
+        }
+
+        /// <summary>
         /// An error occurred.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -370,6 +630,19 @@ namespace Xai.Realtime
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Error))]
 #endif
         public bool IsError => Error != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickError(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.Realtime.ErrorEvent? value)
+        {
+            value = Error;
+            return IsError;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -867,27 +1140,27 @@ namespace Xai.Realtime
         /// 
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::Xai.Realtime.SessionCreatedEvent?, TResult>? sessionCreated = null,
-            global::System.Func<global::Xai.Realtime.SessionUpdatedEvent?, TResult>? sessionUpdated = null,
-            global::System.Func<global::Xai.Realtime.ConversationCreatedEvent?, TResult>? conversationCreated = null,
-            global::System.Func<global::Xai.Realtime.ConversationItemAddedEvent?, TResult>? conversationItemAdded = null,
-            global::System.Func<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent?, TResult>? inputAudioBufferSpeechStarted = null,
-            global::System.Func<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?, TResult>? inputAudioBufferSpeechStopped = null,
-            global::System.Func<global::Xai.Realtime.InputAudioBufferCommittedEvent?, TResult>? inputAudioBufferCommitted = null,
-            global::System.Func<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?, TResult>? inputAudioTranscriptionCompleted = null,
-            global::System.Func<global::Xai.Realtime.ResponseCreatedEvent?, TResult>? responseCreated = null,
-            global::System.Func<global::Xai.Realtime.ResponseDoneEvent?, TResult>? responseDone = null,
-            global::System.Func<global::Xai.Realtime.ResponseOutputItemAddedEvent?, TResult>? responseOutputItemAdded = null,
-            global::System.Func<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?, TResult>? responseOutputAudioTranscriptDelta = null,
-            global::System.Func<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent?, TResult>? responseOutputAudioTranscriptDone = null,
-            global::System.Func<global::Xai.Realtime.ResponseOutputAudioDeltaEvent?, TResult>? responseOutputAudioDelta = null,
-            global::System.Func<global::Xai.Realtime.ResponseOutputAudioDoneEvent?, TResult>? responseOutputAudioDone = null,
-            global::System.Func<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?, TResult>? responseFunctionCallArgumentsDone = null,
-            global::System.Func<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent?, TResult>? responseMcpCallArgumentsDone = null,
-            global::System.Func<global::Xai.Realtime.ResponseMcpCallCompletedEvent?, TResult>? responseMcpCallCompleted = null,
-            global::System.Func<global::Xai.Realtime.ResponseMcpCallFailedEvent?, TResult>? responseMcpCallFailed = null,
-            global::System.Func<global::Xai.Realtime.McpListToolsCompletedEvent?, TResult>? mcpListToolsCompleted = null,
-            global::System.Func<global::Xai.Realtime.ErrorEvent?, TResult>? error = null,
+            global::System.Func<global::Xai.Realtime.SessionCreatedEvent, TResult>? sessionCreated = null,
+            global::System.Func<global::Xai.Realtime.SessionUpdatedEvent, TResult>? sessionUpdated = null,
+            global::System.Func<global::Xai.Realtime.ConversationCreatedEvent, TResult>? conversationCreated = null,
+            global::System.Func<global::Xai.Realtime.ConversationItemAddedEvent, TResult>? conversationItemAdded = null,
+            global::System.Func<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent, TResult>? inputAudioBufferSpeechStarted = null,
+            global::System.Func<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent, TResult>? inputAudioBufferSpeechStopped = null,
+            global::System.Func<global::Xai.Realtime.InputAudioBufferCommittedEvent, TResult>? inputAudioBufferCommitted = null,
+            global::System.Func<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent, TResult>? inputAudioTranscriptionCompleted = null,
+            global::System.Func<global::Xai.Realtime.ResponseCreatedEvent, TResult>? responseCreated = null,
+            global::System.Func<global::Xai.Realtime.ResponseDoneEvent, TResult>? responseDone = null,
+            global::System.Func<global::Xai.Realtime.ResponseOutputItemAddedEvent, TResult>? responseOutputItemAdded = null,
+            global::System.Func<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent, TResult>? responseOutputAudioTranscriptDelta = null,
+            global::System.Func<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent, TResult>? responseOutputAudioTranscriptDone = null,
+            global::System.Func<global::Xai.Realtime.ResponseOutputAudioDeltaEvent, TResult>? responseOutputAudioDelta = null,
+            global::System.Func<global::Xai.Realtime.ResponseOutputAudioDoneEvent, TResult>? responseOutputAudioDone = null,
+            global::System.Func<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent, TResult>? responseFunctionCallArgumentsDone = null,
+            global::System.Func<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent, TResult>? responseMcpCallArgumentsDone = null,
+            global::System.Func<global::Xai.Realtime.ResponseMcpCallCompletedEvent, TResult>? responseMcpCallCompleted = null,
+            global::System.Func<global::Xai.Realtime.ResponseMcpCallFailedEvent, TResult>? responseMcpCallFailed = null,
+            global::System.Func<global::Xai.Realtime.McpListToolsCompletedEvent, TResult>? mcpListToolsCompleted = null,
+            global::System.Func<global::Xai.Realtime.ErrorEvent, TResult>? error = null,
             bool validate = true)
         {
             if (validate)
@@ -987,27 +1260,165 @@ namespace Xai.Realtime
         /// 
         /// </summary>
         public void Match(
-            global::System.Action<global::Xai.Realtime.SessionCreatedEvent?>? sessionCreated = null,
-            global::System.Action<global::Xai.Realtime.SessionUpdatedEvent?>? sessionUpdated = null,
-            global::System.Action<global::Xai.Realtime.ConversationCreatedEvent?>? conversationCreated = null,
-            global::System.Action<global::Xai.Realtime.ConversationItemAddedEvent?>? conversationItemAdded = null,
-            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent?>? inputAudioBufferSpeechStarted = null,
-            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?>? inputAudioBufferSpeechStopped = null,
-            global::System.Action<global::Xai.Realtime.InputAudioBufferCommittedEvent?>? inputAudioBufferCommitted = null,
-            global::System.Action<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?>? inputAudioTranscriptionCompleted = null,
-            global::System.Action<global::Xai.Realtime.ResponseCreatedEvent?>? responseCreated = null,
-            global::System.Action<global::Xai.Realtime.ResponseDoneEvent?>? responseDone = null,
-            global::System.Action<global::Xai.Realtime.ResponseOutputItemAddedEvent?>? responseOutputItemAdded = null,
-            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?>? responseOutputAudioTranscriptDelta = null,
-            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent?>? responseOutputAudioTranscriptDone = null,
-            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDeltaEvent?>? responseOutputAudioDelta = null,
-            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDoneEvent?>? responseOutputAudioDone = null,
-            global::System.Action<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?>? responseFunctionCallArgumentsDone = null,
-            global::System.Action<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent?>? responseMcpCallArgumentsDone = null,
-            global::System.Action<global::Xai.Realtime.ResponseMcpCallCompletedEvent?>? responseMcpCallCompleted = null,
-            global::System.Action<global::Xai.Realtime.ResponseMcpCallFailedEvent?>? responseMcpCallFailed = null,
-            global::System.Action<global::Xai.Realtime.McpListToolsCompletedEvent?>? mcpListToolsCompleted = null,
-            global::System.Action<global::Xai.Realtime.ErrorEvent?>? error = null,
+            global::System.Action<global::Xai.Realtime.SessionCreatedEvent>? sessionCreated = null,
+
+            global::System.Action<global::Xai.Realtime.SessionUpdatedEvent>? sessionUpdated = null,
+
+            global::System.Action<global::Xai.Realtime.ConversationCreatedEvent>? conversationCreated = null,
+
+            global::System.Action<global::Xai.Realtime.ConversationItemAddedEvent>? conversationItemAdded = null,
+
+            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent>? inputAudioBufferSpeechStarted = null,
+
+            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent>? inputAudioBufferSpeechStopped = null,
+
+            global::System.Action<global::Xai.Realtime.InputAudioBufferCommittedEvent>? inputAudioBufferCommitted = null,
+
+            global::System.Action<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent>? inputAudioTranscriptionCompleted = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseCreatedEvent>? responseCreated = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseDoneEvent>? responseDone = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseOutputItemAddedEvent>? responseOutputItemAdded = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent>? responseOutputAudioTranscriptDelta = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent>? responseOutputAudioTranscriptDone = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDeltaEvent>? responseOutputAudioDelta = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDoneEvent>? responseOutputAudioDone = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent>? responseFunctionCallArgumentsDone = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent>? responseMcpCallArgumentsDone = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallCompletedEvent>? responseMcpCallCompleted = null,
+
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallFailedEvent>? responseMcpCallFailed = null,
+
+            global::System.Action<global::Xai.Realtime.McpListToolsCompletedEvent>? mcpListToolsCompleted = null,
+
+            global::System.Action<global::Xai.Realtime.ErrorEvent>? error = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (IsSessionCreated)
+            {
+                sessionCreated?.Invoke(SessionCreated!);
+            }
+            else if (IsSessionUpdated)
+            {
+                sessionUpdated?.Invoke(SessionUpdated!);
+            }
+            else if (IsConversationCreated)
+            {
+                conversationCreated?.Invoke(ConversationCreated!);
+            }
+            else if (IsConversationItemAdded)
+            {
+                conversationItemAdded?.Invoke(ConversationItemAdded!);
+            }
+            else if (IsInputAudioBufferSpeechStarted)
+            {
+                inputAudioBufferSpeechStarted?.Invoke(InputAudioBufferSpeechStarted!);
+            }
+            else if (IsInputAudioBufferSpeechStopped)
+            {
+                inputAudioBufferSpeechStopped?.Invoke(InputAudioBufferSpeechStopped!);
+            }
+            else if (IsInputAudioBufferCommitted)
+            {
+                inputAudioBufferCommitted?.Invoke(InputAudioBufferCommitted!);
+            }
+            else if (IsInputAudioTranscriptionCompleted)
+            {
+                inputAudioTranscriptionCompleted?.Invoke(InputAudioTranscriptionCompleted!);
+            }
+            else if (IsResponseCreated)
+            {
+                responseCreated?.Invoke(ResponseCreated!);
+            }
+            else if (IsResponseDone)
+            {
+                responseDone?.Invoke(ResponseDone!);
+            }
+            else if (IsResponseOutputItemAdded)
+            {
+                responseOutputItemAdded?.Invoke(ResponseOutputItemAdded!);
+            }
+            else if (IsResponseOutputAudioTranscriptDelta)
+            {
+                responseOutputAudioTranscriptDelta?.Invoke(ResponseOutputAudioTranscriptDelta!);
+            }
+            else if (IsResponseOutputAudioTranscriptDone)
+            {
+                responseOutputAudioTranscriptDone?.Invoke(ResponseOutputAudioTranscriptDone!);
+            }
+            else if (IsResponseOutputAudioDelta)
+            {
+                responseOutputAudioDelta?.Invoke(ResponseOutputAudioDelta!);
+            }
+            else if (IsResponseOutputAudioDone)
+            {
+                responseOutputAudioDone?.Invoke(ResponseOutputAudioDone!);
+            }
+            else if (IsResponseFunctionCallArgumentsDone)
+            {
+                responseFunctionCallArgumentsDone?.Invoke(ResponseFunctionCallArgumentsDone!);
+            }
+            else if (IsResponseMcpCallArgumentsDone)
+            {
+                responseMcpCallArgumentsDone?.Invoke(ResponseMcpCallArgumentsDone!);
+            }
+            else if (IsResponseMcpCallCompleted)
+            {
+                responseMcpCallCompleted?.Invoke(ResponseMcpCallCompleted!);
+            }
+            else if (IsResponseMcpCallFailed)
+            {
+                responseMcpCallFailed?.Invoke(ResponseMcpCallFailed!);
+            }
+            else if (IsMcpListToolsCompleted)
+            {
+                mcpListToolsCompleted?.Invoke(McpListToolsCompleted!);
+            }
+            else if (IsError)
+            {
+                error?.Invoke(Error!);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Switch(
+            global::System.Action<global::Xai.Realtime.SessionCreatedEvent>? sessionCreated = null,
+            global::System.Action<global::Xai.Realtime.SessionUpdatedEvent>? sessionUpdated = null,
+            global::System.Action<global::Xai.Realtime.ConversationCreatedEvent>? conversationCreated = null,
+            global::System.Action<global::Xai.Realtime.ConversationItemAddedEvent>? conversationItemAdded = null,
+            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStartedEvent>? inputAudioBufferSpeechStarted = null,
+            global::System.Action<global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent>? inputAudioBufferSpeechStopped = null,
+            global::System.Action<global::Xai.Realtime.InputAudioBufferCommittedEvent>? inputAudioBufferCommitted = null,
+            global::System.Action<global::Xai.Realtime.InputAudioTranscriptionCompletedEvent>? inputAudioTranscriptionCompleted = null,
+            global::System.Action<global::Xai.Realtime.ResponseCreatedEvent>? responseCreated = null,
+            global::System.Action<global::Xai.Realtime.ResponseDoneEvent>? responseDone = null,
+            global::System.Action<global::Xai.Realtime.ResponseOutputItemAddedEvent>? responseOutputItemAdded = null,
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent>? responseOutputAudioTranscriptDelta = null,
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent>? responseOutputAudioTranscriptDone = null,
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDeltaEvent>? responseOutputAudioDelta = null,
+            global::System.Action<global::Xai.Realtime.ResponseOutputAudioDoneEvent>? responseOutputAudioDone = null,
+            global::System.Action<global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent>? responseFunctionCallArgumentsDone = null,
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent>? responseMcpCallArgumentsDone = null,
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallCompletedEvent>? responseMcpCallCompleted = null,
+            global::System.Action<global::Xai.Realtime.ResponseMcpCallFailedEvent>? responseMcpCallFailed = null,
+            global::System.Action<global::Xai.Realtime.McpListToolsCompletedEvent>? mcpListToolsCompleted = null,
+            global::System.Action<global::Xai.Realtime.ErrorEvent>? error = null,
             bool validate = true)
         {
             if (validate)

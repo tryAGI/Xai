@@ -32,6 +32,19 @@ namespace Xai.TextToSpeech
         public bool IsAudioDelta => AudioDelta != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickAudioDelta(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.TextToSpeech.AudioDeltaEvent? value)
+        {
+            value = AudioDelta;
+            return IsAudioDelta;
+        }
+
+        /// <summary>
         /// All audio for the current utterance has been sent.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -49,6 +62,19 @@ namespace Xai.TextToSpeech
         public bool IsAudioDone => AudioDone != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickAudioDone(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.TextToSpeech.AudioDoneEvent? value)
+        {
+            value = AudioDone;
+            return IsAudioDone;
+        }
+
+        /// <summary>
         /// An error occurred.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -64,6 +90,19 @@ namespace Xai.TextToSpeech
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Error))]
 #endif
         public bool IsError => Error != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickError(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Xai.TextToSpeech.ErrorEvent? value)
+        {
+            value = Error;
+            return IsError;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -165,9 +204,9 @@ namespace Xai.TextToSpeech
         /// 
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::Xai.TextToSpeech.AudioDeltaEvent?, TResult>? audioDelta = null,
-            global::System.Func<global::Xai.TextToSpeech.AudioDoneEvent?, TResult>? audioDone = null,
-            global::System.Func<global::Xai.TextToSpeech.ErrorEvent?, TResult>? error = null,
+            global::System.Func<global::Xai.TextToSpeech.AudioDeltaEvent, TResult>? audioDelta = null,
+            global::System.Func<global::Xai.TextToSpeech.AudioDoneEvent, TResult>? audioDone = null,
+            global::System.Func<global::Xai.TextToSpeech.ErrorEvent, TResult>? error = null,
             bool validate = true)
         {
             if (validate)
@@ -195,9 +234,39 @@ namespace Xai.TextToSpeech
         /// 
         /// </summary>
         public void Match(
-            global::System.Action<global::Xai.TextToSpeech.AudioDeltaEvent?>? audioDelta = null,
-            global::System.Action<global::Xai.TextToSpeech.AudioDoneEvent?>? audioDone = null,
-            global::System.Action<global::Xai.TextToSpeech.ErrorEvent?>? error = null,
+            global::System.Action<global::Xai.TextToSpeech.AudioDeltaEvent>? audioDelta = null,
+
+            global::System.Action<global::Xai.TextToSpeech.AudioDoneEvent>? audioDone = null,
+
+            global::System.Action<global::Xai.TextToSpeech.ErrorEvent>? error = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (IsAudioDelta)
+            {
+                audioDelta?.Invoke(AudioDelta!);
+            }
+            else if (IsAudioDone)
+            {
+                audioDone?.Invoke(AudioDone!);
+            }
+            else if (IsError)
+            {
+                error?.Invoke(Error!);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Switch(
+            global::System.Action<global::Xai.TextToSpeech.AudioDeltaEvent>? audioDelta = null,
+            global::System.Action<global::Xai.TextToSpeech.AudioDoneEvent>? audioDone = null,
+            global::System.Action<global::Xai.TextToSpeech.ErrorEvent>? error = null,
             bool validate = true)
         {
             if (validate)
