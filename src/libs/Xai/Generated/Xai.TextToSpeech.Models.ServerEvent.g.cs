@@ -124,6 +124,11 @@ namespace Xai.TextToSpeech
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromAudioDelta(global::Xai.TextToSpeech.AudioDeltaEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.TextToSpeech.AudioDoneEvent value) => new ServerEvent((global::Xai.TextToSpeech.AudioDoneEvent?)value);
 
         /// <summary>
@@ -142,6 +147,11 @@ namespace Xai.TextToSpeech
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromAudioDone(global::Xai.TextToSpeech.AudioDoneEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.TextToSpeech.ErrorEvent value) => new ServerEvent((global::Xai.TextToSpeech.ErrorEvent?)value);
 
         /// <summary>
@@ -156,6 +166,11 @@ namespace Xai.TextToSpeech
         {
             Error = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromError(global::Xai.TextToSpeech.ErrorEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 

@@ -664,6 +664,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromSessionCreated(global::Xai.Realtime.SessionCreatedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.SessionUpdatedEvent value) => new ServerEvent((global::Xai.Realtime.SessionUpdatedEvent?)value);
 
         /// <summary>
@@ -678,6 +683,11 @@ namespace Xai.Realtime
         {
             SessionUpdated = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromSessionUpdated(global::Xai.Realtime.SessionUpdatedEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -700,6 +710,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromConversationCreated(global::Xai.Realtime.ConversationCreatedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ConversationItemAddedEvent value) => new ServerEvent((global::Xai.Realtime.ConversationItemAddedEvent?)value);
 
         /// <summary>
@@ -714,6 +729,11 @@ namespace Xai.Realtime
         {
             ConversationItemAdded = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromConversationItemAdded(global::Xai.Realtime.ConversationItemAddedEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -736,6 +756,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromInputAudioBufferSpeechStarted(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?)value);
 
         /// <summary>
@@ -750,6 +775,11 @@ namespace Xai.Realtime
         {
             InputAudioBufferSpeechStopped = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromInputAudioBufferSpeechStopped(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -772,6 +802,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromInputAudioBufferCommitted(global::Xai.Realtime.InputAudioBufferCommittedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?)value);
 
         /// <summary>
@@ -786,6 +821,11 @@ namespace Xai.Realtime
         {
             InputAudioTranscriptionCompleted = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromInputAudioTranscriptionCompleted(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -808,6 +848,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseCreated(global::Xai.Realtime.ResponseCreatedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseDoneEvent?)value);
 
         /// <summary>
@@ -822,6 +867,11 @@ namespace Xai.Realtime
         {
             ResponseDone = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromResponseDone(global::Xai.Realtime.ResponseDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -844,6 +894,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseOutputItemAdded(global::Xai.Realtime.ResponseOutputItemAddedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?)value);
 
         /// <summary>
@@ -858,6 +913,11 @@ namespace Xai.Realtime
         {
             ResponseOutputAudioTranscriptDelta = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromResponseOutputAudioTranscriptDelta(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -880,6 +940,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseOutputAudioTranscriptDone(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioDeltaEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioDeltaEvent?)value);
 
         /// <summary>
@@ -894,6 +959,11 @@ namespace Xai.Realtime
         {
             ResponseOutputAudioDelta = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromResponseOutputAudioDelta(global::Xai.Realtime.ResponseOutputAudioDeltaEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -916,6 +986,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseOutputAudioDone(global::Xai.Realtime.ResponseOutputAudioDoneEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?)value);
 
         /// <summary>
@@ -930,6 +1005,11 @@ namespace Xai.Realtime
         {
             ResponseFunctionCallArgumentsDone = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromResponseFunctionCallArgumentsDone(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -952,6 +1032,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseMcpCallArgumentsDone(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseMcpCallCompletedEvent value) => new ServerEvent((global::Xai.Realtime.ResponseMcpCallCompletedEvent?)value);
 
         /// <summary>
@@ -966,6 +1051,11 @@ namespace Xai.Realtime
         {
             ResponseMcpCallCompleted = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromResponseMcpCallCompleted(global::Xai.Realtime.ResponseMcpCallCompletedEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
@@ -988,6 +1078,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromResponseMcpCallFailed(global::Xai.Realtime.ResponseMcpCallFailedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.McpListToolsCompletedEvent value) => new ServerEvent((global::Xai.Realtime.McpListToolsCompletedEvent?)value);
 
         /// <summary>
@@ -1006,6 +1101,11 @@ namespace Xai.Realtime
         /// <summary>
         /// 
         /// </summary>
+        public static ServerEvent FromMcpListToolsCompleted(global::Xai.Realtime.McpListToolsCompletedEvent? value) => new ServerEvent(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ErrorEvent value) => new ServerEvent((global::Xai.Realtime.ErrorEvent?)value);
 
         /// <summary>
@@ -1020,6 +1120,11 @@ namespace Xai.Realtime
         {
             Error = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ServerEvent FromError(global::Xai.Realtime.ErrorEvent? value) => new ServerEvent(value);
 
         /// <summary>
         /// 
