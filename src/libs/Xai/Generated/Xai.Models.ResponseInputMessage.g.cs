@@ -51,5 +51,6 @@ namespace Xai
         public ResponseInputMessage()
         {
         }
+
     }
 }

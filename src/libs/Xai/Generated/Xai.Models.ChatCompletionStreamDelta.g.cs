@@ -68,5 +68,6 @@ namespace Xai
         public ChatCompletionStreamDelta()
         {
         }
+
     }
 }

@@ -105,5 +105,6 @@ namespace Xai
         public CreateImageRequest()
         {
         }
+
     }
 }

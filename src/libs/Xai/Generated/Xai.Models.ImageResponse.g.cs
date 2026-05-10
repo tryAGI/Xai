@@ -39,5 +39,6 @@ namespace Xai
         public ImageResponse()
         {
         }
+
     }
 }

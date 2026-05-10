@@ -97,5 +97,6 @@ namespace Xai
         public ChatCompletionMessage()
         {
         }
+
     }
 }

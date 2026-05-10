@@ -107,5 +107,6 @@ namespace Xai.Realtime
         public Tool()
         {
         }
+
     }
 }

@@ -106,5 +106,6 @@ namespace Xai
         public UpdateCustomVoiceRequest()
         {
         }
+
     }
 }
