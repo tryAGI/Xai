@@ -52,5 +52,6 @@ namespace Xai.TextToSpeech
         public AudioDeltaEvent()
         {
         }
+
     }
 }

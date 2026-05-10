@@ -60,5 +60,6 @@ namespace Xai.Realtime
         public SessionCreatedEvent()
         {
         }
+
     }
 }

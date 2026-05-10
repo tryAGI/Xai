@@ -45,6 +45,13 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.TextToSpeech.AudioDeltaEvent PickAudioDelta() => IsAudioDelta
+            ? AudioDelta!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'AudioDelta' but the value was {ToString()}.");
+
+        /// <summary>
         /// All audio for the current utterance has been sent.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -75,6 +82,13 @@ namespace Xai.TextToSpeech
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.TextToSpeech.AudioDoneEvent PickAudioDone() => IsAudioDone
+            ? AudioDone!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'AudioDone' but the value was {ToString()}.");
+
+        /// <summary>
         /// An error occurred.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -103,6 +117,13 @@ namespace Xai.TextToSpeech
             value = Error;
             return IsError;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Xai.TextToSpeech.ErrorEvent PickError() => IsError
+            ? Error!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'Error' but the value was {ToString()}.");
         /// <summary>
         /// 
         /// </summary>

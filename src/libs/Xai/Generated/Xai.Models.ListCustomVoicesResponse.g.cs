@@ -53,5 +53,6 @@ namespace Xai
         public ListCustomVoicesResponse()
         {
         }
+
     }
 }

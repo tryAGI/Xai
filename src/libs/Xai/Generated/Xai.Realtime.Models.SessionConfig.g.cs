@@ -96,5 +96,6 @@ namespace Xai.Realtime
         public SessionConfig()
         {
         }
+
     }
 }

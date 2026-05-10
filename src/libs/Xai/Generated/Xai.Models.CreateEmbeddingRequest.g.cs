@@ -67,5 +67,6 @@ namespace Xai
         public CreateEmbeddingRequest()
         {
         }
+
     }
 }

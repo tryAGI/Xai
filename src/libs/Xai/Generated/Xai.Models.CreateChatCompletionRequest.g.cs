@@ -250,5 +250,6 @@ namespace Xai
         public CreateChatCompletionRequest()
         {
         }
+
     }
 }

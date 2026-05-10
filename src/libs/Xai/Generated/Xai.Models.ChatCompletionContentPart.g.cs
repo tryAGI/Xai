@@ -59,5 +59,6 @@ namespace Xai
         public ChatCompletionContentPart()
         {
         }
+
     }
 }

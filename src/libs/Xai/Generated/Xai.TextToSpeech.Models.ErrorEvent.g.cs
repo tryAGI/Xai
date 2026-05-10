@@ -51,5 +51,6 @@ namespace Xai.TextToSpeech
         public ErrorEvent()
         {
         }
+
     }
 }
