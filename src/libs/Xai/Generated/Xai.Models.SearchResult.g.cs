@@ -79,5 +79,6 @@ namespace Xai
         public SearchResult()
         {
         }
+
     }
 }

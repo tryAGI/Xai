@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class CustomVoice
     {
@@ -144,5 +144,6 @@ namespace Xai
         public CustomVoice()
         {
         }
+
     }
 }

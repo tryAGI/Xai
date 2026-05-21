@@ -81,5 +81,6 @@ namespace Xai
         public SearchDocumentsRequest()
         {
         }
+
     }
 }

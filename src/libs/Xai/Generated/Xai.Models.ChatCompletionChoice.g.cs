@@ -58,5 +58,6 @@ namespace Xai
         public ChatCompletionChoice()
         {
         }
+
     }
 }

@@ -40,5 +40,6 @@ namespace Xai
         public ChatCompletionNamedToolChoiceFunction()
         {
         }
+
     }
 }

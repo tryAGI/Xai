@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class ListTextToSpeechVoicesResponse
     {
@@ -42,5 +42,6 @@ namespace Xai
         public ListTextToSpeechVoicesResponse()
         {
         }
+
     }
 }

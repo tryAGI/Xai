@@ -57,5 +57,6 @@ namespace Xai
         public EmbeddingData()
         {
         }
+
     }
 }

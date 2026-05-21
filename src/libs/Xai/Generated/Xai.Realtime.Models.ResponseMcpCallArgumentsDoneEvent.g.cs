@@ -103,5 +103,6 @@ namespace Xai.Realtime
         public ResponseMcpCallArgumentsDoneEvent()
         {
         }
+
     }
 }

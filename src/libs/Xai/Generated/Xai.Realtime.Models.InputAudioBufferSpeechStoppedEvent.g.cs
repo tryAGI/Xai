@@ -49,5 +49,6 @@ namespace Xai.Realtime
         public InputAudioBufferSpeechStoppedEvent()
         {
         }
+
     }
 }

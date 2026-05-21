@@ -41,5 +41,6 @@ namespace Xai.Realtime
         public AudioDirectionConfig()
         {
         }
+
     }
 }

@@ -4,20 +4,20 @@
 namespace Xai.TextToSpeech
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public enum ServerEventDiscriminatorType
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
         AudioDelta,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         AudioDone,
         /// <summary>
-        ///
+        /// 
         /// </summary>
         Error,
     }

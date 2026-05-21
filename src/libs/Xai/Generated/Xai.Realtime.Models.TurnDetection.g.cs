@@ -74,5 +74,6 @@ namespace Xai.Realtime
         public TurnDetection()
         {
         }
+
     }
 }

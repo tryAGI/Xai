@@ -63,5 +63,6 @@ namespace Xai.Realtime
         public InputAudioBufferAppendPayload()
         {
         }
+
     }
 }

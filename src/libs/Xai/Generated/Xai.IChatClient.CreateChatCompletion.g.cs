@@ -21,6 +21,19 @@ namespace Xai
         /// Create a chat completion<br/>
         /// Creates a model response for the given chat conversation.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Xai.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Xai.AutoSDKHttpResponse<global::Xai.CreateChatCompletionResponse>> CreateChatCompletionAsResponseAsync(
+
+            global::Xai.CreateChatCompletionRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a chat completion<br/>
+        /// Creates a model response for the given chat conversation.
+        /// </summary>
         /// <param name="model">
         /// ID of the model to use.
         /// </param>

@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class CreateCustomVoiceRequest
     {
@@ -146,5 +146,6 @@ namespace Xai
         public CreateCustomVoiceRequest()
         {
         }
+
     }
 }

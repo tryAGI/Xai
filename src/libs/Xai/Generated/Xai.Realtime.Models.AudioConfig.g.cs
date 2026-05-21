@@ -52,5 +52,6 @@ namespace Xai.Realtime
         public AudioConfig()
         {
         }
+
     }
 }

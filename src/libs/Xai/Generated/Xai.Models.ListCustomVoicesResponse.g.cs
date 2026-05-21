@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class ListCustomVoicesResponse
     {
@@ -53,5 +53,6 @@ namespace Xai
         public ListCustomVoicesResponse()
         {
         }
+
     }
 }

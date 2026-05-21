@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public sealed partial class TextToSpeechOutputFormat
     {
@@ -65,5 +65,6 @@ namespace Xai
         public TextToSpeechOutputFormat()
         {
         }
+
     }
 }

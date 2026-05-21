@@ -77,5 +77,6 @@ namespace Xai
         public BatchObject()
         {
         }
+
     }
 }

@@ -75,5 +75,6 @@ namespace Xai
         public BatchState()
         {
         }
+
     }
 }
