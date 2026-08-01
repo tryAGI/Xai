@@ -29,7 +29,7 @@ public partial class Tests
 
         client.IsConnected.Should().BeTrue();
 
-        //// Configure the session with voice, instructions, and turn detection.
+        //// Configure the session with typed audio, transcription, resumption, and pronunciation options.
         await client.SendSessionUpdateAsync(new SessionUpdatePayload
         {
             Session = new SessionConfig
@@ -42,7 +42,30 @@ public partial class Tests
                     Type = "server_vad",
                     Threshold = 0.85,
                     SilenceDurationMs = 500,
+                    IdleTimeoutMs = 10_000,
                 },
+                Audio = new AudioConfig
+                {
+                    Input = new AudioDirectionConfig
+                    {
+                        Format = new AudioFormatConfig { Type = "audio/pcm", Rate = 24_000 },
+                        Transport = AudioTransport.Json,
+                        Transcription = new AudioTranscriptionConfig
+                        {
+                            Model = "grok-transcribe",
+                            LanguageHint = "en-US",
+                            Keyterms = ["xAI", "Grok"],
+                        },
+                    },
+                    Output = new AudioDirectionConfig
+                    {
+                        Format = new AudioFormatConfig { Type = "audio/pcm", Rate = 24_000 },
+                        Transport = AudioTransport.Json,
+                        Speed = 1.0,
+                    },
+                },
+                Resumption = new ResumptionConfig { Enabled = true },
+                Replace = new Dictionary<string, string> { ["SQL"] = "sequel" },
             },
         });
 

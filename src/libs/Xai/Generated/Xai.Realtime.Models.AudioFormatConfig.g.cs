@@ -9,7 +9,7 @@ namespace Xai.Realtime
     public sealed partial class AudioFormatConfig
     {
         /// <summary>
-        /// Audio format type: audio/pcm, audio/pcmu, or audio/pcma.
+        /// Audio format type: audio/pcm, audio/pcmu, audio/pcma, or audio/opus.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         public string? Type { get; set; }
@@ -30,7 +30,7 @@ namespace Xai.Realtime
         /// Initializes a new instance of the <see cref="AudioFormatConfig" /> class.
         /// </summary>
         /// <param name="type">
-        /// Audio format type: audio/pcm, audio/pcmu, or audio/pcma.
+        /// Audio format type: audio/pcm, audio/pcmu, audio/pcma, or audio/opus.
         /// </param>
         /// <param name="rate">
         /// Sample rate in Hz (8000, 16000, 22050, 24000, 32000, 44100, 48000).

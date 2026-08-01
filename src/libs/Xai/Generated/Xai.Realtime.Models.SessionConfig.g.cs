@@ -33,6 +33,18 @@ namespace Xai.Realtime
         public global::Xai.Realtime.AudioConfig? Audio { get; set; }
 
         /// <summary>
+        /// Conversation resumption configuration.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resumption")]
+        public global::Xai.Realtime.ResumptionConfig? Resumption { get; set; }
+
+        /// <summary>
+        /// Case-insensitive whole-word pronunciation replacements, keyed by the original phrase.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("replace")]
+        public global::System.Collections.Generic.Dictionary<string, string>? Replace { get; set; }
+
+        /// <summary>
         /// Tools available to the agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tools")]
@@ -65,6 +77,12 @@ namespace Xai.Realtime
         /// <param name="audio">
         /// Audio format configuration.
         /// </param>
+        /// <param name="resumption">
+        /// Conversation resumption configuration.
+        /// </param>
+        /// <param name="replace">
+        /// Case-insensitive whole-word pronunciation replacements, keyed by the original phrase.
+        /// </param>
         /// <param name="tools">
         /// Tools available to the agent.
         /// </param>
@@ -79,6 +97,8 @@ namespace Xai.Realtime
             string? voice,
             global::Xai.Realtime.TurnDetection? turnDetection,
             global::Xai.Realtime.AudioConfig? audio,
+            global::Xai.Realtime.ResumptionConfig? resumption,
+            global::System.Collections.Generic.Dictionary<string, string>? replace,
             global::System.Collections.Generic.IList<global::Xai.Realtime.Tool>? tools,
             global::System.Collections.Generic.IList<string>? modalities)
         {
@@ -86,6 +106,8 @@ namespace Xai.Realtime
             this.Voice = voice;
             this.TurnDetection = turnDetection;
             this.Audio = audio;
+            this.Resumption = resumption;
+            this.Replace = replace;
             this.Tools = tools;
             this.Modalities = modalities;
         }

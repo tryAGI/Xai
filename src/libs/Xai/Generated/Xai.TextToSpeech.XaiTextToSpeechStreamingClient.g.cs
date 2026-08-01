@@ -307,7 +307,7 @@ namespace Xai.TextToSpeech
         private string? _storedAuthorizationApiKey;
 
         /// <summary>
-        /// Authorize using bearer authentication.
+        /// Authorize using Bearer authentication.
         /// </summary>
         /// <param name="apiKey"></param>
         public void AuthorizeUsingBearer(
@@ -317,11 +317,11 @@ namespace Xai.TextToSpeech
 
             _storedAuthorizationApiKey = apiKey;
             _storedAuthorizationHeaderName = "Authorization";
-            _storedAuthorizationHeaderScheme = "bearer";
+            _storedAuthorizationHeaderScheme = "Bearer";
         }
 
         /// <summary>
-        /// Creates a new instance with bearer token authentication.
+        /// Creates a new instance with Bearer token authentication.
         /// </summary>
         /// <param name="apiKey"></param>
         /// <param name="clientWebSocket"></param>

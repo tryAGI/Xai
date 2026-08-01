@@ -21,6 +21,10 @@ namespace Xai.Realtime
 
             typeof(global::Xai.Realtime.JsonConverters.VoiceReasoningEffortNullableJsonConverter),
 
+            typeof(global::Xai.Realtime.JsonConverters.AudioTransportJsonConverter),
+
+            typeof(global::Xai.Realtime.JsonConverters.AudioTransportNullableJsonConverter),
+
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeJsonConverter),
 
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeNullableJsonConverter),
@@ -138,13 +142,18 @@ namespace Xai.Realtime
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.TurnDetection))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.ResumptionConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.Realtime.Tool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.Tool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioDirectionConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioFormatConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioTransport), TypeInfoPropertyName = "AudioTransport2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.AudioTranscriptionConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.ConversationItem))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Xai.Realtime.ContentPart>))]

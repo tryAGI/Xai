@@ -33,6 +33,12 @@ namespace Xai.Realtime
         public int? PrefixPaddingMs { get; set; }
 
         /// <summary>
+        /// Milliseconds of inactivity before the agent proactively asks whether the user is still present.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("idle_timeout_ms")]
+        public int? IdleTimeoutMs { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -53,6 +59,9 @@ namespace Xai.Realtime
         /// <param name="prefixPaddingMs">
         /// Milliseconds of audio to include before speech start (0 - 10000).
         /// </param>
+        /// <param name="idleTimeoutMs">
+        /// Milliseconds of inactivity before the agent proactively asks whether the user is still present.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -60,12 +69,14 @@ namespace Xai.Realtime
             string? type,
             double? threshold,
             int? silenceDurationMs,
-            int? prefixPaddingMs)
+            int? prefixPaddingMs,
+            int? idleTimeoutMs)
         {
             this.Type = type;
             this.Threshold = threshold;
             this.SilenceDurationMs = silenceDurationMs;
             this.PrefixPaddingMs = prefixPaddingMs;
+            this.IdleTimeoutMs = idleTimeoutMs;
         }
 
         /// <summary>

@@ -280,7 +280,7 @@
     "securitySchemes": {
       "bearer": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "Bearer"
       }
     },
     "messages": {
@@ -424,6 +424,8 @@
           "voice": { "type": "string", "description": "Voice to use for audio output. Use a built-in voice ID such as eve or a custom voice ID." },
           "turn_detection": { "$ref": "#/components/schemas/TurnDetection" },
           "audio": { "$ref": "#/components/schemas/AudioConfig" },
+          "resumption": { "$ref": "#/components/schemas/ResumptionConfig" },
+          "replace": { "$ref": "#/components/schemas/PronunciationReplacements" },
           "tools": { "type": "array", "items": { "$ref": "#/components/schemas/Tool" }, "description": "Tools available to the agent." },
           "modalities": { "type": "array", "items": { "type": "string" }, "description": "Response modalities (e.g. text, audio)." }
         }
@@ -435,8 +437,21 @@
           "type": { "type": "string", "description": "Turn detection type: server_vad or null for manual." },
           "threshold": { "type": "number", "description": "VAD sensitivity threshold (0.1 - 0.9)." },
           "silence_duration_ms": { "type": "integer", "description": "Milliseconds of silence before ending a turn (0 - 10000)." },
-          "prefix_padding_ms": { "type": "integer", "description": "Milliseconds of audio to include before speech start (0 - 10000)." }
+          "prefix_padding_ms": { "type": "integer", "description": "Milliseconds of audio to include before speech start (0 - 10000)." },
+          "idle_timeout_ms": { "type": "integer", "description": "Milliseconds of inactivity before the agent proactively asks whether the user is still present." }
         }
+      },
+      "ResumptionConfig": {
+        "type": "object",
+        "description": "Conversation resumption configuration.",
+        "properties": {
+          "enabled": { "type": "boolean", "description": "Whether the conversation can be resumed after reconnecting." }
+        }
+      },
+      "PronunciationReplacements": {
+        "type": "object",
+        "description": "Case-insensitive whole-word pronunciation replacements, keyed by the original phrase.",
+        "additionalProperties": { "type": "string" }
       },
       "AudioConfig": {
         "type": "object",
@@ -450,14 +465,32 @@
         "type": "object",
         "description": "Audio direction (input or output) configuration.",
         "properties": {
-          "format": { "$ref": "#/components/schemas/AudioFormatConfig" }
+          "format": { "$ref": "#/components/schemas/AudioFormatConfig" },
+          "transport": { "$ref": "#/components/schemas/AudioTransport" },
+          "transcription": { "$ref": "#/components/schemas/AudioTranscriptionConfig" },
+          "speed": { "type": "number", "description": "Audio output speed from 0.7 to 1.5. Only applies to output audio." }
+        }
+      },
+      "AudioTransport": {
+        "type": "string",
+        "description": "How audio is transported over the WebSocket.",
+        "enum": ["json", "binary"],
+        "x-enum-varnames": ["Json", "Binary"]
+      },
+      "AudioTranscriptionConfig": {
+        "type": "object",
+        "description": "Hints and options for input audio transcription.",
+        "properties": {
+          "model": { "type": "string", "description": "Transcription model. Use grok-transcribe to receive cumulative transcript updates." },
+          "language_hint": { "type": "string", "description": "BCP-47 language hint for the input audio." },
+          "keyterms": { "type": "array", "items": { "type": "string" }, "description": "Up to 100 important terms, with up to 50 characters per term, that should be transcribed accurately." }
         }
       },
       "AudioFormatConfig": {
         "type": "object",
         "description": "Audio format specification.",
         "properties": {
-          "type": { "type": "string", "description": "Audio format type: audio/pcm, audio/pcmu, or audio/pcma." },
+          "type": { "type": "string", "description": "Audio format type: audio/pcm, audio/pcmu, audio/pcma, or audio/opus." },
           "rate": { "type": "integer", "description": "Sample rate in Hz (8000, 16000, 22050, 24000, 32000, 44100, 48000)." }
         }
       },
