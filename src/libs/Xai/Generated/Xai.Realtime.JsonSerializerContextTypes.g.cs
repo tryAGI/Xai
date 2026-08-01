@@ -326,11 +326,11 @@ namespace Xai.Realtime
         /// </summary>
         public global::Xai.Realtime.ServerEvent? Type74 { get; set; }
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public global::Xai.Realtime.ServerEventDiscriminator? Type75 { get; set; }
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public global::Xai.Realtime.ServerEventDiscriminatorType? Type76 { get; set; }
 
