@@ -435,10 +435,10 @@
         "description": "Server VAD turn detection configuration. Null for manual mode.",
         "properties": {
           "type": { "type": "string", "description": "Turn detection type: server_vad or null for manual." },
-          "threshold": { "type": "number", "description": "VAD sensitivity threshold (0.1 - 0.9)." },
-          "silence_duration_ms": { "type": "integer", "description": "Milliseconds of silence before ending a turn (0 - 10000)." },
-          "prefix_padding_ms": { "type": "integer", "description": "Milliseconds of audio to include before speech start (0 - 10000)." },
-          "idle_timeout_ms": { "type": "integer", "description": "Milliseconds of inactivity before the agent proactively asks whether the user is still present." }
+          "threshold": { "type": "number", "minimum": 0.1, "maximum": 0.9, "description": "VAD sensitivity threshold (0.1 - 0.9)." },
+          "silence_duration_ms": { "type": "integer", "minimum": 0, "maximum": 10000, "description": "Milliseconds of silence before ending a turn (0 - 10000)." },
+          "prefix_padding_ms": { "type": "integer", "minimum": 0, "maximum": 10000, "description": "Milliseconds of audio to include before speech start (0 - 10000)." },
+          "idle_timeout_ms": { "type": "integer", "minimum": 0, "description": "Milliseconds of inactivity before the agent proactively asks whether the user is still present." }
         }
       },
       "ResumptionConfig": {
@@ -468,7 +468,7 @@
           "format": { "$ref": "#/components/schemas/AudioFormatConfig" },
           "transport": { "$ref": "#/components/schemas/AudioTransport" },
           "transcription": { "$ref": "#/components/schemas/AudioTranscriptionConfig" },
-          "speed": { "type": "number", "description": "Audio output speed from 0.7 to 1.5. Only applies to output audio." }
+          "speed": { "type": "number", "minimum": 0.7, "maximum": 1.5, "description": "Audio output speed from 0.7 to 1.5. Only applies to output audio." }
         }
       },
       "AudioTransport": {
@@ -483,7 +483,7 @@
         "properties": {
           "model": { "type": "string", "description": "Transcription model. Use grok-transcribe to receive cumulative transcript updates." },
           "language_hint": { "type": "string", "description": "BCP-47 language hint for the input audio." },
-          "keyterms": { "type": "array", "items": { "type": "string" }, "description": "Up to 100 important terms, with up to 50 characters per term, that should be transcribed accurately." }
+          "keyterms": { "type": "array", "maxItems": 100, "items": { "type": "string", "maxLength": 50 }, "description": "Up to 100 important terms, with up to 50 characters per term, that should be transcribed accurately." }
         }
       },
       "AudioFormatConfig": {

@@ -183,6 +183,26 @@ internal static class RealtimeVoiceGuideSnippets
         // --8<-- [end:receive-audio]
     }
 
+    private static async Task ReceiveBinaryAudioAsync(
+        XaiRealtimeClient client,
+        Stream playbackStream,
+        CancellationToken cancellationToken)
+    {
+        // --8<-- [start:receive-binary-audio]
+        await foreach (var message in client.ReceiveMessagesAsync(cancellationToken))
+        {
+            if (message.IsBinaryAudio)
+            {
+                await playbackStream.WriteAsync(message.BinaryAudio, cancellationToken);
+            }
+            else if (message.Event is { } serverEvent && serverEvent.IsResponseDone)
+            {
+                break;
+            }
+        }
+        // --8<-- [end:receive-binary-audio]
+    }
+
     private static async Task ConfigureFunctionToolAsync(
         XaiRealtimeClient client,
         CancellationToken cancellationToken)
@@ -288,6 +308,25 @@ internal static class RealtimeVoiceGuideSnippets
         client.ReconnectOptions.MaxDelay = TimeSpan.FromSeconds(20);
         client.ReconnectOptions.BackoffMultiplier = 2;
         // --8<-- [end:configure-reconnects]
+    }
+
+    private static async Task ResumeConversationAsync(
+        XaiRealtimeClient client,
+        string conversationId,
+        CancellationToken cancellationToken)
+    {
+        // --8<-- [start:resume-conversation]
+        await client.ResumeConversationAsync(
+            conversationId: conversationId,
+            session: new SessionConfig
+            {
+                Voice = "eve",
+                Modalities = ["text", "audio"],
+            },
+            model: VoiceModel.GrokVoiceThinkFast20,
+            reasoningEffort: VoiceReasoningEffort.High,
+            cancellationToken: cancellationToken);
+        // --8<-- [end:resume-conversation]
     }
 
     private static async Task ClientLifetimeAsync(string apiKey)

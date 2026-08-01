@@ -60,9 +60,9 @@ Send `SessionUpdatePayload` after connecting. Voice IDs are lowercase; use a bui
 await client.SendSessionUpdateAsync(sessionUpdate, cancellationToken);
 ```
 
-`AudioTransport.Json` carries base64 audio in JSON events. `AudioTransport.Binary` selects binary WebSocket frames; use the raw byte `SendAsync` overload for binary input, and keep output on JSON when consuming `ReceiveUpdatesAsync`. Input transcription accepts a BCP-47 language hint and up to 100 key terms. Output speed ranges from `0.7` to `1.5`. Pronunciation replacements are case-insensitive and apply to whole words.
+`AudioTransport.Json` carries base64 audio in JSON events. `AudioTransport.Binary` selects raw codec bytes in binary WebSocket messages. Use the raw byte `SendAsync` overload for binary input and `ReceiveMessagesAsync` for binary output. Input transcription accepts a BCP-47 language hint and up to 100 key terms. Output speed ranges from `0.7` to `1.5`. Pronunciation replacements are case-insensitive and apply to whole words.
 
-Set `Resumption.Enabled` before starting a resumable conversation. To resume it after a disconnect, reconnect with the conversation ID as the `conversation_id` query parameter and enable resumption in the new session as well.
+Session configuration is validated before serialization. Invalid VAD ranges, output speed, misplaced input/output options, and transcription keyterm limits throw `ArgumentException` before a message is sent. Call `GetValidationErrors()` when an application needs to display all problems without throwing.
 
 ### Audio Formats
 
@@ -123,6 +123,16 @@ Audio deltas are base64 strings. Decode and enqueue each chunk for playback as s
 
 Do not wait for `response.done` before starting playback; streaming each audio delta minimizes perceived latency.
 
+### Binary Output Audio
+
+Set `Audio.Output.Transport` to `AudioTransport.Binary`, then use the combined receive stream. Binary messages contain raw bytes in the configured codec; JSON lifecycle events remain interleaved in wire order:
+
+```csharp
+--8<-- "src/tests/IntegrationTests/RealtimeVoiceGuideSnippets.cs:receive-binary-audio"
+```
+
+Do not enumerate `ReceiveMessagesAsync` and `ReceiveUpdatesAsync` concurrently on the same client.
+
 ## Tools
 
 ### Function Calling
@@ -158,6 +168,14 @@ Enable automatic reconnects before starting the receive loop:
 ```
 
 The client remembers the URI and connection options used by the successful `ConnectAsync` call. Subscribe to `Reconnecting`, `ExceptionOccurred`, and `Closed` when the application needs connection telemetry.
+
+### Session Resumption
+
+Enable `Resumption.Enabled` on the original session and save `serverEvent.ConversationCreated?.Conversation?.Id`. Conversation history expires after 30 minutes of inactivity. On a new client, the helper adds the encoded `conversation_id` handshake query and enables resumption on the new session update:
+
+```csharp
+--8<-- "src/tests/IntegrationTests/RealtimeVoiceGuideSnippets.cs:resume-conversation"
+```
 
 ## Server Events
 

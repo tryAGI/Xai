@@ -84,6 +84,8 @@ public partial class Tests
         };
         // --8<-- [end:typed-session-configuration]
 
+        sessionUpdate.Session!.GetValidationErrors().Should().BeEmpty();
+
         using var json = JsonDocument.Parse(sessionUpdate.ToJson());
         var session = json.RootElement.GetProperty("session");
 
@@ -135,6 +137,53 @@ public partial class Tests
     }
 
     [TestMethod]
+    public void RealtimeSessionConfiguration_RejectsDocumentedLimitViolationsBeforeSerialization()
+    {
+        var keyterms = Enumerable.Repeat("valid", 101).ToList();
+        keyterms[0] = new string('x', 51);
+        var session = new SessionConfig
+        {
+            TurnDetection = new TurnDetection
+            {
+                Threshold = double.NaN,
+                SilenceDurationMs = 10_001,
+                PrefixPaddingMs = -1,
+                IdleTimeoutMs = -1,
+            },
+            Audio = new AudioConfig
+            {
+                Input = new AudioDirectionConfig
+                {
+                    Speed = 1.0,
+                    Transcription = new AudioTranscriptionConfig { Keyterms = keyterms },
+                },
+                Output = new AudioDirectionConfig
+                {
+                    Speed = 1.51,
+                    Transcription = new AudioTranscriptionConfig(),
+                },
+            },
+        };
+
+        var errors = session.GetValidationErrors();
+        errors.Should().HaveCount(9);
+        errors.Should().Contain(error => error.StartsWith("turn_detection.threshold"));
+        errors.Should().Contain(error => error.StartsWith("turn_detection.silence_duration_ms"));
+        errors.Should().Contain(error => error.StartsWith("turn_detection.prefix_padding_ms"));
+        errors.Should().Contain(error => error.StartsWith("turn_detection.idle_timeout_ms"));
+        errors.Should().Contain(error => error.StartsWith("audio.input.speed"));
+        errors.Should().Contain(error => error.Contains("more than 100 terms"));
+        errors.Should().Contain(error => error.Contains("cannot exceed 50 characters"));
+        errors.Should().Contain(error => error.StartsWith("audio.output.transcription"));
+        errors.Should().Contain(error => error.StartsWith("audio.output.speed"));
+
+        Action serialize = () => new SessionUpdatePayload { Session = session }.ToJson();
+        serialize.Should()
+            .Throw<ArgumentException>()
+            .WithParameterName("session");
+    }
+
+    [TestMethod]
     public async Task VoiceModelOptions_AreAddedToHandshakeUri()
     {
         using var client = new XaiRealtimeClient();
@@ -162,11 +211,75 @@ public partial class Tests
             new Uri("wss://api.x.ai/v1/realtime?model=grok-voice-think-fast-2.0&reasoning.effort=high"));
     }
 
+    [TestMethod]
+    public async Task ResumeConversation_ConfiguresOptInAndEncodedHandshakeUri()
+    {
+        using var client = new XaiRealtimeClient();
+        var session = new SessionConfig { Voice = "eve" };
+        using var cancellationTokenSource = new CancellationTokenSource();
+        cancellationTokenSource.Cancel();
+
+        Func<Task> resume = () => client.ResumeConversationAsync(
+            conversationId: "conversation 123/alpha",
+            session: session,
+            model: VoiceModel.GrokVoiceThinkFast20,
+            reasoningEffort: VoiceReasoningEffort.High,
+            cancellationToken: cancellationTokenSource.Token);
+
+        await resume.Should().ThrowAsync<OperationCanceledException>();
+
+        session.Resumption.Should().NotBeNull();
+        session.Resumption!.Enabled.Should().BeTrue();
+        GetLastConnectUri(client).AbsoluteUri.Should().Be(
+            "wss://api.x.ai/v1/realtime?conversation_id=conversation%20123%2Falpha&model=grok-voice-think-fast-2.0&reasoning.effort=high");
+    }
+
+    [TestMethod]
+    public async Task ResumeConversation_ValidatesBeforeConnecting()
+    {
+        using var client = new XaiRealtimeClient();
+
+        Func<Task> resume = () => client.ResumeConversationAsync(
+            conversationId: "conversation_123",
+            session: new SessionConfig
+            {
+                Audio = new AudioConfig
+                {
+                    Output = new AudioDirectionConfig { Speed = 2.0 },
+                },
+            });
+
+        await resume.Should()
+            .ThrowAsync<ArgumentException>()
+            .WithParameterName("session");
+
+        GetLastConnectUri(client, required: false).Should().BeNull();
+    }
+
     private static string? GetStoredAuthorizationScheme(object client)
     {
         return client
             .GetType()
             .GetField("_storedAuthorizationHeaderScheme", BindingFlags.Instance | BindingFlags.NonPublic)?
             .GetValue(client) as string;
+    }
+
+    private static Uri GetLastConnectUri(XaiRealtimeClient client)
+    {
+        return GetLastConnectUri(client, required: true)!;
+    }
+
+    private static Uri? GetLastConnectUri(XaiRealtimeClient client, bool required)
+    {
+        var uri = typeof(XaiRealtimeClient)
+            .GetField("_lastConnectUri", BindingFlags.Instance | BindingFlags.NonPublic)?
+            .GetValue(client) as Uri;
+
+        if (required)
+        {
+            uri.Should().NotBeNull();
+        }
+
+        return uri;
     }
 }
