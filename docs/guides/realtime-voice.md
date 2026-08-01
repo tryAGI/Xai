@@ -1,261 +1,402 @@
-# Realtime Voice Agent
+# Realtime Speech-to-Speech
 
-The `XaiRealtimeClient` provides a WebSocket client for the xAI Realtime Voice Agent API at `wss://api.x.ai/v1/realtime`. It supports bidirectional audio/text streaming, server-side voice activity detection (VAD), function calling, and built-in tools like web search and X search.
+`XaiRealtimeClient` is the SDK's WebSocket client for the xAI Speech-to-Speech API at `wss://api.x.ai/v1/realtime`. It supports bidirectional audio and text, server-side voice activity detection (VAD), function calling, built-in search tools, reconnects, and typed Grok Voice model selection.
+
+See the [xAI Speech-to-Speech guide](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech) and [Voice API reference](https://docs.x.ai/developers/rest-api-reference/inference/voice) for service behavior and limits.
 
 ## Quick Start
 
 ```csharp
 using Xai.Realtime;
 
-using var client = new XaiRealtimeClient(apiKey);
+await using var client = new XaiRealtimeClient(apiKey);
 await client.ConnectAsync(
     model: VoiceModel.GrokVoiceThinkFast20,
-    reasoningEffort: VoiceReasoningEffort.High);
+    reasoningEffort: VoiceReasoningEffort.High,
+    cancellationToken: cancellationToken);
 
-// Configure the session
 await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
     Session = new SessionConfig
     {
         Voice = "eve",
-        Instructions = "You are a helpful assistant. Respond briefly.",
+        Instructions = "Be helpful and concise.",
         Modalities = ["text", "audio"],
         TurnDetection = new TurnDetection
         {
             Type = "server_vad",
             Threshold = 0.85,
             SilenceDurationMs = 500,
+            PrefixPaddingMs = 333,
         },
     },
-});
+}, cancellationToken);
 
-// Send a text message and request a response
 await client.SendConversationItemCreateAsync(new ConversationItemCreatePayload
 {
     Item = new ConversationItem
     {
         Type = "message",
         Role = "user",
-        Content = [new ContentPart { Type = "input_text", Text = "Say hello!" }],
+        Content =
+        [
+            new ContentPart
+            {
+                Type = "input_text",
+                Text = "Introduce yourself in one sentence.",
+            },
+        ],
     },
-});
+}, cancellationToken);
+
 await client.SendResponseCreateAsync(new ResponseCreatePayload
 {
     Response = new ResponseConfig { Modalities = ["text", "audio"] },
-});
+}, cancellationToken);
 
-// Process server events
 await foreach (var serverEvent in client.ReceiveUpdatesAsync(cancellationToken))
 {
     if (serverEvent.IsResponseOutputAudioTranscriptDelta)
+    {
         Console.Write(serverEvent.ResponseOutputAudioTranscriptDelta?.Delta);
+    }
     else if (serverEvent.IsResponseDone)
+    {
         break;
+    }
     else if (serverEvent.IsError)
-        Console.Error.WriteLine($"Error: {serverEvent.Error?.Error?.Message}");
+    {
+        throw new InvalidOperationException(serverEvent.Error?.Error?.Message);
+    }
 }
 ```
 
-## Grok Voice Think Fast 2.0
+## Authentication
 
-The model is selected during the WebSocket handshake. Pin `GrokVoiceThinkFast20` when you need stable Think Fast 2.0 behavior:
+Use the API-key constructor in server-side applications:
+
+```csharp
+await using var client = new XaiRealtimeClient(apiKey);
+```
+
+For a short-lived client secret, create the client without an API key and pass the token using the WebSocket subprotocol expected by xAI:
+
+```csharp
+await using var client = new XaiRealtimeClient();
+await client.ConnectAsync(
+    model: VoiceModel.GrokVoiceLatest,
+    additionalSubProtocols: [$"xai-client-secret.{clientSecret}"],
+    cancellationToken: cancellationToken);
+```
+
+Do not expose a long-lived xAI API key in a browser or mobile client.
+
+## Models and Reasoning
+
+The model and reasoning effort are selected during the WebSocket handshake:
 
 ```csharp
 await client.ConnectAsync(
     model: VoiceModel.GrokVoiceThinkFast20,
-    reasoningEffort: VoiceReasoningEffort.High);
+    reasoningEffort: VoiceReasoningEffort.High,
+    cancellationToken: cancellationToken);
 ```
 
-Use `VoiceModel.GrokVoiceLatest` to follow xAI's recommended model automatically. The `grok-voice-latest` alias moves from Think Fast 1.0 to Think Fast 2.0 on August 5, 2026. Use `VoiceModel.GrokVoiceThinkFast10` only when you intentionally need to remain on the previous model. Reasoning defaults to `High`; pass `VoiceReasoningEffort.None` to disable it.
+| SDK value | Wire value | Use |
+|---|---|---|
+| `VoiceModel.GrokVoiceLatest` | `grok-voice-latest` | Follow xAI's recommended model automatically |
+| `VoiceModel.GrokVoiceThinkFast20` | `grok-voice-think-fast-2.0` | Pin Think Fast 2.0 for stable behavior |
+| `VoiceModel.GrokVoiceThinkFast10` | `grok-voice-think-fast-1.0` | Remain on the previous model intentionally |
+| `VoiceReasoningEffort.High` | `high` | Enable reasoning; this is the service default |
+| `VoiceReasoningEffort.None` | `none` | Disable reasoning |
 
-## Voices
+The `grok-voice-latest` alias moves from Think Fast 1.0 to Think Fast 2.0 on August 5, 2026. Pin a versioned model when production behavior must remain stable.
 
-Five voices are available:
+If you supply the low-level `uri` override to `ConnectAsync`, include any required query parameters in that URI. The typed `model` and `reasoningEffort` values are used when the SDK builds the default endpoint URI.
 
-| Voice | Description |
-|-------|-------------|
-| `Eve` | Default voice |
-| `Ara` | Alternative voice |
-| `Rex` | Alternative voice |
-| `Sal` | Alternative voice |
-| `Leo` | Alternative voice |
+## Session Configuration
 
-## Audio Formats
+Send `SessionUpdatePayload` after connecting. Voice IDs are lowercase; use a built-in voice such as `eve`, `ara`, `rex`, `sal`, or `leo`, or a custom voice ID returned by the Custom Voices API.
 
-Configure input/output audio formats via `RealtimeAudioConfig`:
+### Audio Formats
 
 ```csharp
-await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
+await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
-    Voice = "Eve",
-    Modalities = ["text", "audio"],
-    Audio = new RealtimeAudioConfig
+    Session = new SessionConfig
     {
-        Input = new RealtimeAudioDirectionConfig
+        Voice = "eve",
+        Modalities = ["text", "audio"],
+        Audio = new AudioConfig
         {
-            Format = new RealtimeAudioFormatConfig
+            Input = new AudioDirectionConfig
             {
-                Type = "audio/pcm",  // Linear16 little-endian
-                Rate = 24000,        // Sample rate in Hz
+                Format = new AudioFormatConfig
+                {
+                    Type = "audio/pcm",
+                    Rate = 24000,
+                },
             },
-        },
-        Output = new RealtimeAudioDirectionConfig
-        {
-            Format = new RealtimeAudioFormatConfig
+            Output = new AudioDirectionConfig
             {
-                Type = "audio/pcm",
-                Rate = 24000,
+                Format = new AudioFormatConfig
+                {
+                    Type = "audio/pcm",
+                    Rate = 24000,
+                },
             },
         },
     },
-}));
+}, cancellationToken);
 ```
 
-Supported formats:
+| Format | `Type` | Supported sample rates |
+|---|---|---|
+| PCM16 little-endian | `audio/pcm` | 8000, 16000, 22050, 24000, 32000, 44100, 48000 |
+| G.711 μ-law | `audio/pcmu` | 8000 |
+| G.711 A-law | `audio/pcma` | 8000 |
+| Opus packets | `audio/opus` | 24000 |
 
-| Format | Type | Sample Rates |
-|--------|------|-------------|
-| PCM (Linear16) | `audio/pcm` | 8000, 16000, 22050, 24000 (default), 32000, 44100, 48000 |
-| G.711 µ-law | `audio/pcmu` | 8000 only |
-| G.711 A-law | `audio/pcma` | 8000 only |
+For lowest integration overhead, capture and play 24 kHz PCM16 so the application does not need to resample.
+
+### Server VAD
+
+With server VAD, xAI detects speech boundaries and creates responses automatically:
+
+```csharp
+TurnDetection = new TurnDetection
+{
+    Type = "server_vad",
+    Threshold = 0.85,
+    SilenceDurationMs = 500,
+    PrefixPaddingMs = 333,
+};
+```
+
+Higher thresholds require louder input before speech starts. Increase `SilenceDurationMs` when callers need longer pauses without ending their turn.
+
+### Manual Turn Control
+
+Manual mode requires an explicit JSON `null` for `turn_detection`. Use the raw send method for this configuration because the generated serializer omits nullable properties:
+
+```csharp
+await client.SendAsync(
+    """
+    {
+      "type": "session.update",
+      "session": {
+        "voice": "eve",
+        "modalities": ["text", "audio"],
+        "turn_detection": null
+      }
+    }
+    """,
+    cancellationToken);
+```
+
+In manual mode, append audio, commit it, and request a response yourself.
 
 ## Sending Audio
 
-Stream raw audio data as base64-encoded chunks:
+The byte overload accepts raw audio and handles base64 encoding for `input_audio_buffer.append`:
 
 ```csharp
-// Read audio from a file or microphone
-byte[] audioChunk = GetAudioChunk(); // your audio source
-string base64Audio = Convert.ToBase64String(audioChunk);
-
-// Send audio data
-await client.SendEventAsync(RealtimeClientEvent.AppendAudio(base64Audio));
-
-// Commit the audio buffer (in manual mode, or to force processing)
-await client.SendEventAsync(RealtimeClientEvent.CommitAudio());
+ReadOnlyMemory<byte> audioChunk = await GetMicrophoneChunkAsync(cancellationToken);
+await client.SendInputAudioBufferAppendAsync(
+    audio: audioChunk,
+    cancellationToken: cancellationToken);
 ```
 
-## Turn Detection
+Send chunks continuously while the caller is speaking. Approximately 100 ms per chunk is a practical starting point.
 
-### Server VAD (Automatic)
-
-The server automatically detects when the user starts and stops speaking:
+When using manual turn detection, finish the turn explicitly:
 
 ```csharp
-TurnDetection = new RealtimeTurnDetection
+await client.SendInputAudioBufferCommitAsync(
+    new InputAudioBufferCommitPayload(),
+    cancellationToken);
+
+await client.SendResponseCreateAsync(new ResponseCreatePayload
 {
-    Type = "server_vad",
-    Threshold = 0.85,          // Sensitivity (0.1 - 0.9)
-    SilenceDurationMs = 500,   // Silence before ending turn (0 - 10000)
-    PrefixPaddingMs = 333,     // Audio to include before speech start (0 - 10000)
+    Response = new ResponseConfig { Modalities = ["text", "audio"] },
+}, cancellationToken);
+```
+
+## Receiving Audio and Transcripts
+
+Audio deltas are base64 strings. Decode and enqueue each chunk for playback as soon as it arrives:
+
+```csharp
+await foreach (var serverEvent in client.ReceiveUpdatesAsync(cancellationToken))
+{
+    if (serverEvent.IsResponseOutputAudioDelta &&
+        serverEvent.ResponseOutputAudioDelta?.Delta is { Length: > 0 } delta)
+    {
+        byte[] audioBytes = Convert.FromBase64String(delta);
+        await playbackStream.WriteAsync(audioBytes, cancellationToken);
+    }
+    else if (serverEvent.IsResponseOutputAudioTranscriptDelta)
+    {
+        Console.Write(serverEvent.ResponseOutputAudioTranscriptDelta?.Delta);
+    }
+    else if (serverEvent.IsResponseOutputAudioDone)
+    {
+        await playbackStream.FlushAsync(cancellationToken);
+    }
+    else if (serverEvent.IsError)
+    {
+        var error = serverEvent.Error?.Error;
+        throw new InvalidOperationException($"{error?.Code}: {error?.Message}");
+    }
 }
 ```
 
-### Manual Mode
-
-Set `TurnDetection` to `null` for manual control — you decide when to commit the audio buffer and trigger a response:
-
-```csharp
-await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
-{
-    Voice = "Eve",
-    Modalities = ["text", "audio"],
-    TurnDetection = null, // Manual mode
-}));
-
-// ... send audio chunks ...
-await client.SendEventAsync(RealtimeClientEvent.CommitAudio());
-await client.SendEventAsync(RealtimeClientEvent.CreateResponse(["audio"]));
-```
+Do not wait for `response.done` before starting playback; streaming each audio delta minimizes perceived latency.
 
 ## Tools
 
 ### Function Calling
 
-Define custom functions the agent can invoke:
+Define a function with its JSON Schema parameters:
 
 ```csharp
-await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
+using System.Text.Json;
+
+using JsonDocument weatherSchema = JsonDocument.Parse(
+    """
+    {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City and country"
+        }
+      },
+      "required": ["location"]
+    }
+    """);
+JsonElement weatherParameters = weatherSchema.RootElement.Clone();
+
+await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
-    Voice = "Eve",
-    Modalities = ["text", "audio"],
-    Tools = [
-        RealtimeTool.Function(
-            name: "get_weather",
-            description: "Get the current weather for a location",
-            parameters: new
+    Session = new SessionConfig
+    {
+        Voice = "eve",
+        Modalities = ["text", "audio"],
+        Tools =
+        [
+            new Tool
             {
-                type = "object",
-                properties = new
-                {
-                    location = new { type = "string", description = "City name" },
-                },
-                required = new[] { "location" },
-            }),
-    ],
-}));
+                Type = "function",
+                Name = "get_weather",
+                Description = "Get the current weather for a location.",
+                Parameters = weatherParameters,
+            },
+        ],
+    },
+}, cancellationToken);
+```
 
-// Handle function calls in the event loop
-await foreach (var serverEvent in client.ReceiveUpdatesAsync(cancellationToken))
+Execute the function when its arguments are complete, then add a `function_call_output` item:
+
+```csharp
+if (serverEvent.IsResponseFunctionCallArgumentsDone)
 {
-    if (serverEvent.IsFunctionCallArgumentsDone)
-    {
-        // Execute the function
-        var result = ExecuteFunction(serverEvent.Name!, serverEvent.Arguments!);
+    var functionCall = serverEvent.ResponseFunctionCallArgumentsDone!;
+    string outputJson = await ExecuteToolAsync(
+        functionCall.Name!,
+        functionCall.Arguments!,
+        cancellationToken);
 
-        // Send the result back
-        await client.SendEventAsync(
-            RealtimeClientEvent.FunctionCallOutput(serverEvent.CallId!, result));
-        await client.SendEventAsync(RealtimeClientEvent.CreateResponse(["text", "audio"]));
-    }
-    else if (serverEvent.IsResponseDone)
+    await client.SendConversationItemCreateAsync(new ConversationItemCreatePayload
     {
-        break;
-    }
+        Item = new ConversationItem
+        {
+            Type = "function_call_output",
+            CallId = functionCall.CallId,
+            Output = outputJson,
+        },
+    }, cancellationToken);
+
+    // Wait for audio already buffered by the player to finish before requesting
+    // the follow-up response, otherwise the two spoken turns can overlap.
+    await WaitForPlaybackCompletionAsync(cancellationToken);
+    await client.SendResponseCreateAsync(new ResponseCreatePayload(), cancellationToken);
 }
 ```
 
-### Built-in Tools
-
-The xAI Realtime API includes built-in tools:
+### Built-in Search Tools
 
 ```csharp
-Tools = [
-    // Web search — searches the internet
-    RealtimeTool.WebSearch(),
-
-    // X search — searches posts on X (Twitter)
-    RealtimeTool.XSearch(),
-
-    // X search with allowed handles filter
-    RealtimeTool.XSearch(allowedHandles: ["@elonmusk", "@xaboratory"]),
-
-    // File search — searches uploaded document collections
-    RealtimeTool.FileSearch(collectionIds: ["col_abc123"], maxResults: 5),
-]
+Tools =
+[
+    new Tool { Type = "web_search" },
+    new Tool
+    {
+        Type = "x_search",
+        AllowedXHandles = ["grok", "xai"],
+    },
+    new Tool
+    {
+        Type = "file_search",
+        VectorStoreIds = ["collection_abc123"],
+        MaxNumResults = 5,
+    },
+];
 ```
 
-## Server Events Reference
+The collection must already exist before it can be used by `file_search`.
 
-Use the `Is*` helper properties to check event types:
+## Reconnection
 
-| Property | Event Type | Description |
-|----------|-----------|-------------|
-| `IsSessionCreated` | `session.created` | WebSocket connection established |
-| `IsSessionUpdated` | `session.updated` | Session config applied |
-| `IsConversationCreated` | `conversation.created` | New conversation started |
-| `IsSpeechStarted` | `input_audio_buffer.speech_started` | VAD detected speech |
-| `IsSpeechStopped` | `input_audio_buffer.speech_stopped` | VAD detected silence |
-| `IsAudioBufferCommitted` | `input_audio_buffer.committed` | Audio buffer committed |
-| `IsTranscriptionCompleted` | `input_audio_transcription.completed` | User speech transcribed |
-| `IsResponseCreated` | `response.created` | Response generation started |
-| `IsResponseDone` | `response.done` | Response generation completed |
-| `IsAudioTranscriptDelta` | `response.output_audio_transcript.delta` | Incremental transcript text |
-| `IsAudioTranscriptDone` | `response.output_audio_transcript.done` | Full transcript available |
-| `IsAudioDelta` | `response.output_audio.delta` | Incremental audio data (base64) |
-| `IsAudioDone` | `response.output_audio.done` | Audio output completed |
-| `IsFunctionCallArgumentsDone` | `response.function_call_arguments.done` | Function call ready to execute |
-| `IsMcpListToolsCompleted` | `mcp_list_tools.completed` | MCP tool list received |
-| `IsMcpCallArgumentsDone` | `response.mcp_call_arguments.done` | MCP tool call ready |
-| `IsMcpCallCompleted` | `response.mcp_call.completed` | MCP tool call completed |
-| `IsError` | `error` | Error occurred |
+Enable automatic reconnects before starting the receive loop:
+
+```csharp
+client.ReconnectOptions.Enabled = true;
+client.ReconnectOptions.MaxAttempts = 5;
+client.ReconnectOptions.InitialDelay = TimeSpan.FromSeconds(1);
+client.ReconnectOptions.MaxDelay = TimeSpan.FromSeconds(20);
+client.ReconnectOptions.BackoffMultiplier = 2;
+```
+
+The client remembers the URI and connection options used by the successful `ConnectAsync` call. Subscribe to `Reconnecting`, `ExceptionOccurred`, and `Closed` when the application needs connection telemetry.
+
+## Server Events
+
+`ServerEvent` is a generated discriminated union. Check an `Is*` property before reading its matching payload.
+
+| Property | Event type | Meaning |
+|---|---|---|
+| `IsSessionCreated` | `session.created` | Session opened; includes the selected model |
+| `IsSessionUpdated` | `session.updated` | Session configuration accepted |
+| `IsConversationCreated` | `conversation.created` | Conversation opened |
+| `IsConversationItemAdded` | `conversation.item.added` | Item added to conversation history |
+| `IsInputAudioBufferSpeechStarted` | `input_audio_buffer.speech_started` | VAD detected speech |
+| `IsInputAudioBufferSpeechStopped` | `input_audio_buffer.speech_stopped` | VAD detected silence |
+| `IsInputAudioBufferCommitted` | `input_audio_buffer.committed` | Buffered audio committed |
+| `IsInputAudioTranscriptionCompleted` | `input_audio_transcription.completed` | User audio transcription completed |
+| `IsResponseCreated` | `response.created` | Assistant response started |
+| `IsResponseOutputItemAdded` | `response.output_item.added` | Output item added |
+| `IsResponseOutputAudioTranscriptDelta` | `response.output_audio_transcript.delta` | Incremental assistant transcript |
+| `IsResponseOutputAudioTranscriptDone` | `response.output_audio_transcript.done` | Assistant transcript completed |
+| `IsResponseOutputAudioDelta` | `response.output_audio.delta` | Incremental base64 audio |
+| `IsResponseOutputAudioDone` | `response.output_audio.done` | Assistant audio completed |
+| `IsResponseFunctionCallArgumentsDone` | `response.function_call_arguments.done` | Function arguments completed |
+| `IsMcpListToolsCompleted` | `mcp_list_tools.completed` | MCP tool discovery completed |
+| `IsResponseMcpCallArgumentsDone` | `response.mcp_call_arguments.done` | MCP call arguments completed |
+| `IsResponseMcpCallCompleted` | `response.mcp_call.completed` | MCP call succeeded |
+| `IsResponseMcpCallFailed` | `response.mcp_call.failed` | MCP call failed |
+| `IsResponseDone` | `response.done` | Assistant response completed |
+| `IsError` | `error` | Service error received |
+
+Unknown text messages raise the `UnknownMessage` event instead of being silently discarded.
+
+## Lifetime and Cancellation
+
+Pass a cancellation token to connection, send, and receive methods. Prefer `await using` so an open WebSocket receives a normal close frame before disposal:
+
+```csharp
+await using var client = new XaiRealtimeClient(apiKey);
+```
+
+Keep audio capture and WebSocket connection startup parallel in latency-sensitive applications, buffer early microphone samples, and flush them after `ConnectAsync` completes.
