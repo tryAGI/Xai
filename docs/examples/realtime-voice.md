@@ -10,9 +10,11 @@ var apiKey =
         ? apiKeyValue
         : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
 
-// Create a WebSocket client and connect to the xAI Realtime API.
+// Create a WebSocket client and pin Grok Voice Think Fast 2.0 with reasoning enabled.
 using var client = new XaiRealtimeClient(apiKey);
-await client.ConnectAsync();
+await client.ConnectAsync(
+    model: VoiceModel.GrokVoiceThinkFast20,
+    reasoningEffort: VoiceReasoningEffort.High);
 
 // Configure the session with voice, instructions, and turn detection.
 await client.SendSessionUpdateAsync(new SessionUpdatePayload
@@ -51,13 +53,18 @@ await client.SendResponseCreateAsync(new ResponseCreatePayload
 
 // Receive server events until the response is complete.
 using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+string? selectedModel = null;
 var receivedSessionUpdated = false;
 var receivedResponseDone = false;
 string? transcriptText = null;
 
 await foreach (var serverEvent in client.ReceiveUpdatesAsync(cts.Token))
 {
-    if (serverEvent.IsSessionUpdated)
+    if (serverEvent.IsSessionCreated)
+    {
+        selectedModel = serverEvent.SessionCreated?.Session?.Model;
+    }
+    else if (serverEvent.IsSessionUpdated)
     {
         receivedSessionUpdated = true;
     }

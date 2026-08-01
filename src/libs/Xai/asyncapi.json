@@ -21,6 +21,21 @@
   "channels": {
     "realtime": {
       "address": "/v1/realtime",
+      "bindings": {
+        "ws": {
+          "query": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "$ref": "#/components/schemas/VoiceModel"
+              },
+              "reasoning.effort": {
+                "$ref": "#/components/schemas/VoiceReasoningEffort"
+              }
+            }
+          }
+        }
+      },
       "messages": {
         "SessionUpdate": {
           "$ref": "#/components/messages/SessionUpdate"
@@ -375,6 +390,32 @@
       }
     },
     "schemas": {
+      "VoiceModel": {
+        "type": "string",
+        "description": "Speech-to-speech model selected during the WebSocket handshake. Use grok-voice-latest to follow xAI's recommended model or a versioned name for stability.",
+        "enum": [
+          "grok-voice-latest",
+          "grok-voice-think-fast-2.0",
+          "grok-voice-think-fast-1.0"
+        ],
+        "x-enum-varnames": [
+          "GrokVoiceLatest",
+          "GrokVoiceThinkFast20",
+          "GrokVoiceThinkFast10"
+        ]
+      },
+      "VoiceReasoningEffort": {
+        "type": "string",
+        "description": "Reasoning effort for the selected speech-to-speech model. Reasoning defaults to high when omitted.",
+        "enum": [
+          "high",
+          "none"
+        ],
+        "x-enum-varnames": [
+          "High",
+          "None"
+        ]
+      },
       "SessionConfig": {
         "type": "object",
         "description": "Configuration for an xAI Realtime session.",

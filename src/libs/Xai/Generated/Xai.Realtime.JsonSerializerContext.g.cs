@@ -13,6 +13,14 @@ namespace Xai.Realtime
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[]
         {
+            typeof(global::Xai.Realtime.JsonConverters.VoiceModelJsonConverter),
+
+            typeof(global::Xai.Realtime.JsonConverters.VoiceModelNullableJsonConverter),
+
+            typeof(global::Xai.Realtime.JsonConverters.VoiceReasoningEffortJsonConverter),
+
+            typeof(global::Xai.Realtime.JsonConverters.VoiceReasoningEffortNullableJsonConverter),
+
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeJsonConverter),
 
             typeof(global::Xai.Realtime.JsonConverters.SessionUpdatePayloadTypeNullableJsonConverter),
@@ -124,6 +132,8 @@ namespace Xai.Realtime
             typeof(global::Xai.Realtime.JsonConverters.ServerEventJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.JsonSerializerContextTypes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.VoiceModel), TypeInfoPropertyName = "VoiceModel2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.VoiceReasoningEffort), TypeInfoPropertyName = "VoiceReasoningEffort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.SessionConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.TurnDetection))]

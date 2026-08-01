@@ -1,44 +1,72 @@
 # Realtime Voice Agent
 
-The `RealtimeVoiceClient` provides a WebSocket client for the xAI Realtime Voice Agent API at `wss://api.x.ai/v1/realtime`. It supports bidirectional audio/text streaming, server-side voice activity detection (VAD), function calling, and built-in tools like web search and X search.
+The `XaiRealtimeClient` provides a WebSocket client for the xAI Realtime Voice Agent API at `wss://api.x.ai/v1/realtime`. It supports bidirectional audio/text streaming, server-side voice activity detection (VAD), function calling, and built-in tools like web search and X search.
 
 ## Quick Start
 
 ```csharp
-using Xai;
+using Xai.Realtime;
 
-using var client = new RealtimeVoiceClient(apiKey);
-await client.ConnectAsync();
+using var client = new XaiRealtimeClient(apiKey);
+await client.ConnectAsync(
+    model: VoiceModel.GrokVoiceThinkFast20,
+    reasoningEffort: VoiceReasoningEffort.High);
 
 // Configure the session
-await client.SendEventAsync(RealtimeClientEvent.SessionUpdate(new RealtimeSessionConfig
+await client.SendSessionUpdateAsync(new SessionUpdatePayload
 {
-    Voice = "Eve",
-    Instructions = "You are a helpful assistant. Respond briefly.",
-    Modalities = ["text", "audio"],
-    TurnDetection = new RealtimeTurnDetection
+    Session = new SessionConfig
     {
-        Type = "server_vad",
-        Threshold = 0.85,
-        SilenceDurationMs = 500,
+        Voice = "eve",
+        Instructions = "You are a helpful assistant. Respond briefly.",
+        Modalities = ["text", "audio"],
+        TurnDetection = new TurnDetection
+        {
+            Type = "server_vad",
+            Threshold = 0.85,
+            SilenceDurationMs = 500,
+        },
     },
-}));
+});
 
 // Send a text message and request a response
-await client.SendEventAsync(RealtimeClientEvent.UserMessage("What's the weather like today?"));
-await client.SendEventAsync(RealtimeClientEvent.CreateResponse(["text"]));
+await client.SendConversationItemCreateAsync(new ConversationItemCreatePayload
+{
+    Item = new ConversationItem
+    {
+        Type = "message",
+        Role = "user",
+        Content = [new ContentPart { Type = "input_text", Text = "Say hello!" }],
+    },
+});
+await client.SendResponseCreateAsync(new ResponseCreatePayload
+{
+    Response = new ResponseConfig { Modalities = ["text", "audio"] },
+});
 
 // Process server events
 await foreach (var serverEvent in client.ReceiveUpdatesAsync(cancellationToken))
 {
-    if (serverEvent.IsAudioTranscriptDelta)
-        Console.Write(serverEvent.Delta);
+    if (serverEvent.IsResponseOutputAudioTranscriptDelta)
+        Console.Write(serverEvent.ResponseOutputAudioTranscriptDelta?.Delta);
     else if (serverEvent.IsResponseDone)
         break;
     else if (serverEvent.IsError)
-        Console.Error.WriteLine($"Error: {serverEvent.Error?.Message}");
+        Console.Error.WriteLine($"Error: {serverEvent.Error?.Error?.Message}");
 }
 ```
+
+## Grok Voice Think Fast 2.0
+
+The model is selected during the WebSocket handshake. Pin `GrokVoiceThinkFast20` when you need stable Think Fast 2.0 behavior:
+
+```csharp
+await client.ConnectAsync(
+    model: VoiceModel.GrokVoiceThinkFast20,
+    reasoningEffort: VoiceReasoningEffort.High);
+```
+
+Use `VoiceModel.GrokVoiceLatest` to follow xAI's recommended model automatically. The `grok-voice-latest` alias moves from Think Fast 1.0 to Think Fast 2.0 on August 5, 2026. Use `VoiceModel.GrokVoiceThinkFast10` only when you intentionally need to remain on the previous model. Reasoning defaults to `High`; pass `VoiceReasoningEffort.None` to disable it.
 
 ## Voices
 

@@ -626,8 +626,23 @@ namespace Xai.Realtime
             }
         }
 
-        /// <inheritdoc cref="global::System.Net.WebSockets.ClientWebSocket.ConnectAsync(global::System.Uri, global::System.Threading.CancellationToken)"/>
+        private const string DefaultBaseUrlTemplate = "wss://api.x.ai/v1/realtime";
+
+
+        /// <summary>
+        /// Connects to the WebSocket server with typed connection parameters.
+        /// </summary>
+        /// <param name="model">Speech-to-speech model selected during the WebSocket handshake. Use grok-voice-latest to follow xAI's recommended model or a versioned name for stability.</param>
+        /// <param name="reasoningEffort">Reasoning effort for the selected speech-to-speech model. Reasoning defaults to high when omitted.</param>
+        /// <param name="uri">Optional WebSocket endpoint override.</param>
+        /// <param name="additionalHeaders">Additional headers applied before connecting.</param>
+        /// <param name="additionalSubProtocols">Additional WebSocket subprotocols applied before connecting.</param>
+        /// <param name="keepAliveInterval">Optional keep-alive interval.</param>
+        /// <param name="connectTimeout">Optional connect timeout.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         public async global::System.Threading.Tasks.Task ConnectAsync(
+            global::Xai.Realtime.VoiceModel? model = default,
+            global::Xai.Realtime.VoiceReasoningEffort? reasoningEffort = default,
             global::System.Uri? uri = null,
             global::System.Collections.Generic.IDictionary<string, string>? additionalHeaders = null,
             global::System.Collections.Generic.IEnumerable<string>? additionalSubProtocols = null,
@@ -642,8 +657,13 @@ namespace Xai.Realtime
             }
             else
             {
+                var __baseUrl = DefaultBaseUrlTemplate;
                 var __pathBuilder = new global::Xai.Realtime.PathBuilder(
-                    path: DefaultBaseUrl);
+                    path: __baseUrl);
+                __pathBuilder
+                .AddOptionalParameter("model", model?.ToValueString())
+                .AddOptionalParameter("reasoning.effort", reasoningEffort?.ToValueString())
+                ;
 
                 __uri = new global::System.Uri(__pathBuilder.ToString());
             }
