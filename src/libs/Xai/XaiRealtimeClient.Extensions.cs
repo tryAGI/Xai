@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -78,146 +79,154 @@ public sealed partial class XaiRealtimeClient
             await ConnectAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
         }
 
-        var buffer = new byte[64 * 1024];
-        var arraySegment = new ArraySegment<byte>(buffer);
-
-        while (_clientWebSocket.State == WebSocketState.Open)
+        const int ReceiveBufferSize = 64 * 1024;
+        var buffer = ArrayPool<byte>.Shared.Rent(ReceiveBufferSize);
+        try
         {
-            using var messageBuffer = new MemoryStream();
-            WebSocketMessageType? messageType = null;
-            var reconnected = false;
+            var arraySegment = new ArraySegment<byte>(buffer, 0, ReceiveBufferSize);
 
-            while (true)
+            while (_clientWebSocket.State == WebSocketState.Open)
             {
-                WebSocketReceiveResult result;
+                using var messageBuffer = new MemoryStream();
+                WebSocketMessageType? messageType = null;
+                var reconnected = false;
 
-                try
+                while (true)
                 {
-                    result = await _clientWebSocket
-                        .ReceiveAsync(arraySegment, cancellationToken)
-                        .ConfigureAwait(false);
-                }
-                catch (WebSocketException exception)
-                {
-                    RaiseException(exception);
-                    var rethrow = false;
-                    OnReceiveException(exception, ref rethrow);
-                    if (await TryReconnectAsync(exception, cancellationToken).ConfigureAwait(false))
+                    WebSocketReceiveResult result;
+
+                    try
                     {
-                        reconnected = true;
-                        break;
+                        result = await _clientWebSocket
+                            .ReceiveAsync(arraySegment, cancellationToken)
+                            .ConfigureAwait(false);
                     }
-
-                    if (rethrow)
-                    {
-                        throw;
-                    }
-
-                    yield break;
-                }
-                catch (OperationCanceledException exception)
-                {
-                    if (!cancellationToken.IsCancellationRequested)
+                    catch (WebSocketException exception)
                     {
                         RaiseException(exception);
+                        var rethrow = false;
+                        OnReceiveException(exception, ref rethrow);
+                        if (await TryReconnectAsync(exception, cancellationToken).ConfigureAwait(false))
+                        {
+                            reconnected = true;
+                            break;
+                        }
+
+                        if (rethrow)
+                        {
+                            throw;
+                        }
+
+                        yield break;
+                    }
+                    catch (OperationCanceledException exception)
+                    {
+                        if (!cancellationToken.IsCancellationRequested)
+                        {
+                            RaiseException(exception);
+                        }
+
+                        var rethrow = false;
+                        OnReceiveException(exception, ref rethrow);
+                        if (rethrow)
+                        {
+                            throw;
+                        }
+
+                        yield break;
                     }
 
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        RaiseClosed(result.CloseStatus, result.CloseStatusDescription);
+                        await _clientWebSocket.CloseOutputAsync(
+                            WebSocketCloseStatus.NormalClosure,
+                            "Closing",
+                            cancellationToken).ConfigureAwait(false);
+                        yield break;
+                    }
+
+                    messageType ??= result.MessageType;
+                    if (result.Count > 0)
+                    {
+                        await messageBuffer
+                            .WriteAsync(buffer.AsMemory(0, result.Count), cancellationToken)
+                            .ConfigureAwait(false);
+                    }
+
+                    if (result.EndOfMessage)
+                    {
+                        break;
+                    }
+                }
+
+                if (reconnected)
+                {
+                    continue;
+                }
+
+                var payload = messageBuffer.ToArray();
+                if (messageType == WebSocketMessageType.Binary)
+                {
+                    yield return RealtimeServerMessage.FromBinaryAudio(payload);
+                    continue;
+                }
+
+                if (messageType != WebSocketMessageType.Text)
+                {
+                    continue;
+                }
+
+                var rawText = Encoding.UTF8.GetString(payload);
+                var parsedJson = TryParseMessageJson(rawText);
+                if (parsedJson is not { ValueKind: JsonValueKind.Object } json ||
+                    !json.TryGetProperty("type", out var typeProperty) ||
+                    typeProperty.ValueKind != JsonValueKind.String ||
+                    typeProperty.GetString() is not { } typeValue ||
+                    ServerEventDiscriminatorTypeExtensions.ToEnum(typeValue) is null)
+                {
+                    DispatchUnknownMessage(rawText);
+                    yield return RealtimeServerMessage.FromText(rawText, @event: null);
+                    continue;
+                }
+
+                ServerEvent? serverEvent = null;
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize(
+                        rawText,
+                        typeof(ServerEvent),
+                        JsonSerializerContext);
+                    if (deserialized is ServerEvent parsedEvent)
+                    {
+                        serverEvent = parsedEvent;
+                    }
+                }
+                catch (Exception exception) when (
+                    exception is JsonException or
+                    NotSupportedException or
+                    InvalidOperationException)
+                {
                     var rethrow = false;
                     OnReceiveException(exception, ref rethrow);
+                    DispatchUnknownMessage(rawText);
                     if (rethrow)
                     {
                         throw;
                     }
-
-                    yield break;
                 }
 
-                if (result.MessageType == WebSocketMessageType.Close)
+                if (serverEvent is { } knownEvent)
                 {
-                    RaiseClosed(result.CloseStatus, result.CloseStatusDescription);
-                    await _clientWebSocket.CloseOutputAsync(
-                        WebSocketCloseStatus.NormalClosure,
-                        "Closing",
-                        cancellationToken).ConfigureAwait(false);
-                    yield break;
+                    DispatchReceivedMessage(knownEvent, rawText);
                 }
 
-                messageType ??= result.MessageType;
-                if (result.Count > 0)
-                {
-                    await messageBuffer
-                        .WriteAsync(buffer.AsMemory(0, result.Count), cancellationToken)
-                        .ConfigureAwait(false);
-                }
-
-                if (result.EndOfMessage)
-                {
-                    break;
-                }
+                yield return RealtimeServerMessage.FromText(rawText, serverEvent);
             }
-
-            if (reconnected)
-            {
-                continue;
-            }
-
-            var payload = messageBuffer.ToArray();
-            if (messageType == WebSocketMessageType.Binary)
-            {
-                yield return RealtimeServerMessage.FromBinaryAudio(payload);
-                continue;
-            }
-
-            if (messageType != WebSocketMessageType.Text)
-            {
-                continue;
-            }
-
-            var rawText = Encoding.UTF8.GetString(payload);
-            var parsedJson = TryParseMessageJson(rawText);
-            if (parsedJson is not { ValueKind: JsonValueKind.Object } json ||
-                !json.TryGetProperty("type", out var typeProperty) ||
-                typeProperty.ValueKind != JsonValueKind.String ||
-                typeProperty.GetString() is not { } typeValue ||
-                ServerEventDiscriminatorTypeExtensions.ToEnum(typeValue) is null)
-            {
-                DispatchUnknownMessage(rawText);
-                yield return RealtimeServerMessage.FromText(rawText, @event: null);
-                continue;
-            }
-
-            ServerEvent? serverEvent = null;
-            try
-            {
-                var deserialized = JsonSerializer.Deserialize(
-                    rawText,
-                    typeof(ServerEvent),
-                    JsonSerializerContext);
-                if (deserialized is ServerEvent parsedEvent)
-                {
-                    serverEvent = parsedEvent;
-                }
-            }
-            catch (Exception exception) when (
-                exception is JsonException or
-                NotSupportedException or
-                InvalidOperationException)
-            {
-                var rethrow = false;
-                OnReceiveException(exception, ref rethrow);
-                DispatchUnknownMessage(rawText);
-                if (rethrow)
-                {
-                    throw;
-                }
-            }
-
-            if (serverEvent is { } knownEvent)
-            {
-                DispatchReceivedMessage(knownEvent, rawText);
-            }
-
-            yield return RealtimeServerMessage.FromText(rawText, serverEvent);
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer, clearArray: true);
         }
     }
 }

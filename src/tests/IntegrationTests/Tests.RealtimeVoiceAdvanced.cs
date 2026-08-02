@@ -6,12 +6,16 @@ public partial class Tests
 {
     [TestMethod]
     [TestCategory("Explicit")]
-    public async Task RealtimeVoice_BinaryOutputAndConversationResumption()
+    public async Task RealtimeVoice_AudioHistorySurvivesConversationResumption()
     {
         var apiKey =
             Environment.GetEnvironmentVariable("XAI_API_KEY") is { Length: > 0 } apiKeyValue
                 ? apiKeyValue
                 : throw new AssertInconclusiveException("XAI_API_KEY environment variable is not found.");
+
+        var audioFixture = await File.ReadAllBytesAsync(
+            Path.Combine(AppContext.BaseDirectory, "Fixtures", "remember-cobalt.pcm"));
+        audioFixture.Should().NotBeEmpty();
 
         string? conversationId = null;
         var firstResponseBinaryBytes = 0;
@@ -32,7 +36,7 @@ public partial class Tests
                     readyCancellationTokenSource.Token);
             }
 
-            await SendTextTurnAsync(client, "Confirm this resumable session in one word.");
+            await SendAudioTurnAsync(client, audioFixture);
 
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             await foreach (var message in client.ReceiveMessagesAsync(cancellationTokenSource.Token))
@@ -59,6 +63,7 @@ public partial class Tests
         firstResponseBinaryBytes.Should().BeGreaterThan(0);
 
         var resumedResponseBinaryBytes = 0;
+        string? resumedResponseTranscript = null;
 
         await using (var resumedClient = new XaiRealtimeClient(apiKey))
         {
@@ -77,7 +82,7 @@ public partial class Tests
 
             await SendTextTurnAsync(
                 resumedClient,
-                "Confirm this resumed connection in one word.");
+                "What codeword did I ask you to remember? Reply only with the word.");
 
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             await foreach (var message in resumedClient.ReceiveMessagesAsync(cancellationTokenSource.Token))
@@ -92,6 +97,10 @@ public partial class Tests
                     {
                         throw new InvalidOperationException(serverEvent.Error?.Error?.Message);
                     }
+                    else if (serverEvent.ResponseOutputAudioTranscriptDone?.Transcript is { Length: > 0 } transcript)
+                    {
+                        resumedResponseTranscript = transcript;
+                    }
                     else if (serverEvent.IsResponseDone)
                     {
                         break;
@@ -101,6 +110,7 @@ public partial class Tests
         }
 
         resumedResponseBinaryBytes.Should().BeGreaterThan(0);
+        resumedResponseTranscript.Should().ContainEquivalentOf("cobalt");
     }
 
     private static SessionConfig CreateBinaryResumableSession()
@@ -111,6 +121,17 @@ public partial class Tests
             Modalities = ["text", "audio"],
             Audio = new AudioConfig
             {
+                Input = new AudioDirectionConfig
+                {
+                    Format = new AudioFormatConfig { Type = "audio/pcm", Rate = 24_000 },
+                    Transport = AudioTransport.Json,
+                    Transcription = new AudioTranscriptionConfig
+                    {
+                        Model = "grok-transcribe",
+                        LanguageHint = "en-US",
+                        Keyterms = ["cobalt"],
+                    },
+                },
                 Output = new AudioDirectionConfig
                 {
                     Format = new AudioFormatConfig { Type = "audio/pcm", Rate = 24_000 },
@@ -118,7 +139,19 @@ public partial class Tests
                 },
             },
             Resumption = new ResumptionConfig { Enabled = true },
-        };
+        }.UseManualTurnDetection();
+    }
+
+    private static async Task SendAudioTurnAsync(
+        XaiRealtimeClient client,
+        ReadOnlyMemory<byte> audio)
+    {
+        await client.SendInputAudioBufferAppendAsync(audio);
+        await client.SendInputAudioBufferCommitAsync(new InputAudioBufferCommitPayload());
+        await client.SendResponseCreateAsync(new ResponseCreatePayload
+        {
+            Response = new ResponseConfig { Modalities = ["text", "audio"] },
+        });
     }
 
     private static async Task SendTextTurnAsync(XaiRealtimeClient client, string text)

@@ -2,12 +2,27 @@ using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Text;
+using System.Text.Json;
 using Xai.Realtime;
 
 namespace Xai.IntegrationTests;
 
 public partial class Tests
 {
+    [TestMethod]
+    public void ServerEventDeserializer_RejectsUnknownDiscriminatorInsteadOfSelectingFirstVariant()
+    {
+        using var client = new XaiRealtimeClient();
+
+        var deserialize = () => JsonSerializer.Deserialize(
+            "{\"type\":\"future.event\"}",
+            typeof(ServerEvent),
+            client.JsonSerializerContext);
+
+        deserialize.Should().Throw<JsonException>()
+            .WithMessage("*Unknown discriminator value 'future.event'*");
+    }
+
     [TestMethod]
     public async Task ReceiveMessagesAsync_PreservesJsonEventsAndFragmentedBinaryAudioInWireOrder()
     {

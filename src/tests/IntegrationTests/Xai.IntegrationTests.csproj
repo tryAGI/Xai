@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\libs\Xai\Xai.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Fixtures\remember-cobalt.pcm" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
