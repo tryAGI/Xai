@@ -10,11 +10,11 @@ namespace Xai
     public enum CreateVideoRequestResolution
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x480p,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x720p,
     }

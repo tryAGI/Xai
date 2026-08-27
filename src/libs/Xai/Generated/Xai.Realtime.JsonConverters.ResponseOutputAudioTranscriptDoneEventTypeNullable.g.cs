@@ -20,7 +20,7 @@ namespace Xai.Realtime.JsonConverters
                     {
                         return global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEventTypeExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

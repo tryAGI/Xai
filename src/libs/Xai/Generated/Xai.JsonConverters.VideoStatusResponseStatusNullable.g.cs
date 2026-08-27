@@ -20,7 +20,7 @@ namespace Xai.JsonConverters
                     {
                         return global::Xai.VideoStatusResponseStatusExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

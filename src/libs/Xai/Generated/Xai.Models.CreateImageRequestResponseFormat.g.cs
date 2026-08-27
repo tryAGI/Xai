@@ -10,11 +10,11 @@ namespace Xai
     public enum CreateImageRequestResponseFormat
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         B64Json,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Url,
     }

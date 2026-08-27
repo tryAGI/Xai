@@ -20,7 +20,7 @@ namespace Xai.Realtime.JsonConverters
                     {
                         return global::Xai.Realtime.ResponseMcpCallFailedEventTypeExtensions.ToEnum(stringValue) ?? default;
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

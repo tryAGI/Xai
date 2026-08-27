@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ChatCompletionContentPartImageUrl
     {
@@ -15,7 +15,7 @@ namespace Xai
         public string? Url { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("detail")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.ChatCompletionContentPartImageUrlDetailJsonConverter))]

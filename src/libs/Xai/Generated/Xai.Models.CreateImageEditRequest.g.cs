@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class CreateImageEditRequest
     {
@@ -23,7 +23,7 @@ namespace Xai
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public global::Xai.ImageInput? Image { get; set; }
@@ -42,7 +42,7 @@ namespace Xai
         public global::Xai.CreateImageEditRequestAspectRatio? AspectRatio { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.CreateImageEditRequestResolutionJsonConverter))]

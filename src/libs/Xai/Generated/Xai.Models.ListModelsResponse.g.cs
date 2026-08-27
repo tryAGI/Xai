@@ -4,18 +4,18 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ListModelsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("object")]
         public string? Object { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("data")]
         public global::System.Collections.Generic.IList<global::Xai.Model>? Data { get; set; }

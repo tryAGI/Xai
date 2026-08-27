@@ -9,14 +9,14 @@ namespace Xai.Realtime
     public sealed partial class McpListToolsCompletedEvent
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.McpListToolsCompletedEventTypeJsonConverter))]
         public global::Xai.Realtime.McpListToolsCompletedEventType? Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("event_id")]
         public string? EventId { get; set; }

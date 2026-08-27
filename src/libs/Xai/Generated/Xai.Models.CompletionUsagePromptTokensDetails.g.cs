@@ -4,24 +4,24 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class CompletionUsagePromptTokensDetails
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cached_tokens")]
         public int? CachedTokens { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("text_tokens")]
         public int? TextTokens { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_tokens")]
         public int? ImageTokens { get; set; }

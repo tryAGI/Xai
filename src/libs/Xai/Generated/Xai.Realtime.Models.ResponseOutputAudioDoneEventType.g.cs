@@ -4,12 +4,12 @@
 namespace Xai.Realtime
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ResponseOutputAudioDoneEventType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputAudioDone,
     }

@@ -4,92 +4,92 @@
 namespace Xai.Realtime
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ServerEventDiscriminatorType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ConversationCreated,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ConversationItemAdded,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Error,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InputAudioBufferCommitted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InputAudioBufferSpeechStarted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InputAudioBufferSpeechStopped,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InputAudioTranscriptionCompleted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         McpListToolsCompleted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseCreated,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseFunctionCallArgumentsDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseMcpCallCompleted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseMcpCallFailed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseMcpCallArgumentsDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputAudioDelta,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputAudioDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputAudioTranscriptDelta,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputAudioTranscriptDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseOutputItemAdded,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SessionCreated,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SessionUpdated,
     }

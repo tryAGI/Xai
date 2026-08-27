@@ -9,14 +9,14 @@ namespace Xai.Realtime
     public sealed partial class ErrorEvent
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.ErrorEventTypeJsonConverter))]
         public global::Xai.Realtime.ErrorEventType? Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("event_id")]
         public string? EventId { get; set; }

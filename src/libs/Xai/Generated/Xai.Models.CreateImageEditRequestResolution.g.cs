@@ -4,16 +4,16 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum CreateImageEditRequestResolution
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1k,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2k,
     }

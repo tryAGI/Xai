@@ -9,26 +9,26 @@ namespace Xai.Realtime
     public sealed partial class ResponseOutputItemAddedEvent
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.ResponseOutputItemAddedEventTypeJsonConverter))]
         public global::Xai.Realtime.ResponseOutputItemAddedEventType? Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("event_id")]
         public string? EventId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_id")]
         public string? ResponseId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_index")]
         public int? OutputIndex { get; set; }

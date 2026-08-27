@@ -4,18 +4,18 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ListBatchRequestsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("batch_request_metadata")]
         public global::System.Collections.Generic.IList<global::Xai.BatchRequestMetadata>? BatchRequestMetadata { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("pagination_token")]
         public string? PaginationToken { get; set; }

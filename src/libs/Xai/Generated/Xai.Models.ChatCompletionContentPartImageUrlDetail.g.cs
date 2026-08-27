@@ -4,20 +4,20 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ChatCompletionContentPartImageUrlDetail
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         High,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Low,
     }

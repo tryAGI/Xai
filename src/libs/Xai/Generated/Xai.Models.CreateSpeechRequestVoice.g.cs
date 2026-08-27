@@ -9,23 +9,23 @@ namespace Xai
     public enum CreateSpeechRequestVoice
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ara,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Eve,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Leo,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Rex,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Sal,
     }

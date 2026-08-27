@@ -4,12 +4,12 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class AddBatchRequestsRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("batch_requests")]
         [global::System.Text.Json.Serialization.JsonRequired]

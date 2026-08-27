@@ -9,7 +9,7 @@ namespace Xai
     public sealed partial class CreateResponseRequestReasoning
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("effort")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.CreateResponseRequestReasoningEffortJsonConverter))]

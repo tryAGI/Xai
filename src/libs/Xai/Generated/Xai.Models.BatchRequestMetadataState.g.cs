@@ -4,24 +4,24 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum BatchRequestMetadataState
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Cancelled,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Failed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pending,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Succeeded,
     }

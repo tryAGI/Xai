@@ -9,11 +9,11 @@ namespace Xai.Realtime
     public enum VoiceReasoningEffort
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         High,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         None,
     }

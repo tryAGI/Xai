@@ -5,12 +5,12 @@
 namespace Xai.Realtime
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public readonly partial struct ServerEvent : global::System.IEquatable<ServerEvent>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ServerEventDiscriminatorType? Type { get; }
 
@@ -24,7 +24,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SessionCreated))]
@@ -32,7 +32,7 @@ namespace Xai.Realtime
         public bool IsSessionCreated => SessionCreated != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSessionCreated(
 #if NET6_0_OR_GREATER
@@ -45,7 +45,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.SessionCreatedEvent PickSessionCreated() => IsSessionCreated
             ? SessionCreated!
@@ -61,7 +61,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SessionUpdated))]
@@ -69,7 +69,7 @@ namespace Xai.Realtime
         public bool IsSessionUpdated => SessionUpdated != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSessionUpdated(
 #if NET6_0_OR_GREATER
@@ -82,7 +82,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.SessionUpdatedEvent PickSessionUpdated() => IsSessionUpdated
             ? SessionUpdated!
@@ -98,7 +98,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ConversationCreated))]
@@ -106,7 +106,7 @@ namespace Xai.Realtime
         public bool IsConversationCreated => ConversationCreated != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickConversationCreated(
 #if NET6_0_OR_GREATER
@@ -119,7 +119,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ConversationCreatedEvent PickConversationCreated() => IsConversationCreated
             ? ConversationCreated!
@@ -135,7 +135,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ConversationItemAdded))]
@@ -143,7 +143,7 @@ namespace Xai.Realtime
         public bool IsConversationItemAdded => ConversationItemAdded != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickConversationItemAdded(
 #if NET6_0_OR_GREATER
@@ -156,7 +156,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ConversationItemAddedEvent PickConversationItemAdded() => IsConversationItemAdded
             ? ConversationItemAdded!
@@ -172,7 +172,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioBufferSpeechStarted))]
@@ -180,7 +180,7 @@ namespace Xai.Realtime
         public bool IsInputAudioBufferSpeechStarted => InputAudioBufferSpeechStarted != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickInputAudioBufferSpeechStarted(
 #if NET6_0_OR_GREATER
@@ -193,7 +193,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.InputAudioBufferSpeechStartedEvent PickInputAudioBufferSpeechStarted() => IsInputAudioBufferSpeechStarted
             ? InputAudioBufferSpeechStarted!
@@ -209,7 +209,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioBufferSpeechStopped))]
@@ -217,7 +217,7 @@ namespace Xai.Realtime
         public bool IsInputAudioBufferSpeechStopped => InputAudioBufferSpeechStopped != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickInputAudioBufferSpeechStopped(
 #if NET6_0_OR_GREATER
@@ -230,7 +230,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent PickInputAudioBufferSpeechStopped() => IsInputAudioBufferSpeechStopped
             ? InputAudioBufferSpeechStopped!
@@ -246,7 +246,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioBufferCommitted))]
@@ -254,7 +254,7 @@ namespace Xai.Realtime
         public bool IsInputAudioBufferCommitted => InputAudioBufferCommitted != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickInputAudioBufferCommitted(
 #if NET6_0_OR_GREATER
@@ -267,7 +267,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.InputAudioBufferCommittedEvent PickInputAudioBufferCommitted() => IsInputAudioBufferCommitted
             ? InputAudioBufferCommitted!
@@ -283,7 +283,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(InputAudioTranscriptionCompleted))]
@@ -291,7 +291,7 @@ namespace Xai.Realtime
         public bool IsInputAudioTranscriptionCompleted => InputAudioTranscriptionCompleted != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickInputAudioTranscriptionCompleted(
 #if NET6_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.InputAudioTranscriptionCompletedEvent PickInputAudioTranscriptionCompleted() => IsInputAudioTranscriptionCompleted
             ? InputAudioTranscriptionCompleted!
@@ -320,7 +320,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseCreated))]
@@ -328,7 +328,7 @@ namespace Xai.Realtime
         public bool IsResponseCreated => ResponseCreated != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseCreated(
 #if NET6_0_OR_GREATER
@@ -341,7 +341,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseCreatedEvent PickResponseCreated() => IsResponseCreated
             ? ResponseCreated!
@@ -357,7 +357,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseDone))]
@@ -365,7 +365,7 @@ namespace Xai.Realtime
         public bool IsResponseDone => ResponseDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseDone(
 #if NET6_0_OR_GREATER
@@ -378,7 +378,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseDoneEvent PickResponseDone() => IsResponseDone
             ? ResponseDone!
@@ -394,7 +394,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputItemAdded))]
@@ -402,7 +402,7 @@ namespace Xai.Realtime
         public bool IsResponseOutputItemAdded => ResponseOutputItemAdded != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseOutputItemAdded(
 #if NET6_0_OR_GREATER
@@ -415,7 +415,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseOutputItemAddedEvent PickResponseOutputItemAdded() => IsResponseOutputItemAdded
             ? ResponseOutputItemAdded!
@@ -431,7 +431,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioTranscriptDelta))]
@@ -439,7 +439,7 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioTranscriptDelta => ResponseOutputAudioTranscriptDelta != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseOutputAudioTranscriptDelta(
 #if NET6_0_OR_GREATER
@@ -452,7 +452,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent PickResponseOutputAudioTranscriptDelta() => IsResponseOutputAudioTranscriptDelta
             ? ResponseOutputAudioTranscriptDelta!
@@ -468,7 +468,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioTranscriptDone))]
@@ -476,7 +476,7 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioTranscriptDone => ResponseOutputAudioTranscriptDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseOutputAudioTranscriptDone(
 #if NET6_0_OR_GREATER
@@ -489,7 +489,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent PickResponseOutputAudioTranscriptDone() => IsResponseOutputAudioTranscriptDone
             ? ResponseOutputAudioTranscriptDone!
@@ -505,7 +505,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioDelta))]
@@ -513,7 +513,7 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioDelta => ResponseOutputAudioDelta != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseOutputAudioDelta(
 #if NET6_0_OR_GREATER
@@ -526,7 +526,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseOutputAudioDeltaEvent PickResponseOutputAudioDelta() => IsResponseOutputAudioDelta
             ? ResponseOutputAudioDelta!
@@ -542,7 +542,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseOutputAudioDone))]
@@ -550,7 +550,7 @@ namespace Xai.Realtime
         public bool IsResponseOutputAudioDone => ResponseOutputAudioDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseOutputAudioDone(
 #if NET6_0_OR_GREATER
@@ -563,7 +563,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseOutputAudioDoneEvent PickResponseOutputAudioDone() => IsResponseOutputAudioDone
             ? ResponseOutputAudioDone!
@@ -579,7 +579,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseFunctionCallArgumentsDone))]
@@ -587,7 +587,7 @@ namespace Xai.Realtime
         public bool IsResponseFunctionCallArgumentsDone => ResponseFunctionCallArgumentsDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseFunctionCallArgumentsDone(
 #if NET6_0_OR_GREATER
@@ -600,7 +600,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent PickResponseFunctionCallArgumentsDone() => IsResponseFunctionCallArgumentsDone
             ? ResponseFunctionCallArgumentsDone!
@@ -616,7 +616,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseMcpCallArgumentsDone))]
@@ -624,7 +624,7 @@ namespace Xai.Realtime
         public bool IsResponseMcpCallArgumentsDone => ResponseMcpCallArgumentsDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseMcpCallArgumentsDone(
 #if NET6_0_OR_GREATER
@@ -637,7 +637,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent PickResponseMcpCallArgumentsDone() => IsResponseMcpCallArgumentsDone
             ? ResponseMcpCallArgumentsDone!
@@ -653,7 +653,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseMcpCallCompleted))]
@@ -661,7 +661,7 @@ namespace Xai.Realtime
         public bool IsResponseMcpCallCompleted => ResponseMcpCallCompleted != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseMcpCallCompleted(
 #if NET6_0_OR_GREATER
@@ -674,7 +674,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseMcpCallCompletedEvent PickResponseMcpCallCompleted() => IsResponseMcpCallCompleted
             ? ResponseMcpCallCompleted!
@@ -690,7 +690,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ResponseMcpCallFailed))]
@@ -698,7 +698,7 @@ namespace Xai.Realtime
         public bool IsResponseMcpCallFailed => ResponseMcpCallFailed != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickResponseMcpCallFailed(
 #if NET6_0_OR_GREATER
@@ -711,7 +711,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ResponseMcpCallFailedEvent PickResponseMcpCallFailed() => IsResponseMcpCallFailed
             ? ResponseMcpCallFailed!
@@ -727,7 +727,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(McpListToolsCompleted))]
@@ -735,7 +735,7 @@ namespace Xai.Realtime
         public bool IsMcpListToolsCompleted => McpListToolsCompleted != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickMcpListToolsCompleted(
 #if NET6_0_OR_GREATER
@@ -748,7 +748,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.McpListToolsCompletedEvent PickMcpListToolsCompleted() => IsMcpListToolsCompleted
             ? McpListToolsCompleted!
@@ -764,7 +764,7 @@ namespace Xai.Realtime
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Error))]
@@ -772,7 +772,7 @@ namespace Xai.Realtime
         public bool IsError => Error != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickError(
 #if NET6_0_OR_GREATER
@@ -785,23 +785,23 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Xai.Realtime.ErrorEvent PickError() => IsError
             ? Error!
             : throw new global::System.InvalidOperationException($"Expected union variant 'Error' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.SessionCreatedEvent value) => new ServerEvent((global::Xai.Realtime.SessionCreatedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.SessionCreatedEvent?(ServerEvent @this) => @this.SessionCreated;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.SessionCreatedEvent? value)
         {
@@ -809,22 +809,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromSessionCreated(global::Xai.Realtime.SessionCreatedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.SessionUpdatedEvent value) => new ServerEvent((global::Xai.Realtime.SessionUpdatedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.SessionUpdatedEvent?(ServerEvent @this) => @this.SessionUpdated;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.SessionUpdatedEvent? value)
         {
@@ -832,22 +832,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromSessionUpdated(global::Xai.Realtime.SessionUpdatedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ConversationCreatedEvent value) => new ServerEvent((global::Xai.Realtime.ConversationCreatedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ConversationCreatedEvent?(ServerEvent @this) => @this.ConversationCreated;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ConversationCreatedEvent? value)
         {
@@ -855,22 +855,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromConversationCreated(global::Xai.Realtime.ConversationCreatedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ConversationItemAddedEvent value) => new ServerEvent((global::Xai.Realtime.ConversationItemAddedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ConversationItemAddedEvent?(ServerEvent @this) => @this.ConversationItemAdded;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ConversationItemAddedEvent? value)
         {
@@ -878,22 +878,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromConversationItemAdded(global::Xai.Realtime.ConversationItemAddedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioBufferSpeechStartedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.InputAudioBufferSpeechStartedEvent?(ServerEvent @this) => @this.InputAudioBufferSpeechStarted;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent? value)
         {
@@ -901,22 +901,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromInputAudioBufferSpeechStarted(global::Xai.Realtime.InputAudioBufferSpeechStartedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent?(ServerEvent @this) => @this.InputAudioBufferSpeechStopped;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent? value)
         {
@@ -924,22 +924,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromInputAudioBufferSpeechStopped(global::Xai.Realtime.InputAudioBufferSpeechStoppedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioBufferCommittedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioBufferCommittedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.InputAudioBufferCommittedEvent?(ServerEvent @this) => @this.InputAudioBufferCommitted;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.InputAudioBufferCommittedEvent? value)
         {
@@ -947,22 +947,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromInputAudioBufferCommitted(global::Xai.Realtime.InputAudioBufferCommittedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent value) => new ServerEvent((global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.InputAudioTranscriptionCompletedEvent?(ServerEvent @this) => @this.InputAudioTranscriptionCompleted;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent? value)
         {
@@ -970,22 +970,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromInputAudioTranscriptionCompleted(global::Xai.Realtime.InputAudioTranscriptionCompletedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseCreatedEvent value) => new ServerEvent((global::Xai.Realtime.ResponseCreatedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseCreatedEvent?(ServerEvent @this) => @this.ResponseCreated;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseCreatedEvent? value)
         {
@@ -993,22 +993,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseCreated(global::Xai.Realtime.ResponseCreatedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseDoneEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseDoneEvent?(ServerEvent @this) => @this.ResponseDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseDoneEvent? value)
         {
@@ -1016,22 +1016,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseDone(global::Xai.Realtime.ResponseDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputItemAddedEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputItemAddedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseOutputItemAddedEvent?(ServerEvent @this) => @this.ResponseOutputItemAdded;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseOutputItemAddedEvent? value)
         {
@@ -1039,22 +1039,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseOutputItemAdded(global::Xai.Realtime.ResponseOutputItemAddedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent?(ServerEvent @this) => @this.ResponseOutputAudioTranscriptDelta;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent? value)
         {
@@ -1062,22 +1062,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseOutputAudioTranscriptDelta(global::Xai.Realtime.ResponseOutputAudioTranscriptDeltaEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent?(ServerEvent @this) => @this.ResponseOutputAudioTranscriptDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent? value)
         {
@@ -1085,22 +1085,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseOutputAudioTranscriptDone(global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioDeltaEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioDeltaEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseOutputAudioDeltaEvent?(ServerEvent @this) => @this.ResponseOutputAudioDelta;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseOutputAudioDeltaEvent? value)
         {
@@ -1108,22 +1108,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseOutputAudioDelta(global::Xai.Realtime.ResponseOutputAudioDeltaEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseOutputAudioDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseOutputAudioDoneEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseOutputAudioDoneEvent?(ServerEvent @this) => @this.ResponseOutputAudioDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseOutputAudioDoneEvent? value)
         {
@@ -1131,22 +1131,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseOutputAudioDone(global::Xai.Realtime.ResponseOutputAudioDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent?(ServerEvent @this) => @this.ResponseFunctionCallArgumentsDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent? value)
         {
@@ -1154,22 +1154,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseFunctionCallArgumentsDone(global::Xai.Realtime.ResponseFunctionCallArgumentsDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent value) => new ServerEvent((global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent?(ServerEvent @this) => @this.ResponseMcpCallArgumentsDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent? value)
         {
@@ -1177,22 +1177,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseMcpCallArgumentsDone(global::Xai.Realtime.ResponseMcpCallArgumentsDoneEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseMcpCallCompletedEvent value) => new ServerEvent((global::Xai.Realtime.ResponseMcpCallCompletedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseMcpCallCompletedEvent?(ServerEvent @this) => @this.ResponseMcpCallCompleted;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseMcpCallCompletedEvent? value)
         {
@@ -1200,22 +1200,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseMcpCallCompleted(global::Xai.Realtime.ResponseMcpCallCompletedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ResponseMcpCallFailedEvent value) => new ServerEvent((global::Xai.Realtime.ResponseMcpCallFailedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ResponseMcpCallFailedEvent?(ServerEvent @this) => @this.ResponseMcpCallFailed;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ResponseMcpCallFailedEvent? value)
         {
@@ -1223,22 +1223,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromResponseMcpCallFailed(global::Xai.Realtime.ResponseMcpCallFailedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.McpListToolsCompletedEvent value) => new ServerEvent((global::Xai.Realtime.McpListToolsCompletedEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.McpListToolsCompletedEvent?(ServerEvent @this) => @this.McpListToolsCompleted;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.McpListToolsCompletedEvent? value)
         {
@@ -1246,22 +1246,22 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromMcpListToolsCompleted(global::Xai.Realtime.McpListToolsCompletedEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ServerEvent(global::Xai.Realtime.ErrorEvent value) => new ServerEvent((global::Xai.Realtime.ErrorEvent?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Xai.Realtime.ErrorEvent?(ServerEvent @this) => @this.Error;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(global::Xai.Realtime.ErrorEvent? value)
         {
@@ -1269,12 +1269,12 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ServerEvent FromError(global::Xai.Realtime.ErrorEvent? value) => new ServerEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ServerEvent(
             global::Xai.Realtime.ServerEventDiscriminatorType? type,
@@ -1327,7 +1327,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             Error as object ??
@@ -1350,11 +1350,11 @@ namespace Xai.Realtime
             ConversationItemAdded as object ??
             ConversationCreated as object ??
             SessionUpdated as object ??
-            SessionCreated as object 
+            SessionCreated as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             SessionCreated?.ToString() ??
@@ -1377,11 +1377,11 @@ namespace Xai.Realtime
             ResponseMcpCallCompleted?.ToString() ??
             ResponseMcpCallFailed?.ToString() ??
             McpListToolsCompleted?.ToString() ??
-            Error?.ToString() 
+            Error?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -1389,7 +1389,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Xai.Realtime.SessionCreatedEvent, TResult>? sessionCreated = null,
@@ -1509,7 +1509,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Xai.Realtime.SessionCreatedEvent>? sessionCreated = null,
@@ -1647,7 +1647,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Xai.Realtime.SessionCreatedEvent>? sessionCreated = null,
@@ -1765,7 +1765,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -1824,7 +1824,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(ServerEvent other)
         {
@@ -1849,12 +1849,12 @@ namespace Xai.Realtime
                 global::System.Collections.Generic.EqualityComparer<global::Xai.Realtime.ResponseMcpCallCompletedEvent?>.Default.Equals(ResponseMcpCallCompleted, other.ResponseMcpCallCompleted) &&
                 global::System.Collections.Generic.EqualityComparer<global::Xai.Realtime.ResponseMcpCallFailedEvent?>.Default.Equals(ResponseMcpCallFailed, other.ResponseMcpCallFailed) &&
                 global::System.Collections.Generic.EqualityComparer<global::Xai.Realtime.McpListToolsCompletedEvent?>.Default.Equals(McpListToolsCompleted, other.McpListToolsCompleted) &&
-                global::System.Collections.Generic.EqualityComparer<global::Xai.Realtime.ErrorEvent?>.Default.Equals(Error, other.Error) 
+                global::System.Collections.Generic.EqualityComparer<global::Xai.Realtime.ErrorEvent?>.Default.Equals(Error, other.Error)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(ServerEvent obj1, ServerEvent obj2)
         {
@@ -1862,7 +1862,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(ServerEvent obj1, ServerEvent obj2)
         {
@@ -1870,7 +1870,7 @@ namespace Xai.Realtime
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

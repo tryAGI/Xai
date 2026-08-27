@@ -20,7 +20,7 @@ namespace Xai.JsonConverters
                     {
                         return global::Xai.CreateImageEditRequestAspectRatioExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

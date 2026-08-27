@@ -9,15 +9,15 @@ namespace Xai.Realtime
     public enum VoiceModel
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GrokVoiceLatest,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GrokVoiceThinkFast10,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GrokVoiceThinkFast20,
     }

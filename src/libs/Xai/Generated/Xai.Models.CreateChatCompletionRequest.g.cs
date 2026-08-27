@@ -4,7 +4,7 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class CreateChatCompletionRequest
     {
@@ -106,7 +106,7 @@ namespace Xai
         public bool? ParallelToolCalls { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_format")]
         public global::Xai.ResponseFormat? ResponseFormat { get; set; }

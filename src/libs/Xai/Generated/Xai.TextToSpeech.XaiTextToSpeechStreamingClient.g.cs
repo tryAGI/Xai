@@ -278,7 +278,7 @@ namespace Xai.TextToSpeech
         public event global::System.EventHandler<AutoSDKWebSocketMessageEventArgs<global::Xai.TextToSpeech.ErrorEvent>>? ErrorReceived;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Xai.TextToSpeech.TextToSpeechStreamingSourceGenerationContext.Default;
