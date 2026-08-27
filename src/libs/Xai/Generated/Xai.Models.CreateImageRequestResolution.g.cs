@@ -9,11 +9,11 @@ namespace Xai
     public enum CreateImageRequestResolution
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1k,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2k,
     }

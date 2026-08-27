@@ -4,12 +4,12 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ImageInputType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ImageUrl,
     }

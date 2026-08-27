@@ -4,12 +4,12 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ResponseFormat
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.JsonConverters.ResponseFormatTypeJsonConverter))]
@@ -17,7 +17,7 @@ namespace Xai
         public required global::Xai.ResponseFormatType Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("json_schema")]
         public global::Xai.ResponseFormatJsonSchema? JsonSchema { get; set; }

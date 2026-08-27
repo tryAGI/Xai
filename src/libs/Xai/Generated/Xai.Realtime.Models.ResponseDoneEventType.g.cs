@@ -4,12 +4,12 @@
 namespace Xai.Realtime
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ResponseDoneEventType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ResponseDone,
     }

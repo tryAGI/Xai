@@ -4,16 +4,16 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ChatCompletionContentPartType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ImageUrl,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Text,
     }

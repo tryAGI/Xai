@@ -4,12 +4,12 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class CreateClientSecretRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("expires_after")]
         public global::Xai.CreateClientSecretRequestExpiresAfter? ExpiresAfter { get; set; }

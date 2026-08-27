@@ -20,7 +20,7 @@ namespace Xai.Realtime.JsonConverters
                     {
                         return global::Xai.Realtime.ServerEventDiscriminatorTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown discriminator value '{stringValue}' for global::Xai.Realtime.ServerEventDiscriminatorType.");
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

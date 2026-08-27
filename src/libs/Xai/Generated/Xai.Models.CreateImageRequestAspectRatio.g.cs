@@ -9,59 +9,59 @@ namespace Xai
     public enum CreateImageRequestAspectRatio
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x16_9,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x195_9,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1_1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1_2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x20_9,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2_1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2_3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x3_2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x3_4,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x4_3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9_16,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9_195,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9_20,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
     }

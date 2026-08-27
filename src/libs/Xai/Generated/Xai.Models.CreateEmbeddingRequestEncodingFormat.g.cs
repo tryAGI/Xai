@@ -9,11 +9,11 @@ namespace Xai
     public enum CreateEmbeddingRequestEncodingFormat
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Base64,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Float,
     }

@@ -350,7 +350,7 @@ namespace Xai.Realtime
         public event global::System.EventHandler<AutoSDKWebSocketMessageEventArgs<global::Xai.Realtime.ErrorEvent>>? ErrorReceived;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Xai.Realtime.RealtimeSourceGenerationContext.Default;

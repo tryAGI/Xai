@@ -4,12 +4,12 @@
 namespace Xai
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ChatCompletionToolType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Function,
     }

@@ -9,11 +9,11 @@ namespace Xai.Realtime
     public enum AudioTransport
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Binary,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Json,
     }

@@ -10,15 +10,15 @@ namespace Xai
     public enum SearchDocumentsRequestMode
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Hybrid,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Keyword,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Semantic,
     }

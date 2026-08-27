@@ -20,7 +20,7 @@ namespace Xai.TextToSpeech.JsonConverters
                     {
                         return global::Xai.TextToSpeech.ServerEventDiscriminatorTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown discriminator value '{stringValue}' for global::Xai.TextToSpeech.ServerEventDiscriminatorType.");
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

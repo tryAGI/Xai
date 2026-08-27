@@ -9,7 +9,7 @@ namespace Xai.Realtime
     public sealed partial class ResponseCreatePayload
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Xai.Realtime.JsonConverters.ResponseCreatePayloadTypeJsonConverter))]
