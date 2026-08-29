@@ -136,6 +136,7 @@ namespace Xai.Realtime
             typeof(global::Xai.Realtime.JsonConverters.ServerEventJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.JsonSerializerContextTypes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.VoiceModel), TypeInfoPropertyName = "VoiceModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.VoiceReasoningEffort), TypeInfoPropertyName = "VoiceReasoningEffort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.Realtime.SessionConfig))]
