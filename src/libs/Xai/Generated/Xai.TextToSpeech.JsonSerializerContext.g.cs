@@ -40,6 +40,7 @@ namespace Xai.TextToSpeech
             typeof(global::Xai.TextToSpeech.JsonConverters.ServerEventJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.JsonSerializerContextTypes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.TextDeltaPayload))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.TextDeltaPayloadType), TypeInfoPropertyName = "TextDeltaPayloadType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
