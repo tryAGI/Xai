@@ -47,8 +47,8 @@ namespace Xai.TextToSpeech
         /// <summary>
         ///
         /// </summary>
-        public global::Xai.TextToSpeech.AudioDeltaEvent PickAudioDelta() => IsAudioDelta
-            ? AudioDelta!
+        public global::Xai.TextToSpeech.AudioDeltaEvent PickAudioDelta() => AudioDelta is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'AudioDelta' but the value was {ToString()}.");
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace Xai.TextToSpeech
         /// <summary>
         ///
         /// </summary>
-        public global::Xai.TextToSpeech.AudioDoneEvent PickAudioDone() => IsAudioDone
-            ? AudioDone!
+        public global::Xai.TextToSpeech.AudioDoneEvent PickAudioDone() => AudioDone is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'AudioDone' but the value was {ToString()}.");
 
         /// <summary>
@@ -121,8 +121,8 @@ namespace Xai.TextToSpeech
         /// <summary>
         ///
         /// </summary>
-        public global::Xai.TextToSpeech.ErrorEvent PickError() => IsError
-            ? Error!
+        public global::Xai.TextToSpeech.ErrorEvent PickError() => Error is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Error' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -250,17 +250,17 @@ namespace Xai.TextToSpeech
                 Validate();
             }
 
-            if (IsAudioDelta && audioDelta != null)
+            if (AudioDelta is { } __value0 && audioDelta != null)
             {
-                return audioDelta(AudioDelta!);
+                return audioDelta(__value0);
             }
-            else if (IsAudioDone && audioDone != null)
+            else if (AudioDone is { } __value1 && audioDone != null)
             {
-                return audioDone(AudioDone!);
+                return audioDone(__value1);
             }
-            else if (IsError && error != null)
+            else if (Error is { } __value2 && error != null)
             {
-                return error(Error!);
+                return error(__value2);
             }
 
             return default(TResult);
@@ -282,17 +282,17 @@ namespace Xai.TextToSpeech
                 Validate();
             }
 
-            if (IsAudioDelta)
+            if (AudioDelta is { } __value0)
             {
-                audioDelta?.Invoke(AudioDelta!);
+                audioDelta?.Invoke(__value0);
             }
-            else if (IsAudioDone)
+            else if (AudioDone is { } __value1)
             {
-                audioDone?.Invoke(AudioDone!);
+                audioDone?.Invoke(__value1);
             }
-            else if (IsError)
+            else if (Error is { } __value2)
             {
-                error?.Invoke(Error!);
+                error?.Invoke(__value2);
             }
         }
 
@@ -310,17 +310,17 @@ namespace Xai.TextToSpeech
                 Validate();
             }
 
-            if (IsAudioDelta)
+            if (AudioDelta is { } __value0)
             {
-                audioDelta?.Invoke(AudioDelta!);
+                audioDelta?.Invoke(__value0);
             }
-            else if (IsAudioDone)
+            else if (AudioDone is { } __value1)
             {
-                audioDone?.Invoke(AudioDone!);
+                audioDone?.Invoke(__value1);
             }
-            else if (IsError)
+            else if (Error is { } __value2)
             {
-                error?.Invoke(Error!);
+                error?.Invoke(__value2);
             }
         }
 
