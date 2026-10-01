@@ -8,7 +8,7 @@ namespace Xai.TextToSpeech
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class JsonSerializerContextTypes
+    public sealed partial class TextToSpeechStreamingSourceGenerationContextTypes
     {
         /// <summary>
         ///
