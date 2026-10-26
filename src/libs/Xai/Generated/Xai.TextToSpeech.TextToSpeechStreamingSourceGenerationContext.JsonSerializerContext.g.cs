@@ -40,6 +40,7 @@ namespace Xai.TextToSpeech
     #pragma warning restore CS3016
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.TextToSpeechStreamingSourceGenerationContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(string[]))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.TextDeltaPayload))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Xai.TextToSpeech.TextDeltaPayloadType), TypeInfoPropertyName = "TextDeltaPayloadType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
