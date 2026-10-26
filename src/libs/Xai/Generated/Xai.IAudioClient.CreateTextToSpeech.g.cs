@@ -35,6 +35,20 @@ namespace Xai
         /// Converts text into speech audio. The voice_id can be a built-in TTS voice or a custom voice ID.
         /// </summary>
         /// <param name="request"></param>
+        /// <returns>The response metadata and an unbuffered body stream. The caller must dispose Body to release the HTTP response.</returns>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Xai.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Xai.AutoSDKHttpResponse<global::System.IO.Stream>> CreateTextToSpeechAsStreamAsResponseAsync(
+
+            global::Xai.CreateTextToSpeechRequest request,
+            global::Xai.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create text-to-speech audio<br/>
+        /// Converts text into speech audio. The voice_id can be a built-in TTS voice or a custom voice ID.
+        /// </summary>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Xai.ApiException"></exception>
