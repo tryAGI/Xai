@@ -18,7 +18,7 @@ namespace Xai.TextToSpeech.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Xai.TextToSpeech.TextDeltaPayloadTypeExtensions.ToEnum(stringValue) ?? default;
+                        return global::Xai.TextToSpeech.TextDeltaPayloadTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown discriminator value '{stringValue}' for global::Xai.TextToSpeech.TextDeltaPayloadType.");
                     }
 
                     break;
