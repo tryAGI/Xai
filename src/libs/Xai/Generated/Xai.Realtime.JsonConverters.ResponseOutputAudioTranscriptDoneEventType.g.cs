@@ -18,7 +18,7 @@ namespace Xai.Realtime.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEventTypeExtensions.ToEnum(stringValue) ?? default;
+                        return global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEventTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown discriminator value '{stringValue}' for global::Xai.Realtime.ResponseOutputAudioTranscriptDoneEventType.");
                     }
 
                     break;
