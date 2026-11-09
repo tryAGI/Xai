@@ -18,7 +18,7 @@ namespace Xai.Realtime.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Xai.Realtime.ConversationItemCreatePayloadTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown discriminator value '{stringValue}' for global::Xai.Realtime.ConversationItemCreatePayloadType.");
+                        return global::Xai.Realtime.ConversationItemCreatePayloadTypeExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown value '{stringValue}' for global::Xai.Realtime.ConversationItemCreatePayloadType.");
                     }
 
                     break;
